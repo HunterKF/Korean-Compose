@@ -70,7 +70,6 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier
                             .fillMaxWidth()
                             .weight(1f)
-                            .background(color = Color.Black)
                     )
                     LazyColumn(
                         modifier = Modifier
