@@ -1,14 +1,18 @@
 package com.example.koreancompose
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class MyViewModel: ViewModel() {
-    private val _name = MutableLiveData("")
-    val name: LiveData<String> = _name
+    val textFieldState = mutableStateOf("")
 
-    fun onNameChanged(newName: String) {
-        _name.value = newName
+    fun onTextfieldChange(textFieldState: String) {
+        this.textFieldState.value = textFieldState
     }
+
+
+
 }
+

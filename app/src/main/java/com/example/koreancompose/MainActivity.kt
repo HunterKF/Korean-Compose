@@ -27,64 +27,23 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.koreancompose.repository.data_word
 import com.example.koreancompose.ui.theme.KoreanComposeTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val viewModel = MyViewModel()
         setContent {
-            var textFieldState by remember {
-                mutableStateOf("")
-            }
+            //TextField
+            var textFieldState = viewModel.textFieldState.value
+
+            //Card initializer
             val dataWord = data_word()
             val getAllData = dataWord.getAllData()
 
 
             KoreanComposeTheme {
-                // A surface container using the 'background' color from the theme
-                Column(
-                    modifier = Modifier
-                        .padding(vertical = 16.dp)
-                        .fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-
-                ) {
-                    Greeting(name = "Hunter")
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(20.dp),
-                        horizontalArrangement = Arrangement.SpaceEvenly
-                    ) {
-                        learningPoint(point = "가다")
-                        learningPoint(point = "으려고")
-                    }
-                    Divider(modifier = Modifier.fillMaxWidth())
-                    TextField(
-                        value = textFieldState,
-                        label = {
-                            Text("Start typing nowsassa...")
-                        },
-                        onValueChange = {
-                            textFieldState = it
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(1f)
-                    )
-                    LazyColumn(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .weight(2f)
-                            .padding(16.dp)
-
-                    ) {
-                        items(items = getAllData) { card ->
-                            CustomItem(card = card)
-                        }
-
-                    }
-
-                }
+                PracticeScreen()
             }
         }
     }
@@ -92,27 +51,8 @@ class MainActivity : ComponentActivity() {
 
 
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Composable
-fun learningPoint(point: String) {
-    Row() {
-        Text("$point")
-        Icon(painter = painterResource(id = R.drawable.ic_arrow_drop_down), "down arrow")
-    }
-}
 
 
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    KoreanComposeTheme {
-        Greeting("Android")
-    }
-}
