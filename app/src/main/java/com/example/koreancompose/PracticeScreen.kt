@@ -5,8 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ComposeCompilerApi
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -18,6 +17,11 @@ import com.example.koreancompose.repository.data_word
 
 val viewModel = MyViewModel()
 var textFieldState = viewModel.textFieldState.value
+
+val TAG = "TextField"
+
+val textState = mutableStateOf("")
+
 
 //Card initializer
 val dataWord = data_word()
@@ -33,17 +37,23 @@ fun PracticeScreen() {
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
+        var cardState by remember { mutableStateOf(viewModel.itemList)}
+
         LearningBar()
-        Column(modifier = Modifier.weight(1f)) {
+        Column(modifier = Modifier
+            .weight(1f)) {
             TextField(modifier = Modifier
                 .background(color = Color.Red))
         }
-        Button()
+        Button { PracticeCard ->
+            cardState = cardState + listOf(PracticeCard)
+        }
         Column(modifier = Modifier.weight(2f)) {
             DisplayList(
                 modifier = Modifier
                     .fillMaxHeight()
-                    .weight(2f)
+                    .weight(2f),
+                cardState = cardState
             )
         }
     }
@@ -70,12 +80,12 @@ fun LearningBar() {
 @Composable
 fun TextField(modifier: Modifier) {
     TextField(
-        value = textFieldState,
+        value = viewModel.textFieldState.value,
         label = {
             Text("Start typing now...")
         },
-        onValueChange = {
-            viewModel.onTextfieldChange(it)
+        onValueChange = { newValue ->
+            viewModel.onTextFieldChange(newValue)
         },
         modifier = Modifier
             .fillMaxSize()
@@ -83,13 +93,16 @@ fun TextField(modifier: Modifier) {
 }
 
 @Composable
-fun Button() {
+fun Button(
+    onCardItemAdded: (String) -> Unit
+) {
     Button(modifier = Modifier
         .fillMaxWidth()
         .background(color = Color.Blue)
         .height(50.dp),
         onClick = {
-            /*TODO*/
+            onCardItemAdded(viewModel.textFieldState.value)
+
         }
     ) {
         Text("Enter")
@@ -97,19 +110,24 @@ fun Button() {
 }
 
 @Composable
-fun DisplayList(modifier: Modifier) {
+fun DisplayList(modifier: Modifier, cardState: List<String>) {
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
 
     ) {
+
+        items(cardState.size) { index ->
+            Text(text = cardState[index])
+        }
         items(items = getAllData) { card ->
-            CustomItem(card = card)
+            CustomItem(practiceCard = card)
         }
 
     }
 }
+
 @Composable
 fun learningPoint(point: String) {
     Row() {

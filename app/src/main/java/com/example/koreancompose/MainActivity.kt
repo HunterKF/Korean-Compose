@@ -32,15 +32,7 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel = MyViewModel()
         setContent {
-            //TextField
-            var textFieldState = viewModel.textFieldState.value
-
-            //Card initializer
-            val dataWord = data_word()
-            val getAllData = dataWord.getAllData()
-
 
             KoreanComposeTheme {
                 PracticeScreen()

@@ -1,7 +1,7 @@
 package com.example.koreancompose.model
 
-data class Card(
+data class PracticeCard(
     val word: String,
     val grammar: String,
-    val example: String
+    val inputedSentence: String
 )
