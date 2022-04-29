@@ -1,5 +1,6 @@
 package com.example.koreancompose
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,19 +13,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.koreancompose.repository.data_word
+import com.example.koreancompose.model.PracticeCard
+import com.example.koreancompose.repository.CardRepository
 
 
-val viewModel = MyViewModel()
+val viewModel = ViewModel()
 var textFieldState = viewModel.textFieldState.value
 
-val TAG = "TextField"
+val TAG = "Button"
 
 val textState = mutableStateOf("")
 
 
 //Card initializer
-val dataWord = data_word()
+val dataWord = CardRepository()
 val getAllData = dataWord.getAllData()
 
 @Preview(showSystemUi = true)
@@ -68,12 +70,12 @@ fun LearningBar() {
             .padding(20.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        learningPoint(point = "가다")
+        learningPoint(point = viewModel.word)
         Divider(modifier = Modifier
             .height(30.dp)
             .width(2.dp)
         )
-        learningPoint(point = "으려고")
+        learningPoint(point = viewModel.grammar)
     }
 }
 
@@ -101,7 +103,12 @@ fun Button(
         .background(color = Color.Blue)
         .height(50.dp),
         onClick = {
-            onCardItemAdded(viewModel.textFieldState.value)
+
+            viewModel.sentence = viewModel.textFieldState.value
+            viewModel.grammar
+            dataWord.allCards.add(PracticeCard(viewModel.word, viewModel.grammar, viewModel.sentence))
+            Log.d(TAG, "${dataWord.allCards} AND ${dataWord.getAllData()}")
+            onCardItemAdded(viewModel.sentence)
 
         }
     ) {
@@ -118,11 +125,10 @@ fun DisplayList(modifier: Modifier, cardState: List<String>) {
 
     ) {
 
-        items(cardState.size) { index ->
-            Text(text = cardState[index])
-        }
+        items(cardState.size) {}
         items(items = getAllData) { card ->
             CustomItem(practiceCard = card)
+            Spacer(Modifier.size(10.dp))
         }
 
     }

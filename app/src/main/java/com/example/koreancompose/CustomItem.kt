@@ -61,5 +61,6 @@ fun CustomItem(practiceCard: PracticeCard) {
             letterSpacing = 0.15.sp
 
         )
+        Spacer(modifier = Modifier.height(10.dp))
     }
 }

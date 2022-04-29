@@ -1,0 +1,340 @@
+{
+  "data_grammar": [
+    {
+      "grammar": "V+아\/어\/여서",
+      "def": "Because…",
+      "example": "바빠서 지금 갈 수 없어요"
+    },
+    {
+      "grammar": "(으)니까",
+      "def": "Because (of something)",
+      "example": "유리은 한국에서 오래 살았으니까 한국말을 잘 해요"
+    },
+    {
+      "grammar": "Adj+(으)ㄴ데, V+는데",
+      "def": "Continued dialogue",
+      "example": "차가 아주 좋은데 아주 비싸요"
+    },
+    {
+      "grammar": "-러",
+      "def": "For the purpose of",
+      "example": "친구 를 만나러 나가요"
+    },
+    {
+      "grammar": "V+(으)려고 하다",
+      "def": "Intention, going to…",
+      "example": "카메라 사려고 해요"
+    },
+    {
+      "grammar": "(으)면서",
+      "def": "While, at the same time",
+      "example": "나는 춤을 추면서 노래 부르다"
+    },
+    {
+      "grammar": "V+(으)면, 만약",
+      "def": "If",
+      "example": "서두르면 기차를 탈 수 있어요"
+    },
+    {
+      "grammar": "A\/V+(이)지요?",
+      "def": "‘Mini’ questions",
+      "example": "내일 직장에 안 가지요?"
+    },
+    {
+      "grammar": "V+(으)ㄹ까요?",
+      "def": "Shall we? How is?",
+      "example": "탁시를 타고 갈까요?"
+    },
+    {
+      "grammar": "V+(을)래요",
+      "def": "Express or ask intention",
+      "example": "난 이제 잘래요"
+    },
+    {
+      "grammar": "V+(으)ㅂ시다",
+      "def": "Formally express proposition",
+      "example": "잡시다"
+    },
+    {
+      "grammar": "V+(으)ㄹ 게요",
+      "def": "Intention",
+      "example": "나중에 전화 할 게요"
+    },
+    {
+      "grammar": "V+아\/어\/여도 돼요",
+      "def": "It’s okay to…",
+      "example": "컴퓨더 써도 돼요"
+    },
+    {
+      "grammar": "V+기로 하다",
+      "def": "Decide to do",
+      "example": "가기로 했어요"
+    },
+    {
+      "grammar": "V+았\/었\/였으면 좋겠어요",
+      "def": "I wish\/hope",
+      "example": "만났으면 좋겠어요"
+    },
+    {
+      "grammar": "V+(으)ㄴ 적이 있다\/앖다",
+      "def": "Have\/Haven’t had the experience of",
+      "example": "저는 수업에 늦은 적이 없어요"
+    },
+    {
+      "grammar": "(으)ㄹ 까봐(서)",
+      "def": "Afraid that…",
+      "example": "눈이 내릴까 봐, 따뜻한 옷을 입었어요"
+    },
+    {
+      "grammar": "(으)ㄹ 때",
+      "def": "When…",
+      "example": "시간이 있을 때 이 책은 읽어 봐요"
+    },
+    {
+      "grammar": "N+마다",
+      "def": "Every",
+      "example": "고양이마다 우유를 좋아해요"
+    },
+    {
+      "grammar": "전에",
+      "def": "Before …ing",
+      "example": "여기 오기 전에 뭐 했어요?"
+    },
+    {
+      "grammar": "그러면, 그럼",
+      "def": "In that case, if",
+      "example": "지금 바빠요? 그럼 언제 시간 있어요"
+    },
+    {
+      "grammar": "위해(서)",
+      "def": "In order to\/for",
+      "example": "건장을 위해서 매일 운동하고 있어요"
+    },
+    {
+      "grammar": "N 밖에 –ve verb conjugation",
+      "def": "Nothing but, only",
+      "example": "한국어 조금 밖에 뭇 해요"
+    },
+    {
+      "grammar": "V+(으)ㄴ 다음(후)(뒤)에",
+      "def": "After …ing",
+      "example": "이거 한 다음에 뭐 할 거예요"
+    },
+    {
+      "grammar": "V+아\/어\/여도",
+      "def": "Even if, even though",
+      "example": "택시를 타도, 시간이 오래 걸래요"
+    }
+  ],
+
+  "data_words": [
+    {
+      "word": "가다",
+      "def": "To go"
+    },
+    {
+      "word": "가르치다",
+      "def": "To teach"
+    },
+    {
+      "word": "가지다",
+      "def": "To have"
+    },
+    {
+      "word": "갖다",
+      "def": "To have"
+    },
+    {
+      "word": "거짓말하다",
+      "def": "To lie"
+    },
+    {
+      "word": "걱정하다",
+      "def": "To worry"
+    },
+    {
+      "word": "걷다",
+      "def": "To walk"
+    },
+    {
+      "word": "걸다",
+      "def": "To call, dial"
+    },
+    {
+      "word": "결혼하다",
+      "def": "To marry"
+    },
+    {
+      "word": "고백하다",
+      "def": "To confess"
+    },
+    {
+      "word": "공부하다",
+      "def": "To study"
+    },
+    {
+      "word": "굽다",
+      "def": "To roast, grill, bake"
+    },
+    {
+      "word": "기다리다",
+      "def": "To wait"
+    },
+    {
+      "word": "기억하다",
+      "def": "To remember"
+    },
+    {
+      "word": "꿈꾸다",
+      "def": "To dream"
+    },
+    {
+      "word": "끓이다",
+      "def": "To boil"
+    },
+    {
+      "word": "끝나다",
+      "def": "To finish"
+    },
+    {
+      "word": "나가다",
+      "def": "To exit"
+    },
+    {
+      "word": "내다",
+      "def": "To pay"
+    },
+    {
+      "word": "닫다",
+      "def": "To close"
+    },
+    {
+      "word": "대답하다",
+      "def": "To answer"
+    },
+    {
+      "word": "도와주다",
+      "def": "To help"
+    },
+    {
+      "word": "도착하다",
+      "def": "To arrive"
+    },
+    {
+      "word": "듣다",
+      "def": "To hear"
+    },
+    {
+      "word": "들어오다",
+      "def": "To enter"
+    },
+    {
+      "word": "마시다",
+      "def": "To drink"
+    },
+    {
+      "word": "만나다",
+      "def": "To meet"
+    },
+    {
+      "word": "만들다",
+      "def": "To make"
+    },
+    {
+      "word": "말하다",
+      "def": "To talk, speak"
+    },
+    {
+      "word": "먹다",
+      "def": "To eat"
+    },
+    {
+      "word": "모르다",
+      "def": "To not know"
+    },
+    {
+      "word": "묻다",
+      "def": "To ask"
+    },
+    {
+      "word": "물어보다",
+      "def": "To ask"
+    },
+    {
+      "word": "배우다",
+      "def": "To learn"
+    },
+    {
+      "word": "벗다",
+      "def": "To undress, take off clothes"
+    },
+    {
+      "word": "보내다",
+      "def": "To send"
+    },
+    {
+      "word": "보다",
+      "def": "To see"
+    },
+    {
+      "word": "볶다",
+      "def": "To fry"
+    },
+    {
+      "word": "빌리다",
+      "def": "To borrow, lend"
+    },
+    {
+      "word": "사다",
+      "def": "To buy"
+    },
+    {
+      "word": "사랑에 빠지다",
+      "def": "To fall in love"
+    },
+    {
+      "word": "사랑하다",
+      "def": "To love"
+    },
+    {
+      "word": "사용하다",
+      "def": "To use"
+    },
+    {
+      "word": "살다",
+      "def": "To live"
+    },
+    {
+      "word": "생각하다",
+      "def": "To think"
+    },
+    {
+      "word": "서두르다",
+      "def": "To hurry, rush"
+    },
+    {
+      "word": "섞다",
+      "def": "To mix, blend"
+    },
+    {
+      "word": "소개하다",
+      "def": "To introduce"
+    },
+    {
+      "word": "쉬다",
+      "def": "To rest"
+    },
+    {
+      "word": "시작하다",
+      "def": "To start"
+    },
+    {
+      "word": "신다",
+      "def": "to wear (shoes, socks, footwear)"
+    },
+    {
+      "word": "싫어하다",
+      "def": "To hate, dislike"
+    }
+  ]
+}
