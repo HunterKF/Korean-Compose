@@ -2,9 +2,12 @@ package com.example.koreancompose
 
 import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.FlingBehavior
+import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -15,6 +18,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
 
 
 val viewModel = ViewModel()
@@ -105,7 +111,6 @@ fun Button(
         onClick = {
 
             viewModel.sentence = viewModel.textFieldState.value
-            viewModel.grammar
             dataWord.allCards.add(PracticeCard(viewModel.word, viewModel.grammar, viewModel.sentence))
             Log.d(TAG, "${dataWord.allCards} AND ${dataWord.getAllData()}")
             onCardItemAdded(viewModel.sentence)
@@ -118,12 +123,17 @@ fun Button(
 
 @Composable
 fun DisplayList(modifier: Modifier, cardState: List<String>) {
+    val listState = rememberLazyListState()
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
-
+            .padding(16.dp),
+        reverseLayout = true,
+        verticalArrangement = Arrangement.Top,
+        userScrollEnabled = true,
+        state = listState
     ) {
+       
 
         items(cardState.size) {}
         items(items = getAllData) { card ->
