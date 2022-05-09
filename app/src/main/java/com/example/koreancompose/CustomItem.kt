@@ -1,5 +1,6 @@
 package com.example.koreancompose
 
+import android.content.Intent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -9,7 +10,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,6 +19,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,7 +31,15 @@ import com.example.koreancompose.model.PracticeCard
 fun CustomItem(practiceCard: PracticeCard) {
     var expandedState by remember { mutableStateOf(false) }
     val rotateState by animateFloatAsState(targetValue = if (expandedState) 180f else 0f)
-
+    //For the share sheet
+    val appName = "Korean Practice"
+    val sendIntent: Intent = Intent().apply {
+        action = Intent.ACTION_SEND
+        putExtra(Intent.EXTRA_TEXT, "Check out what I wrote in $appName! ${practiceCard.inputedSentence}")
+        type = "text/plain"
+    }
+    val shareIntent = Intent.createChooser(sendIntent, null)
+    val context = LocalContext.current
 
     Card(
         modifier = Modifier
@@ -106,10 +116,54 @@ fun CustomItem(practiceCard: PracticeCard) {
                     verticalAlignment = Alignment.Bottom,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    Text("X")
-                    Text("X")
-                    Text("X")
-                    Text("X")
+                    IconButton(
+                        modifier = Modifier
+                            .alpha(ContentAlpha.medium)
+                            .weight(1f),
+                        onClick = {
+                            context.startActivity(shareIntent)
+                        }) {
+                        Icon(
+                            imageVector = Icons.Default.Share,
+                            contentDescription = "Share"
+                        )
+                    }
+                    IconButton(
+                        modifier = Modifier
+                            .alpha(ContentAlpha.medium)
+                            .weight(1f),
+                        onClick = {
+
+                        }) {
+                        Icon(
+                            imageVector = Icons.Default.Add,
+                            contentDescription = "Copy"
+                        )
+                    }
+                    IconButton(
+                        modifier = Modifier
+                            .alpha(ContentAlpha.medium)
+                            .weight(1f),
+                        onClick = {
+                            /* TODO */
+                        }) {
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "Star"
+                        )
+                    }
+                    IconButton(
+                        modifier = Modifier
+                            .alpha(ContentAlpha.medium)
+                            .weight(1f),
+                        onClick = {
+                            /* TODO */
+                        }) {
+                        Icon(
+                            imageVector = Icons.Default.Info,
+                            contentDescription = "Info"
+                        )
+                    }
                 }
             }
         }
