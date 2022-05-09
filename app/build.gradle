@@ -62,5 +62,9 @@ dependencies {
     implementation 'androidx.compose.material3:material3:1.0.0-alpha10'
 //GSON
     implementation 'com.google.code.gson:gson:2.9.0'
+//NavController
+    def nav_version = "2.4.2"
+
+    implementation("androidx.navigation:navigation-compose:$nav_version")
 
 }

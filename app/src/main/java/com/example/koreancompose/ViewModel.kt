@@ -14,8 +14,9 @@ class ViewModel: ViewModel() {
     val mainActivity = MainActivity()
     val TAG = "MyViewModel"
 
-    //TextField
+    //TextField = mutableStateOf("")
     val textFieldState = mutableStateOf("")
+
 
     fun onTextFieldChange(query: String) {
         this.textFieldState.value = query

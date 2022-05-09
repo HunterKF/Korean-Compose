@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -35,9 +36,9 @@ val textState = mutableStateOf("")
 val dataWord = CardRepository()
 val getAllData = dataWord.getAllData()
 
-@Preview(showSystemUi = true)
+
 @Composable
-fun PracticeScreen() {
+fun PracticeScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .padding(vertical = 16.dp)
@@ -64,6 +65,7 @@ fun PracticeScreen() {
                 cardState = cardState
             )
         }
+        testButton(navController = navController)
     }
 }
 
@@ -149,5 +151,21 @@ fun learningPoint(point: String) {
     Row() {
         Text("$point")
         Icon(painter = painterResource(id = R.drawable.ic_arrow_drop_down), "down arrow")
+    }
+}
+
+/*THIS IS A TEST BUTTON
+* PLEASE DELETE LATER*/
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun testButton(navController: NavController) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth(),
+                onClick = {
+            navController.navigate(Screen.InfoScreen.withArgs(textFieldState))
+        }
+    ) {
+        Text("Hello")
     }
 }
