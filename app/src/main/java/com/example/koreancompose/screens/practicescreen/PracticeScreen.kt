@@ -2,8 +2,6 @@ package com.example.koreancompose
 
 import android.util.Log
 import androidx.compose.foundation.background
-import androidx.compose.foundation.gestures.FlingBehavior
-import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,14 +12,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.map
 
 
 val viewModel = ViewModel()
@@ -62,10 +56,10 @@ fun PracticeScreen(navController: NavController) {
                 modifier = Modifier
                     .fillMaxHeight()
                     .weight(2f),
-                cardState = cardState
+                cardState = cardState,
+                navController = navController
             )
         }
-        testButton(navController = navController)
     }
 }
 
@@ -124,7 +118,7 @@ fun Button(
 }
 
 @Composable
-fun DisplayList(modifier: Modifier, cardState: List<String>) {
+fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavController) {
     val listState = rememberLazyListState()
     LazyColumn(
         modifier = Modifier
@@ -139,7 +133,7 @@ fun DisplayList(modifier: Modifier, cardState: List<String>) {
 
         items(cardState.size) {}
         items(items = getAllData) { card ->
-            CustomItem(practiceCard = card)
+            CustomItem(practiceCard = card, navController = navController)
             Spacer(Modifier.size(10.dp))
         }
 
@@ -154,18 +148,3 @@ fun learningPoint(point: String) {
     }
 }
 
-/*THIS IS A TEST BUTTON
-* PLEASE DELETE LATER*/
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun testButton(navController: NavController) {
-    Card(
-        modifier = Modifier
-            .fillMaxWidth(),
-                onClick = {
-            navController.navigate(Screen.InfoScreen.withArgs(textFieldState))
-        }
-    ) {
-        Text("Hello")
-    }
-}

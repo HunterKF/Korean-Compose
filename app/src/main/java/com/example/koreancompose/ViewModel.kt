@@ -1,12 +1,7 @@
 package com.example.koreancompose
 
-import android.content.Context
-import android.content.Intent
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
-import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 
 class ViewModel: ViewModel() {

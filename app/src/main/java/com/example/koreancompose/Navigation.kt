@@ -15,8 +15,15 @@ fun Navigation() {
             PracticeScreen(navController = navController)
         }
         composable(
-            route = Screen.InfoScreen.route) {
-            InfoScreen()
+            route = Screen.InfoScreen.route + "/{textFieldState}",
+            arguments = listOf(
+                navArgument("textFieldState") {
+                    type = NavType.StringType
+                    defaultValue = "Did you enter something in?"
+                }
+            )
+        ) { entry ->
+            InfoScreen(textFieldState = entry.arguments?.getString("textFieldState"))
         }
     }
 }

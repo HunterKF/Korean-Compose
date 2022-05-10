@@ -1,11 +1,7 @@
 package com.example.koreancompose
 
 import android.content.Intent
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -24,11 +20,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun CustomItem(practiceCard: PracticeCard) {
+fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
     var expandedState by remember { mutableStateOf(false) }
     val rotateState by animateFloatAsState(targetValue = if (expandedState) 180f else 0f)
     //For the share sheet
@@ -157,7 +154,7 @@ fun CustomItem(practiceCard: PracticeCard) {
                             .alpha(ContentAlpha.medium)
                             .weight(1f),
                         onClick = {
-                            /* TODO */
+                            navController.navigate(Screen.InfoScreen.withArgs(practiceCard.inputedSentence))
                         }) {
                         Icon(
                             imageVector = Icons.Default.Info,
@@ -172,8 +169,8 @@ fun CustomItem(practiceCard: PracticeCard) {
     }
 }
 
-@Preview
-@Composable
-fun CustomItemPreview() {
-    CustomItem(practiceCard = PracticeCard("가다", "으려고", "가려고 했어요."))
-}
+//@Preview
+//@Composable
+//fun CustomItemPreview() {
+//    CustomItem(practiceCard = PracticeCard("가다", "으려고", "가려고 했어요."),)
+//}

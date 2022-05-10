@@ -19,7 +19,6 @@ class MainActivity : ComponentActivity() {
 
             KoreanComposeTheme {
                 Navigation()
-//                PracticeScreen(navController = navController)
             }
         }
     }

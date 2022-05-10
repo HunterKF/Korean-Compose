@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.example.koreancompose.model.PracticeCard
 
 @Composable
-fun InfoScreen() {
+fun InfoScreen(textFieldState: String?) {
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
@@ -23,7 +23,7 @@ fun InfoScreen() {
             .verticalScroll(scrollState)
             .padding(16.dp)
     ) {
-        CustomItem(PracticeCard("가다", "(으)려고", "저는 집으로 가려고 하지만 아직 아근 때문에 못 갔어요."))
+        Text("$textFieldState")
         Word()
         Grammar()
     }
