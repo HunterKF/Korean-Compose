@@ -15,7 +15,12 @@ class ViewModel: ViewModel() {
     val textFieldState = mutableStateOf("")
     //Mutable states for learning bar
     var wordFieldState = mutableStateOf("가다")
+    var wordDefFieldState = mutableStateOf("to go")
+
+    //Mutable states for grammar
     var grammarFieldState = mutableStateOf("(으)려고")
+    var grammarDefFieldState = mutableStateOf("to intend to do something")
+    var grammarExampleFieldState = mutableStateOf("(으)려고")
 
     //Mutable state for InfoWord and InfoGrammar - Just in case I want to add more than verbs
     var infoWordType = mutableStateOf("verb")
@@ -69,5 +74,6 @@ class ViewModel: ViewModel() {
         val exampleSentence = item.dataGrammar[randomNumber].exampleSentence
         return GrammarData(grammar, def, exampleSentence)
     }
+
 }
 

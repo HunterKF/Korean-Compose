@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import com.example.koreancompose.model.PracticeCard
+import com.example.koreancompose.screens.infoscreen.InfoSentence
 
 @Composable
 fun InfoScreen(textFieldState: String?) {
@@ -23,8 +23,10 @@ fun InfoScreen(textFieldState: String?) {
             .verticalScroll(scrollState)
             .padding(16.dp)
     ) {
-        Text("$textFieldState")
-        Word()
-        Grammar()
+        if (textFieldState != null) {
+            InfoSentence(textFieldState)
+        }
+        InfoWord()
+        InfoGrammar()
     }
 }

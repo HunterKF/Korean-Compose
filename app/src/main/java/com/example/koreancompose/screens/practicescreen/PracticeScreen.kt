@@ -111,6 +111,13 @@ fun Button(
         .background(color = Color.Blue)
         .height(50.dp),
         onClick = {
+
+            //Get sentence
+            viewModel.sentence = viewModel.textFieldState.value
+            dataWord.allCards.add(PracticeCard(viewModel.wordFieldState.value, viewModel.grammarFieldState.value, viewModel.sentence))
+            Log.d(TAG, "${dataWord.allCards} AND ${dataWord.getAllData()}")
+            onCardItemAdded(viewModel.sentence)
+
             //Change word
             val loadJSON = LoadJSON()
             Log.d(TAG, "Do we die here?")
@@ -126,6 +133,7 @@ fun Button(
             val randWord = allWords?.let { viewModel.returnWord(it) }
 
             viewModel.wordFieldState.value = randWord?.word.toString()
+            viewModel.wordDefFieldState.value = randWord?.def.toString()
 
             //Change grammar
             fun loadGrammar(): ModelJSONGrammar? {
@@ -138,12 +146,10 @@ fun Button(
             val randGrammar = allGrammar?.let { viewModel.returnGrammar(it) }
 
             viewModel.grammarFieldState.value = randGrammar?.grammar.toString()
+            viewModel.grammarDefFieldState.value = randGrammar?.def.toString()
+            viewModel.grammarExampleFieldState.value = randGrammar?.exampleSentence.toString()
 
-            //Get sentence
-            viewModel.sentence = viewModel.textFieldState.value
-            dataWord.allCards.add(PracticeCard(viewModel.wordFieldState.value, viewModel.grammarFieldState.value, viewModel.sentence))
-            Log.d(TAG, "${dataWord.allCards} AND ${dataWord.getAllData()}")
-            onCardItemAdded(viewModel.sentence)
+
 
         }
     ) {
