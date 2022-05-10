@@ -35,11 +35,11 @@ fun Word() {
             Text(
                 fontSize = MaterialTheme.typography.h4.fontSize,
                 fontWeight = FontWeight.Bold,
-                text = "가다"
+                text = viewModel.wordFieldState.value
             )
             Text(
-                text = "Verb",
-                fontSize = MaterialTheme.typography.h6.fontSize
+                fontSize = MaterialTheme.typography.h6.fontSize,
+                text = viewModel.infoWordType.value
                 )
         }
 

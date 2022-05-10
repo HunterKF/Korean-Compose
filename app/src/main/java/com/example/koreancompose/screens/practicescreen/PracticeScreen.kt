@@ -11,17 +11,19 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.koreancompose.model.ModelJSONGrammar
+import com.example.koreancompose.model.ModelJSONWord
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 
 
 val viewModel = ViewModel()
-var textFieldState = viewModel.textFieldState.value
 
-val TAG = "Button"
+val TAG = "LearningBar"
 
 val textState = mutableStateOf("")
 
@@ -29,6 +31,9 @@ val textState = mutableStateOf("")
 //Card initializer
 val dataWord = CardRepository()
 val getAllData = dataWord.getAllData()
+
+//Open LoadJSON
+val loadJson = LoadJSON()
 
 
 @Composable
@@ -72,12 +77,12 @@ fun LearningBar() {
             .padding(20.dp),
         horizontalArrangement = Arrangement.SpaceEvenly
     ) {
-        learningPoint(point = viewModel.word)
+        learningPoint(point = viewModel.wordFieldState.value)
         Divider(modifier = Modifier
             .height(30.dp)
             .width(2.dp)
         )
-        learningPoint(point = viewModel.grammar)
+        learningPoint(point = viewModel.grammarFieldState.value)
     }
 }
 
@@ -100,14 +105,43 @@ fun TextField(modifier: Modifier) {
 fun Button(
     onCardItemAdded: (String) -> Unit
 ) {
+    val context = LocalContext.current
     Button(modifier = Modifier
         .fillMaxWidth()
         .background(color = Color.Blue)
         .height(50.dp),
         onClick = {
+            //Change word
+            val loadJSON = LoadJSON()
+            Log.d(TAG, "Do we die here?")
+            fun loadWord(): ModelJSONWord? {
+                loadJSON.loadWordJson(context)
+                val word = loadJSON.wordList
+                Log.d(TAG, "Random grammar is $word")
+                return word
+            }
+            Log.d(TAG, "Or do we die here?")
 
+            val allWords = loadWord()
+            val randWord = allWords?.let { viewModel.returnWord(it) }
+
+            viewModel.wordFieldState.value = randWord?.word.toString()
+
+            //Change grammar
+            fun loadGrammar(): ModelJSONGrammar? {
+                loadJSON.loadGrammarJson(context)
+                val grammar = loadJSON.grammarList
+                Log.d(TAG, "Random grammar is $grammar")
+                return grammar
+            }
+            val allGrammar = loadGrammar()
+            val randGrammar = allGrammar?.let { viewModel.returnGrammar(it) }
+
+            viewModel.grammarFieldState.value = randGrammar?.grammar.toString()
+
+            //Get sentence
             viewModel.sentence = viewModel.textFieldState.value
-            dataWord.allCards.add(PracticeCard(viewModel.word, viewModel.grammar, viewModel.sentence))
+            dataWord.allCards.add(PracticeCard(viewModel.wordFieldState.value, viewModel.grammarFieldState.value, viewModel.sentence))
             Log.d(TAG, "${dataWord.allCards} AND ${dataWord.getAllData()}")
             onCardItemAdded(viewModel.sentence)
 
@@ -143,8 +177,31 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
 @Composable
 fun learningPoint(point: String) {
     Row() {
-        Text("$point")
+        Text(point)
         Icon(painter = painterResource(id = R.drawable.ic_arrow_drop_down), "down arrow")
     }
 }
+
+//@Composable
+//fun testingJson() {
+//
+//    /*This constantly refreshes, so it will always change.
+//    * Have to move this function into Button(onClick)...*/
+//    val context = LocalContext.current
+//    val loadWords = LoadJSON()
+//    Log.d(TAG, "Do we die here?")
+//    fun loadWord(): ModelJSONWord? {
+//        loadWords.loadWordJson(context)
+//        val word = loadWords.wordList
+//        Log.d(TAG, "Random grammar is $word")
+//        return word
+//    }
+//    Log.d(TAG, "Or do we die here?")
+//
+//    val allWords = loadWord()
+//    val randWord = allWords?.let { viewModel.returnWord(it) }
+//
+//    viewModel.wordFieldState.value = randWord?.word.toString()
+//    Text(text = "${viewModel.wordFieldState.value}")
+//}
 

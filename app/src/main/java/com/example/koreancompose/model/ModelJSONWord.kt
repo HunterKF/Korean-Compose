@@ -3,6 +3,6 @@ package com.example.koreancompose.model
 import com.google.gson.annotations.SerializedName
 
 class ModelJSONWord {
-    @SerializedName("data_words")
+    @SerializedName("words")
     var dataWords: ArrayList<ModelWord> = ArrayList()
 }

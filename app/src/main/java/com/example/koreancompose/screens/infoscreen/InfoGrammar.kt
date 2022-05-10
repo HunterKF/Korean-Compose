@@ -47,11 +47,11 @@ fun Grammar() {
             Text(
                 fontSize = MaterialTheme.typography.h4.fontSize,
                 fontWeight = FontWeight.Bold,
-                text = "(으)려고"
+                text = viewModel.grammarFieldState.value
             )
             Text(
-                text = "Grammar",
-                fontSize = MaterialTheme.typography.h6.fontSize
+                fontSize = MaterialTheme.typography.h6.fontSize,
+                text = viewModel.infoGrammarType.value
             )
         }
         Text(
