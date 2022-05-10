@@ -17,7 +17,6 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -32,7 +31,10 @@ fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
     val appName = "Korean Practice"
     val sendIntent: Intent = Intent().apply {
         action = Intent.ACTION_SEND
-        putExtra(Intent.EXTRA_TEXT, "Check out what I wrote in $appName! ${practiceCard.inputedSentence}")
+        putExtra(
+            Intent.EXTRA_TEXT,
+            "Check out what I wrote in $appName! ${practiceCard.inputtedSentence}"
+        )
         type = "text/plain"
     }
     val shareIntent = Intent.createChooser(sendIntent, null)
@@ -59,7 +61,7 @@ fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
                     verticalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
-                        text = "${practiceCard.word}",
+                        text = practiceCard.word,
                         color = Color.DarkGray,
                         fontWeight = FontWeight.Light
                     )
@@ -68,7 +70,7 @@ fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
                             .height(10.dp)
                     )
                     Text(
-                        text = "${practiceCard.grammar}",
+                        text = practiceCard.grammar,
                         color = Color.DarkGray,
                         fontWeight = FontWeight.Light
                     )
@@ -80,7 +82,7 @@ fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
                 Text(
                     modifier = Modifier
                         .weight(4f),
-                    text = "${practiceCard.inputedSentence}",
+                    text = practiceCard.inputtedSentence,
                     color = Color.Black,
                     fontWeight = FontWeight.Medium,
                     fontSize = 16.sp,
@@ -154,7 +156,16 @@ fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
                             .alpha(ContentAlpha.medium)
                             .weight(1f),
                         onClick = {
-                            navController.navigate(Screen.InfoScreen.withArgs(practiceCard.inputedSentence))
+                            navController.navigate(
+                                Screen.InfoScreen.withArgs(
+                                    practiceCard.inputtedSentence,
+                                    practiceCard.word,
+                                    practiceCard.wordDef,
+                                    practiceCard.grammar,
+                                    practiceCard.grammarDef,
+                                    practiceCard.grammarExample
+                                )
+                            )
                         }) {
                         Icon(
                             imageVector = Icons.Default.Info,

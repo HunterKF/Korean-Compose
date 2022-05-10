@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -14,7 +13,14 @@ import androidx.compose.ui.unit.dp
 import com.example.koreancompose.screens.infoscreen.InfoSentence
 
 @Composable
-fun InfoScreen(textFieldState: String?) {
+fun InfoScreen(
+    textFieldState: String?,
+    word: String?,
+    wordDef: String?,
+    grammar: String?,
+    grammarDef: String?,
+    grammarExample: String?
+) {
     val scrollState = rememberScrollState()
     Column(
         modifier = Modifier
@@ -26,7 +32,7 @@ fun InfoScreen(textFieldState: String?) {
         if (textFieldState != null) {
             InfoSentence(textFieldState)
         }
-        InfoWord()
-        InfoGrammar()
+        InfoWord(word, wordDef)
+        InfoGrammar(grammar, grammarDef, grammarExample)
     }
 }

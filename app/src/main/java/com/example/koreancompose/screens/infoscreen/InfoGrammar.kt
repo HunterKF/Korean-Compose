@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun InfoGrammar() {
+fun InfoGrammar(grammar: String?, grammarDef: String?, grammarExample: String?) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -27,23 +27,29 @@ fun InfoGrammar() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            if (grammar != null) {
+                Text(
+                    fontSize = MaterialTheme.typography.h4.fontSize,
+                    fontWeight = FontWeight.Bold,
+                    text = grammar
+                )
+            }
+            if (grammarDef != null) {
+                Text(
+                    fontSize = MaterialTheme.typography.h6.fontSize,
+                    text = viewModel.infoGrammarType.value
+                )
+            }
+        }
+        if (grammarDef != null) {
             Text(
-                fontSize = MaterialTheme.typography.h4.fontSize,
-                fontWeight = FontWeight.Bold,
-                text = viewModel.grammarFieldState.value
-            )
-            Text(
-                fontSize = MaterialTheme.typography.h6.fontSize,
-                text = viewModel.infoGrammarType.value
+                modifier = Modifier
+                    .padding(start = 16.dp, bottom = 12.dp),
+                fontSize = MaterialTheme.typography.body1.fontSize,
+                fontWeight = FontWeight.Light,
+                text = grammarDef
             )
         }
-        Text(
-            modifier = Modifier
-                .padding(start = 16.dp, bottom = 12.dp),
-            fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Light,
-            text = viewModel.grammarDefFieldState.value
-        )
         Divider(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp),
@@ -65,7 +71,9 @@ fun InfoGrammar() {
                 modifier = Modifier
                     .padding(start = 12.dp)
             ) {
-                ExampleG("-(으)려고’ is attached to a verb root to indicate the purpose of an action.","오늘은 한국 음식을 먹으려고 해요.", "I am going to eat Korean food today.")
+                if (grammarExample != null) {
+                    ExampleG("-(으)려고’ is attached to a verb root to indicate the purpose of an action.",grammarExample, "I am going to eat Korean food today.")
+                }
 
             }
         }
@@ -104,8 +112,3 @@ fun ExampleG(grammarExplanation1: String, learningKoreanPoint1: String, learning
 
 }
 
-@Preview(showSystemUi = true)
-@Composable
-fun PreviewInfoGrammar() {
-    InfoGrammar()
-}

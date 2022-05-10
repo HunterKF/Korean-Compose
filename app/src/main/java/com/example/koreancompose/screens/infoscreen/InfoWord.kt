@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun InfoWord() {
+fun InfoWord(word: String?, wordDef: String?) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -26,24 +26,28 @@ fun InfoWord() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(
-                fontSize = MaterialTheme.typography.h4.fontSize,
-                fontWeight = FontWeight.Bold,
-                text = viewModel.wordFieldState.value
-            )
+            if (word != null) {
+                Text(
+                    fontSize = MaterialTheme.typography.h4.fontSize,
+                    fontWeight = FontWeight.Bold,
+                    text = word
+                )
+            }
             Text(
                 fontSize = MaterialTheme.typography.h6.fontSize,
                 text = viewModel.infoWordType.value
                 )
         }
 
-        Text(
-            modifier = Modifier
-                .padding(start = 16.dp, bottom = 12.dp),
-            fontSize = MaterialTheme.typography.body1.fontSize,
-            fontWeight = FontWeight.Light,
-            text = viewModel.wordDefFieldState.value
-        )
+        if (wordDef != null) {
+            Text(
+                modifier = Modifier
+                    .padding(start = 16.dp, bottom = 12.dp),
+                fontSize = MaterialTheme.typography.body1.fontSize,
+                fontWeight = FontWeight.Light,
+                text = wordDef
+            )
+        }
         Divider(modifier = Modifier
             .fillMaxWidth()
             .height(2.dp),
@@ -88,11 +92,3 @@ fun ExampleW(learningPoint: String) {
     )
 }
 
-@Preview(showSystemUi = true)
-@Composable
-fun PreviewInfoBottomSheet() {
-    Column() {
-        InfoWord()
-        InfoGrammar()
-    }
-}

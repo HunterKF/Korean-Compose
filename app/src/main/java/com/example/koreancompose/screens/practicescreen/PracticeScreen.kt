@@ -1,6 +1,5 @@
 package com.example.koreancompose
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -114,20 +113,23 @@ fun Button(
 
             //Get sentence
             viewModel.sentence = viewModel.textFieldState.value
-            dataWord.allCards.add(PracticeCard(viewModel.wordFieldState.value, viewModel.grammarFieldState.value, viewModel.sentence))
-            Log.d(TAG, "${dataWord.allCards} AND ${dataWord.getAllData()}")
+            dataWord.allCards.add(PracticeCard(
+                viewModel.wordFieldState.value,
+                viewModel.wordDefFieldState.value,
+                viewModel.grammarFieldState.value,
+                viewModel.grammarDefFieldState.value,
+                viewModel.grammarExampleFieldState.value,
+                viewModel.sentence
+            )
+            )
             onCardItemAdded(viewModel.sentence)
 
             //Change word
             val loadJSON = LoadJSON()
-            Log.d(TAG, "Do we die here?")
             fun loadWord(): ModelJSONWord? {
                 loadJSON.loadWordJson(context)
-                val word = loadJSON.wordList
-                Log.d(TAG, "Random grammar is $word")
-                return word
+                return loadJSON.wordList
             }
-            Log.d(TAG, "Or do we die here?")
 
             val allWords = loadWord()
             val randWord = allWords?.let { viewModel.returnWord(it) }
@@ -138,9 +140,7 @@ fun Button(
             //Change grammar
             fun loadGrammar(): ModelJSONGrammar? {
                 loadJSON.loadGrammarJson(context)
-                val grammar = loadJSON.grammarList
-                Log.d(TAG, "Random grammar is $grammar")
-                return grammar
+                return loadJSON.grammarList
             }
             val allGrammar = loadGrammar()
             val randGrammar = allGrammar?.let { viewModel.returnGrammar(it) }
