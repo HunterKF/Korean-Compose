@@ -31,7 +31,6 @@ class LoadJSON {
                 ModelJSONWord::class.java
             )
             wordList = loadedWordList
-            Log.d("fromLoadWordsAndGrammar", "It has been loaded again. And again?")
         } catch (ex: Exception) {
             ex.printStackTrace()
         } finally {
@@ -44,7 +43,6 @@ class LoadJSON {
     fun loadGrammarJson(context: Context) {
         var input: InputStream? = null
         var jsonString: String
-        Log.d("loadGrammarJson", "has fired.")
         try {
             input = context.assets.open("grammar.json")
 
@@ -58,14 +56,11 @@ class LoadJSON {
 
             // Create a json String
             jsonString = String(buffer)
-            Log.d("loadGrammarJson", "This is before loadedGrammarList")
             val loadedGrammarList = Gson().fromJson<ModelJSONGrammar>(
                 jsonString,
                 ModelJSONGrammar::class.java
             )
-            Log.d("loadGrammarJson", "This is after loadedGrammarList")
             grammarList = loadedGrammarList
-            Log.d("loadGrammarJson", "The current value of grammarList is ${grammarList}")
         } catch (ex: Exception) {
             ex.printStackTrace()
         } finally {

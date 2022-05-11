@@ -41,6 +41,9 @@ class ViewModel: ViewModel() {
     //List of items
     val itemList = listOf<String>()
 
+    var allWords: ModelJSONWord = ModelJSONWord()
+    var allGrammar: ModelJSONGrammar = ModelJSONGrammar()
+
 
     //Random function, requires an end parameter so you can check the size of the array.
     private fun rand(end: Int): Int {

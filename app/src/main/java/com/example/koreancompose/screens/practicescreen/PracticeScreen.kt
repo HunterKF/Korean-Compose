@@ -152,26 +152,15 @@ fun Button(
                 onCardItemAdded(viewModel.sentence)
 
                 //Change word
-                val loadJSON = LoadJSON()
-                fun loadWord(): ModelJSONWord? {
-                    loadJSON.loadWordJson(context)
-                    return loadJSON.wordList
-                }
 
-                val allWords = loadWord()
-                val randWord = allWords?.let { viewModel.returnWord(it) }
+                val randWord = viewModel.allWords.let { viewModel.returnWord(it) }
 
                 viewModel.wordFieldState.value = randWord?.word.toString()
                 viewModel.wordDefFieldState.value = randWord?.def.toString()
 
                 //Change grammar
-                fun loadGrammar(): ModelJSONGrammar? {
-                    loadJSON.loadGrammarJson(context)
-                    return loadJSON.grammarList
-                }
 
-                val allGrammar = loadGrammar()
-                val randGrammar = allGrammar?.let { viewModel.returnGrammar(it) }
+                val randGrammar = viewModel.allGrammar.let { viewModel.returnGrammar(it) }
 
                 viewModel.grammarFieldState.value = randGrammar?.grammar.toString()
                 viewModel.grammarDefFieldState.value = randGrammar?.def.toString()
