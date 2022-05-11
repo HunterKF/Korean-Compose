@@ -17,6 +17,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.koreancompose.InfoGrammar
 import com.example.koreancompose.InfoWord
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -25,64 +26,91 @@ fun LearningPoint(
     learningPointWord: String?,
     learningPointGrammar: String?
 ) {
-    var expandedState by remember { mutableStateOf(false) }
-    val rotateStateWord by animateFloatAsState(targetValue = if (expandedState) 180f else 0f)
-    val rotateStateGrammar by animateFloatAsState(targetValue = if (expandedState) 180f else 0f)
+    var expandedWordState by remember { mutableStateOf(false) }
+    var expandedGrammarState by remember { mutableStateOf(false) }
+    val rotateStateWord by animateFloatAsState(targetValue = if (expandedWordState) 180f else 0f)
+    val rotateStateGrammar by animateFloatAsState(targetValue = if (expandedGrammarState) 180f else 0f)
 
     Column {
         Row(
-            horizontalArrangement = Arrangement.Center,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {
+            //Word row
             Row(
-                modifier = Modifier.clickable { expandedState = !expandedState }
+                modifier = Modifier.clickable {
+                    if (expandedGrammarState) {
+                        expandedGrammarState = false
+                    }
+                    expandedWordState = !expandedWordState
+                },
+
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+
             ) {
                 if (learningPointWord != null) {
-                    LearningPoint(text = "가다")
+                    LearningPoint(text = learningPointWord)
                 }
-                IconButton(
+
+                Icon(
                     modifier = Modifier
                         .alpha(ContentAlpha.medium)
                         .rotate(rotateStateWord),
-                    onClick = {
-                        expandedState = !expandedState
-                    }) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowDropDown,
-                        contentDescription = "Drop"
-                    )
-                }
-                Row(
-                    modifier = Modifier.clickable { expandedState = !expandedState }
-                ) {
-                    if (learningPointGrammar != null) {
-                        LearningPoint(text = "하다")
-                    }
-                    IconButton(
-                        modifier = Modifier
-                            .alpha(ContentAlpha.medium)
-                            .rotate(rotateStateGrammar),
-                        onClick = {
-                            expandedState = !expandedState
-                        }) {
-                        Icon(
-                            imageVector = Icons.Default.ArrowDropDown,
-                            contentDescription = "Drop"
-                        )
-                    }
-                }
-
+                    imageVector = Icons.Default.ArrowDropDown,
+                    contentDescription = "Drop"
+                )
             }
 
-        }
-        if (expandedState) {
-            Column(modifier = Modifier.fillMaxWidth()) {
-                InfoWord(word = "가다", wordDef = "To go")
+            Divider(modifier = Modifier
+                .height(30.dp)
+                .width(2.dp)
+            )
+
+            //Grammar row
+            Row(
+                modifier = Modifier.clickable {
+                    if (expandedWordState) {
+                        expandedWordState = false
+                    }
+                    expandedGrammarState = !expandedGrammarState
+                },
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                if (learningPointGrammar != null) {
+                    LearningPoint(text = learningPointGrammar)
+                }
+
+                Icon(
+                    modifier = Modifier
+                        .alpha(ContentAlpha.medium)
+                        .rotate(rotateStateGrammar),
+                    imageVector = Icons.Default.ArrowDropDown,
+                    contentDescription = "Drop"
+                )
             }
         }
     }
+    when {
+        expandedWordState ->
 
+            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                InfoWord(word = "가다", wordDef = "To go")
+            }
+        expandedGrammarState ->
+            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+                InfoGrammar(
+                    grammar = "-서",
+                    grammarDef = "so, because",
+                    grammarExample = "나는 피곤해서 일찍 잤어요."
+                )
+            }
 
+    }
 }
 
 @Composable

@@ -31,7 +31,7 @@ class LoadJSON {
                 ModelJSONWord::class.java
             )
             wordList = loadedWordList
-            Log.d("fromLoadWordsAndGrammar", "${wordList}")
+            Log.d("fromLoadWordsAndGrammar", "It has been loaded again. And again?")
         } catch (ex: Exception) {
             ex.printStackTrace()
         } finally {
