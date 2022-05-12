@@ -7,7 +7,7 @@
       "inDepth1ExEng": "Jisoo got a flowerpot from her friend and started growing it.",
       "gramInDepth2": "A connective ending used for a reason or cause.",
       "inDepth2ExKor": "지수는 시간이 없어서 식사도 못 했다. ",
-      "inDepth2ExEng ": "Jisoo couldn't even eat because she didn't have time. "
+      "inDepth2ExEng": "Jisoo couldn't even eat because she didn't have time. "
     },
     {
       "grammar": "(으)니까",
@@ -16,7 +16,7 @@
       "inDepth1ExEng": "I need to go to school, so I won’t be able to meet",
       "gramInDepth2": "null",
       "inDepth2ExKor": "옆방이 아주 시끄러우니까 저는 잠을 못 잤어요",
-      "inDepth2ExEng ": "The room next to us is very loud, so I couldn’t sleep "
+      "inDepth2ExEng": "The room next to us is very loud, so I couldn’t sleep "
     },
     {
       "grammar": "-러",
@@ -25,7 +25,7 @@
       "inDepth1ExEng": "Suddenly, my friends came to my house to hang out.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "어머니는 과일을 사러 잠깐 시장에 가셨다",
-      "inDepth2ExEng ": "My mother went to the market to buy some fruit "
+      "inDepth2ExEng": "My mother went to the market to buy some fruit "
     },
     {
       "grammar": "(으)려고 하다",
@@ -34,25 +34,25 @@
       "inDepth1ExEng": "I try to get up early from tomorrow.",
       "gramInDepth2": "An expression used to indicate that the incident mentioned in the preceding statement is likely to happen or begin soon.",
       "inDepth2ExKor": "비가 오려고 하는지 구름이 잔뜩 끼었다.",
-      "inDepth2ExEng ": "It was cloudy as if it was about to rain. "
+      "inDepth2ExEng": "It was cloudy as if it was about to rain. "
     },
     {
       "grammar": "(으)면서",
       "gramInDepth1": "A connective ending used when more than two actions or states happen at the same time.",
       "inDepth1ExKor": "저는 밥을 먹으면서 공부했어요",
       "inDepth1ExEng": "I ate (rice) while studying",
-      "gramInDepth2": "null",
+      "gramInDepth2": "REPLACE THIS LATER",
       "inDepth2ExKor": "저는 영화를 보면서 콜라를 마셨어요",
-      "inDepth2ExEng ": "I drank cola while watching a movie "
+      "inDepth2ExEng": "I drank cola while watching a movie "
     },
     {
       "grammar": "(으)면",
       "gramInDepth1": "To indicate that one action occurs “when or if” another action (that hasn’t happened yet) occurs",
       "inDepth1ExKor": "집에 일찍 도착하면 빨래를 할 거예요",
       "inDepth1ExEng": "If I arrive home early, I will do laundry",
-      "gramInDepth2": "null",
+      "gramInDepth2": "REPLACE THIS LATER",
       "inDepth2ExKor": "내일 비바람이 오면 경기가 취소될 거예요",
-      "inDepth2ExEng ": "If it storms tomorrow, the match(game) will be cancelled "
+      "inDepth2ExEng": "If it storms tomorrow, the match(game) will be cancelled "
     },
     {
       "grammar": "(이)지요?",
@@ -61,7 +61,7 @@
       "inDepth1ExEng": "The movie I watched today was a bit boring.",
       "gramInDepth2": "A sentence-final ending used to ask something that the speaker already knows to cross-check the information.",
       "inDepth2ExKor": "오늘 날씨가 참 좋죠?",
-      "inDepth2ExEng ": "Lovely day today, isn't it? "
+      "inDepth2ExEng": "Lovely day today, isn't it? "
     },
     {
       "grammar": "V+(으)ㄹ까요?",
@@ -70,52 +70,52 @@
       "inDepth1ExEng": "Is that Jisoo's sister?",
       "gramInDepth2": "A sentence-final ending used to ask for the listener's opinion.",
       "inDepth2ExKor": "우리 같이 저녁 먹으러 갈까?",
-      "inDepth2ExEng ": "Shall we go to dinner together? "
+      "inDepth2ExEng": "Shall we go to dinner together? "
     },
     {
       "grammar": "V+(을)래요",
       "gramInDepth1": "A sentence-final ending used to indicate the speaker's intention to do something in the future, or to ask for the listener's thoughts about that.",
       "inDepth1ExKor": "오늘은 피곤해서 일찍 잘래.",
       "inDepth1ExEng": "I'm tired today, so I'm going to bed early.",
-      "gramInDepth2": "null",
+      "gramInDepth2": "REPLACE THIS LATER",
       "inDepth2ExKor": "내일 산에 갈 때 몇 시에 출발할래요?",
-      "inDepth2ExEng ": "What time do you want to leave when you go to the mountain tomorrow? "
+      "inDepth2ExEng": "What time do you want to leave when you go to the mountain tomorrow? "
     },
     {
       "grammar": "V+(으)ㅂ시다",
       "gramInDepth1": "(formal) A sentence-final ending used to express an intention of doing a certain action together.",
       "inDepth1ExKor": "늦었으니 빨리 갑시다.",
       "inDepth1ExEng": "It's late, so let's go quickly.",
-      "gramInDepth2": "null",
+      "gramInDepth2": "REPLACE THIS LATER",
       "inDepth2ExKor": "그 규정을 내일부터 시행합시다",
-      "inDepth2ExEng ": "Let’s enforce that rule starting tomorrow "
+      "inDepth2ExEng": "Let’s enforce that rule starting tomorrow "
     },
     {
       "grammar": "V+(으)ㄹ 게요",
       "gramInDepth1": "An expression used when the speaker promises or notifies the listener that he orshe will do something.",
       "inDepth1ExKor": "지금 밥을 먹을게요",
       "inDepth1ExEng": "I will eat now",
-      "gramInDepth2": "null",
+      "gramInDepth2": "REPLACE THIS LATER",
       "inDepth2ExKor": "지금 주문할게요",
-      "inDepth2ExEng ": "I will order now "
+      "inDepth2ExEng": "I will order now "
     },
     {
       "grammar": "~도 돼요",
       "gramInDepth1": "An expression used to indicate that a certain act is allowed or accepted.",
       "inDepth1ExKor": "박물관 안에서 사진을 찍어도 될지 물어 보자.",
       "inDepth1ExEng": "Let's ask if we can take a picture inside the museum.",
-      "gramInDepth2": "null",
+      "gramInDepth2": "REPLACE THIS LATER",
       "inDepth2ExKor": "화장실에 가도 돼요?",
-      "inDepth2ExEng ": "May I go to the bathroom? "
+      "inDepth2ExEng": "May I go to the bathroom? "
     },
     {
       "grammar": "V+기로 하다",
       "gramInDepth1": "An expression used to decide or promise the performance of the act mentioned in the preceding statement.",
       "inDepth1ExKor": "제가 친구를 공원에서 만나기로 했어요",
       "inDepth1ExEng": "I decided to meet my friend in the park",
-      "gramInDepth2": null,
+      "gramInDepth2": "null",
       "inDepth2ExKor": "내일 친구랑 음악회에 같이 가기로 했어요",
-      "inDepth2ExEng ": "I decided to go to the concert with my friend tomorrow "
+      "inDepth2ExEng": "I decided to go to the concert with my friend tomorrow "
     },
     {
       "grammar": "(은)는 적이 있다",
@@ -124,7 +124,7 @@
       "inDepth1ExEng": "I’ve met him once.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "일본에 가 본 적이 있습니까?",
-      "inDepth2ExEng ": "Have you ever been to Japan? "
+      "inDepth2ExEng": "Have you ever been to Japan? "
     },
     {
       "grammar": "(은)는 적이 없다",
@@ -133,7 +133,7 @@
       "inDepth1ExEng": "I’ve never been to Spain.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "나는 그런 생각을 해 본 적이 없다.",
-      "inDepth2ExEng ": "The thought never entered my head."
+      "inDepth2ExEng": "The thought never entered my head."
     }
   ]
 }

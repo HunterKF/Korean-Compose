@@ -14,7 +14,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun InfoWord(word: String?, wordDef: String?) {
+fun InfoWord(word: String?,
+             def: String?,
+             wordExKor1: String?,
+             wordExEng1: String?,
+             wordExKor2: String?,
+             wordExEng2: String?,) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -39,13 +44,13 @@ fun InfoWord(word: String?, wordDef: String?) {
                 )
         }
 
-        if (wordDef != null) {
+        if (def != null) {
             Text(
                 modifier = Modifier
                     .padding(start = 16.dp, bottom = 12.dp),
                 fontSize = MaterialTheme.typography.body1.fontSize,
                 fontWeight = FontWeight.Light,
-                text = wordDef
+                text = def
             )
         }
         Divider(modifier = Modifier
@@ -69,10 +74,18 @@ fun InfoWord(word: String?, wordDef: String?) {
                 modifier = Modifier
                     .padding(start = 12.dp)
             ) {
-                ExampleW("나는 집으로 갔어요")
-                ExampleW("I went home")
-                ExampleW("내일 어디에 가고 싶어요?")
-                ExampleW("Where do you want to go tomorrow?")
+                if (wordExKor1 != null) {
+                    ExampleW(wordExKor1)
+                }
+                if (wordExEng1 != null) {
+                    ExampleW(wordExEng1)
+                }
+                if (wordExKor2 != null) {
+                    ExampleW(wordExKor2)
+                }
+                if (wordExEng2 != null) {
+                    ExampleW(wordExEng2)
+                }
 
             }
         }

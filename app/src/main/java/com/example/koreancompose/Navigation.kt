@@ -16,7 +16,7 @@ fun Navigation() {
         }
         composable(
             route = Screen.InfoScreen.route +
-                    "/{textFieldState}/{word}/{wordDef}/{wordExKor1}/{wordExEng1}/{wordExKor2}/{wordExEng2}/{grammar}/{gramInDepth1}/{inDepth1ExKor}/{inDepth1ExEng}/{gramInDepth2}/{inDepth2ExKor}/{inDepth2ExEng}",
+                    "/{textFieldState}/{word}/{def}/{wordExKor1}/{wordExEng1}/{wordExKor2}/{wordExEng2}/{grammar}/{gramInDepth1}/{inDepth1ExKor}/{inDepth1ExEng}/{gramInDepth2}/{inDepth2ExKor}/{inDepth2ExEng}",
             arguments = listOf(
                 /*Inputted sentence*/
                 navArgument("textFieldState") {
@@ -28,7 +28,23 @@ fun Navigation() {
                     type = NavType.StringType
                     defaultValue = "이건 안 했어?"
                 },
-                navArgument("wordDef") {
+                navArgument("def") {
+                    type = NavType.StringType
+                    defaultValue = "이건 안 했어?"
+                },
+                navArgument("wordExKor1") {
+                    type = NavType.StringType
+                    defaultValue = "이건 안 했어?"
+                },
+                navArgument("wordExEng1") {
+                    type = NavType.StringType
+                    defaultValue = "이건 안 했어?"
+                },
+                navArgument("wordExKor2") {
+                    type = NavType.StringType
+                    defaultValue = "이건 안 했어?"
+                },
+                navArgument("wordExEng2") {
                     type = NavType.StringType
                     defaultValue = "이건 안 했어?"
                 },
@@ -66,7 +82,12 @@ fun Navigation() {
             InfoScreen(
                 textFieldState = entry.arguments?.getString("textFieldState"),
                 word = entry.arguments?.getString("word"),
-                wordDef = entry.arguments?.getString("wordDef"),
+                def = entry.arguments?.getString("def"),
+                wordExKor1 = entry.arguments?.getString("wordExKor1"),
+                wordExEng1 = entry.arguments?.getString("wordExEng1"),
+                wordExKor2 = entry.arguments?.getString("wordExKor2"),
+                wordExEng2 = entry.arguments?.getString("wordExEng2"),
+
 //                all grammar string
                 grammar = entry.arguments?.getString("grammar"),
                 gramInDepth1 = entry.arguments?.getString("gramInDepth1"),

@@ -14,7 +14,6 @@ fun LoadJsonWords() {
     fun loadWord(): ModelJSONWord? {
         loadJSON.loadWordJson(context)
         return loadJSON.wordList
-        Log.d("LoadJsonWord()", "JSON word has been fired")
     }
 
     viewModel.allWords = loadWord()!!

@@ -1,5 +1,6 @@
 package com.example.koreancompose
 
+import android.util.Log
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -25,11 +26,11 @@ import com.example.koreancompose.screens.practicescreen.LearningPoint
 
 val viewModel = ViewModel()
 
-val TAG = "LearningBar"
+val TAG = "randomNumber"
 
 //Card initializer
-val dataWord = CardRepository()
-val getAllData = dataWord.getAllData()
+val cardRepository = CardRepository()
+val getAllData = cardRepository.getAllData()
 
 
 @Composable
@@ -120,8 +121,6 @@ fun Button(
     focusRequester: FocusRequester,
     onCardItemAdded: (String) -> Unit
 ) {
-
-    val context = LocalContext.current
     Button(modifier = Modifier
         .fillMaxWidth()
         .background(color = Color.Blue)
@@ -134,17 +133,16 @@ fun Button(
                 focusRequester.requestFocus()
 
             } else {
-                dataWord.allCards.add(
+                Log.d("onClick", "Before add card")
+                cardRepository.allCards.add(
                     PracticeCard(
                         viewModel.sentence,
-
                         viewModel.wordFieldState.value,
                         viewModel.wordDefFieldState.value,
                         viewModel.wordExKor1.value,
                         viewModel.wordExEng1.value,
                         viewModel.wordExKor2.value,
                         viewModel.wordExEng2.value,
-
                         viewModel.grammarFieldState.value,
                         viewModel.grammarInD1State.value,
                         viewModel.grammarInD1ExKor.value,
@@ -152,10 +150,12 @@ fun Button(
                         viewModel.grammarInD2State.value,
                         viewModel.grammarInD2ExKor.value,
                         viewModel.grammarInD2ExEng.value,
-
                     )
                 )
+
+                Log.d("onClick", "Does it die here? Here the value of practice card is ${cardRepository.allCards} ")
                 onCardItemAdded(viewModel.sentence)
+
 
                 //Change word
 
@@ -178,7 +178,7 @@ fun Button(
                 viewModel.grammarInD1ExKor.value = randGrammar.inDepth1ExKor
                 viewModel.grammarInD1ExEng.value = randGrammar.inDepth1ExEng
                 viewModel.grammarInD2State.value = randGrammar.gramInDepth2
-                viewModel.grammarInD2ExKor.value = randGrammar.inDepth1ExKor
+                viewModel.grammarInD2ExKor.value = randGrammar.inDepth2ExKor
                 viewModel.grammarInD2ExEng.value = randGrammar.inDepth2ExEng
 
             }

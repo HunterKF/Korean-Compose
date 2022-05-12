@@ -1,5 +1,6 @@
 package com.example.koreancompose
 
+import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.koreancompose.model.ModelJSONGrammar
@@ -23,11 +24,11 @@ class ViewModel : ViewModel() {
     //Mutable states for grammar
     var grammarFieldState = mutableStateOf("(으)려고")
     var grammarInD1State = mutableStateOf("to intend to do something")
-    var grammarInD1ExKor = mutableStateOf("5")
-    var grammarInD1ExEng = mutableStateOf("6")
-    var grammarInD2State = mutableStateOf("7")
-    var grammarInD2ExKor = mutableStateOf("8")
-    var grammarInD2ExEng = mutableStateOf("9")
+    var grammarInD1ExKor = mutableStateOf("")
+    var grammarInD1ExEng = mutableStateOf("")
+    var grammarInD2State = mutableStateOf("Does it work here")
+    var grammarInD2ExKor = mutableStateOf("Does it work here")
+    var grammarInD2ExEng = mutableStateOf("Does it work here")
 
     //Mutable state for InfoWord and InfoGrammar - Just in case I want to add more than verbs
     var infoWordType = mutableStateOf("verb")
@@ -58,7 +59,7 @@ class ViewModel : ViewModel() {
     private fun rand(end: Int): Int {
         val start = 0
         require(start <= end) { "Illegal Argument" }
-        return (start..end).random()
+        return (0..end).shuffled().last()
     }
 
     //returns a random word
@@ -72,9 +73,9 @@ class ViewModel : ViewModel() {
     )
 
     fun returnWord(item: ModelJSONWord): WordData {
-        println("The data is for dataGrammar is ${item.dataWords.size}")
 
         var randomNumber = rand(item.dataWords.size)
+        Log.d(TAG, "The value of randomNumber in returnWord is $randomNumber")
 
         if (randomNumber === item.dataWords.size) {
             randomNumber -= 1
@@ -100,8 +101,8 @@ class ViewModel : ViewModel() {
     )
 
     fun returnGrammar(item: ModelJSONGrammar): GrammarData {
-        println("The data is for dataGrammar is ${item.dataGrammar.size}")
         var randomNumber = rand(item.dataGrammar.size)
+        Log.d(TAG, "The value of randomNumber in returnGrammar is $randomNumber")
 
         if (randomNumber === item.dataGrammar.size) {
             randomNumber -= 1
@@ -114,6 +115,7 @@ class ViewModel : ViewModel() {
         val inDepth2ExKor = item.dataGrammar[randomNumber].inDepth2ExKor
         val inDepth2ExEng = item.dataGrammar[randomNumber].inDepth2ExEng
         return GrammarData(grammar, gramInDepth1, inDepth1ExKor, inDepth1ExEng, gramInDepth2, inDepth2ExKor, inDepth2ExEng)
+
     }
 
 }

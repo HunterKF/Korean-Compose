@@ -96,7 +96,14 @@ fun LearningPoint(
         expandedWordState ->
 
             Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-                InfoWord(word = "가다", wordDef = "To go")
+                InfoWord(
+                    word = viewModel.wordFieldState.value,
+                    def = viewModel.wordDefFieldState.value,
+                    wordExKor1 = viewModel.wordExKor1.value,
+                    wordExEng1 = viewModel.wordExEng1.value,
+                    wordExKor2 = viewModel.wordExKor2.value,
+                    wordExEng2 = viewModel.wordExEng2.value
+                )
             }
         expandedGrammarState ->
             Column(modifier = Modifier.padding(horizontal = 16.dp)) {

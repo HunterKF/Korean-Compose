@@ -14,8 +14,6 @@ fun LoadJsonGrammar() {
     fun loadGrammar(): ModelJSONGrammar? {
         loadJSON.loadGrammarJson(context)
         return loadJSON.grammarList
-        Log.d("LoadJsonWord()", "JSON grammar has been fired")
-
     }
 
     viewModel.allGrammar = loadGrammar()!!

@@ -16,7 +16,11 @@ import com.example.koreancompose.screens.infoscreen.InfoSentence
 fun InfoScreen(
     textFieldState: String?,
     word: String?,
-    wordDef: String?,
+    def: String?,
+    wordExKor1: String?,
+    wordExEng1: String?,
+    wordExKor2: String?,
+    wordExEng2: String?,
 //    all grammar string
     grammar: String?,
     gramInDepth1: String?,
@@ -37,7 +41,7 @@ fun InfoScreen(
         if (textFieldState != null) {
             InfoSentence(textFieldState)
         }
-        InfoWord(word, wordDef)
+        InfoWord(word, def, wordExKor1, wordExEng1, wordExKor2, wordExEng2)
         InfoGrammar(grammar, gramInDepth1, inDepth1ExKor, inDepth1ExEng, gramInDepth2, inDepth2ExKor, inDepth2ExEng)
     }
 }
