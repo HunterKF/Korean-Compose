@@ -17,5 +17,6 @@ fun LoadJsonGrammar() {
         Log.d("LoadJsonWord()", "JSON grammar has been fired")
 
     }
+
     viewModel.allGrammar = loadGrammar()!!
 }

@@ -1,24 +1,21 @@
 package com.example.koreancompose.screens.practicescreen
 
-import android.inputmethodservice.Keyboard
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.koreancompose.InfoGrammar
 import com.example.koreancompose.InfoWord
+import com.example.koreancompose.viewModel
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -104,9 +101,13 @@ fun LearningPoint(
         expandedGrammarState ->
             Column(modifier = Modifier.padding(horizontal = 16.dp)) {
                 InfoGrammar(
-                    grammar = "-서",
-                    grammarDef = "so, because",
-                    grammarExample = "나는 피곤해서 일찍 잤어요."
+                    grammar = viewModel.grammarFieldState.value,
+                    gramInDepth1 = viewModel.grammarInD1State.value,
+                    inDepth1ExKor = viewModel.grammarInD1ExKor.value,
+                    inDepth1ExEng = viewModel.grammarInD1ExEng.value,
+                    gramInDepth2 = viewModel.grammarInD2State.value,
+                    inDepth2ExKor = viewModel.grammarInD2ExKor.value,
+                    inDepth2ExEng = viewModel.grammarInD2ExEng.value
                 )
             }
 

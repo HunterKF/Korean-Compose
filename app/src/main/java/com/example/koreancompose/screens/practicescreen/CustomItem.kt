@@ -2,7 +2,6 @@ package com.example.koreancompose
 
 import android.content.Intent
 import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -162,9 +161,17 @@ fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
                                     practiceCard.inputtedSentence,
                                     practiceCard.word,
                                     practiceCard.wordDef,
+                                    practiceCard.wordExampleKorean1,
+                                    practiceCard.wordExampleEnglish1,
+                                    practiceCard.wordExampleKorean2,
+                                    practiceCard.wordExampleEnglish2,
                                     practiceCard.grammar,
-                                    practiceCard.grammarDef,
-                                    practiceCard.grammarExample
+                                    practiceCard.gramInDepth1,
+                                    practiceCard.inDepth1ExKor,
+                                    practiceCard.inDepth1ExEng,
+                                    practiceCard.gramInDepth2,
+                                    practiceCard.inDepth2ExKor,
+                                    practiceCard.inDepth2ExEng
                                 )
                             )
                         }) {

@@ -9,13 +9,20 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
 @Composable
-fun InfoGrammar(grammar: String?, grammarDef: String?, grammarExample: String?) {
+fun InfoGrammar(
+    grammar: String?,
+    gramInDepth1: String?,
+    inDepth1ExKor: String?,
+    inDepth1ExEng: String?,
+    gramInDepth2: String?,
+    inDepth2ExKor: String?,
+    inDepth2ExEng: String?
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -34,25 +41,17 @@ fun InfoGrammar(grammar: String?, grammarDef: String?, grammarExample: String?) 
                     text = grammar
                 )
             }
-            if (grammarDef != null) {
+            if (gramInDepth1 != null) {
                 Text(
                     fontSize = MaterialTheme.typography.h6.fontSize,
                     text = viewModel.infoGrammarType.value
                 )
             }
         }
-        if (grammarDef != null) {
-            Text(
-                modifier = Modifier
-                    .padding(start = 16.dp, bottom = 12.dp),
-                fontSize = MaterialTheme.typography.body1.fontSize,
-                fontWeight = FontWeight.Light,
-                text = grammarDef
-            )
-        }
-        Divider(modifier = Modifier
-            .fillMaxWidth()
-            .height(2.dp),
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(2.dp),
             color = Color.Black
         )
         Row(
@@ -71,26 +70,46 @@ fun InfoGrammar(grammar: String?, grammarDef: String?, grammarExample: String?) 
                 modifier = Modifier
                     .padding(start = 12.dp)
             ) {
-                if (grammarExample != null) {
-                    ExampleG("-(으)려고’ is attached to a verb root to indicate the purpose of an action.",grammarExample, "I am going to eat Korean food today.")
+
+                if (inDepth1ExKor != null) {
+                    ExampleG(
+                        gramInDepth1.toString(),
+                        inDepth1ExKor!!,
+                        inDepth1ExEng!!
+                    )
                 }
 
+                if (inDepth1ExKor != null) {
+                    ExampleG(
+                        gramInDepth2.toString(),
+                        inDepth2ExKor!!,
+                        inDepth2ExEng!!
+                    )
+                }
             }
-        }
 
+        }
     }
 
 }
 
+
 @Composable
-fun ExampleG(grammarExplanation1: String, learningKoreanPoint1: String, learningEnglishPoint1: String) {
-    Text(
-        modifier = Modifier.padding(vertical = 2.dp),
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Normal,
-        color = Color.DarkGray,
-        text = "$grammarExplanation1"
-    )
+fun ExampleG(
+    grammarExplanation1: String?,
+    learningKoreanPoint1: String,
+    learningEnglishPoint1: String
+) {
+    if (grammarExplanation1 != null) {
+        Text(
+            modifier = Modifier.padding(vertical = 2.dp),
+            fontSize = 16.sp,
+            fontWeight = FontWeight.Normal,
+            color = Color.DarkGray,
+            text = "$grammarExplanation1"
+        )
+    }
+
     Column(
         modifier = Modifier.padding(start = 12.dp)
     ) {

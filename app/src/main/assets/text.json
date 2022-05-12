@@ -3,211 +3,155 @@
   "words": [
     {
       "word": "가다",
-      "def": "To go"
+      "def": "go, travel",
+      "wordExKor1": "어디에 가고 싶습니까?",
+      "wordExEng1": "Where do you want to go?",
+      "wordExKor2": "오늘 너희 집에 가도 되니?",
+      "wordExEng2 ": "Can I come over to your house today? "
     },
     {
       "word": "가르치다",
-      "def": "To teach"
+      "def": "teach, instruct, train, educate",
+      "wordExKor1": "그녀는 우리에게 과학을 가르쳤다",
+      "wordExEng1": "She taught us science.",
+      "wordExKor2": "나는 중국 학생들에게 한국어를 가르친다",
+      "wordExEng2 ": "I'm teaching Korean to Chinese students. "
     },
     {
       "word": "가지다",
-      "def": "To have"
-    },
-    {
-      "word": "갖다",
-      "def": "To have"
+      "def": "have, hold, own, possess",
+      "wordExKor1": "그녀는 음악적 재능을 가지고 있다",
+      "wordExEng1": "She has[possesses] a talent for music.",
+      "wordExKor2": "지금 돈 가진 것 있어요?",
+      "wordExEng2 ": "Do you have any money with[on] you? "
     },
     {
       "word": "거짓말하다",
-      "def": "To lie"
+      "def": "lie, tell a lie",
+      "wordExKor1": "나는 절대로 너한테 거짓말한 적 없어",
+      "wordExEng1": "I've never lied to you.",
+      "wordExKor2": "거짓말인 거 다 알아.",
+      "wordExEng2 ": "I know you're lying[not telling the truth]. "
     },
     {
       "word": "걱정하다",
-      "def": "To worry"
+      "def": "To worry",
+      "wordExKor1": "걱정해 줘서 고마워요",
+      "wordExEng1": "Thanks for your concern.",
+      "wordExKor2": "저는 우리 가족을 걱정해요.",
+      "wordExEng2 ": "I worry about my family. "
     },
     {
       "word": "걷다",
-      "def": "To walk"
-    },
-    {
-      "word": "걸다",
-      "def": "To call, dial"
+      "def": "walk",
+      "wordExKor1": "걸어서 10분 정도 걸립니다.",
+      "wordExEng1": "It will take about ten minutes to walk.",
+      "wordExKor2": "걸어가자.",
+      "wordExEng2 ": "Let's walk there. "
     },
     {
       "word": "결혼하다",
-      "def": "To marry"
+      "def": "To marry",
+      "wordExKor1": "그는 첫사랑과 결혼했다",
+      "wordExEng1": "He married his first love.",
+      "wordExKor2": "저와 결혼해 주시겠습니까?",
+      "wordExEng2 ": "Will[Would] you marry me? "
     },
     {
       "word": "고백하다",
-      "def": "To confess"
+      "def": "confess, confiding",
+      "wordExKor1": "고백할 것이 있습니다",
+      "wordExEng1": "I have a confession to make.",
+      "wordExKor2": "나는 그녀에게 사랑을 고백했다",
+      "wordExEng2 ": "I confessed that I loved her. "
     },
     {
       "word": "공부하다",
-      "def": "To study"
+      "def": "study",
+      "wordExKor1": "열심히 공부하다",
+      "wordExEng1": "study hard",
+      "wordExKor2": "그는 학교에서 공부를 잘한다",
+      "wordExEng2 ": "He does well in school. "
     },
     {
       "word": "굽다",
-      "def": "To roast, grill, bake"
+      "def": "bake, roast, grill",
+      "wordExKor1": "구운 감자",
+      "wordExEng1": "baked potatoes",
+      "wordExKor2": "고기를 구워요.",
+      "wordExEng2 ": "Grill the meat. "
     },
     {
       "word": "기다리다",
-      "def": "To wait"
+      "def": "wait, hold on, hang on",
+      "wordExKor1": "기다리지 말고 저녁 먹어요",
+      "wordExEng1": "Don't wait for me for dinner.",
+      "wordExKor2": "오래 기다렸어요?",
+      "wordExEng2 ": "Have you been waiting long? "
     },
     {
       "word": "기억하다",
-      "def": "To remember"
+      "def": "remember, recall",
+      "wordExKor1": "분명히 기억하다",
+      "wordExEng1": "remember clearly",
+      "wordExKor2": "어떻게 된 일인지 기억할 수 있겠어요?",
+      "wordExEng2 ": "Can you recollect how it happened? "
     },
     {
       "word": "꿈꾸다",
-      "def": "To dream"
+      "def": "To dream",
+      "wordExKor1": "그녀는 가수를 꿈꾸고 있다",
+      "wordExEng1": "She dreams of becoming a singer.",
+      "wordExKor2": "꿈꾸는 듯한 기분이었다",
+      "wordExEng2 ": "I felt as if I were in a dream. "
     },
     {
       "word": "끓이다",
-      "def": "To boil"
+      "def": "To boil",
+      "wordExKor1": "라면을 끓이다",
+      "wordExEng1": "cook ramen",
+      "wordExKor2": "오래 끓이지 마라",
+      "wordExEng2 ": "Don't boil it for (too) long. "
     },
     {
       "word": "끝나다",
-      "def": "To finish"
+      "def": "end, finish",
+      "wordExKor1": "내 말 아직 안 끝났어요",
+      "wordExEng1": "I'm not finished talking yet.",
+      "wordExKor2": "곧 끝나요",
+      "wordExEng2 ": "I'll be done in a minute. "
     },
     {
       "word": "나가다",
-      "def": "To exit"
+      "def": "go out, get out, leave",
+      "wordExKor1": "방에서 나가다",
+      "wordExEng1": "go out of the room",
+      "wordExKor2": "점심 먹으러 나가다",
+      "wordExEng2 ": "go out for lunch "
     },
     {
       "word": "내다",
-      "def": "To pay"
+      "def": "pay",
+      "wordExKor1": "표 값은 내가 낼게",
+      "wordExEng1": "I’ll pay for the tickets.",
+      "wordExKor2": "현금을 내다",
+      "wordExEng2 ": "to pay in cash "
     },
     {
       "word": "닫다",
-      "def": "To close"
+      "def": "shut, close",
+      "wordExKor1": "창문을 꼭 닫다",
+      "wordExEng1": "close[shut] the window tight",
+      "wordExKor2": "은행은 몇 시에 문을 닫나요?",
+      "wordExEng2 ": "What time do the banks close? "
     },
     {
       "word": "대답하다",
-      "def": "To answer"
-    },
-    {
-      "word": "도와주다",
-      "def": "To help"
-    },
-    {
-      "word": "도착하다",
-      "def": "To arrive"
-    },
-    {
-      "word": "듣다",
-      "def": "To hear"
-    },
-    {
-      "word": "들어오다",
-      "def": "To enter"
-    },
-    {
-      "word": "마시다",
-      "def": "To drink"
-    },
-    {
-      "word": "만나다",
-      "def": "To meet"
-    },
-    {
-      "word": "만들다",
-      "def": "To make"
-    },
-    {
-      "word": "말하다",
-      "def": "To talk, speak"
-    },
-    {
-      "word": "먹다",
-      "def": "To eat"
-    },
-    {
-      "word": "모르다",
-      "def": "To not know"
-    },
-    {
-      "word": "묻다",
-      "def": "To ask"
-    },
-    {
-      "word": "물어보다",
-      "def": "To ask"
-    },
-    {
-      "word": "배우다",
-      "def": "To learn"
-    },
-    {
-      "word": "벗다",
-      "def": "To undress, take off clothes"
-    },
-    {
-      "word": "보내다",
-      "def": "To send"
-    },
-    {
-      "word": "보다",
-      "def": "To see"
-    },
-    {
-      "word": "볶다",
-      "def": "To fry"
-    },
-    {
-      "word": "빌리다",
-      "def": "To borrow, lend"
-    },
-    {
-      "word": "사다",
-      "def": "To buy"
-    },
-    {
-      "word": "사랑에 빠지다",
-      "def": "To fall in love"
-    },
-    {
-      "word": "사랑하다",
-      "def": "To love"
-    },
-    {
-      "word": "사용하다",
-      "def": "To use"
-    },
-    {
-      "word": "살다",
-      "def": "To live"
-    },
-    {
-      "word": "생각하다",
-      "def": "To think"
-    },
-    {
-      "word": "서두르다",
-      "def": "To hurry, rush"
-    },
-    {
-      "word": "섞다",
-      "def": "To mix, blend"
-    },
-    {
-      "word": "소개하다",
-      "def": "To introduce"
-    },
-    {
-      "word": "쉬다",
-      "def": "To rest"
-    },
-    {
-      "word": "시작하다",
-      "def": "To start"
-    },
-    {
-      "word": "신다",
-      "def": "to wear (shoes, socks, footwear)"
-    },
-    {
-      "word": "싫어하다",
-      "def": "To hate, dislike"
+      "def": "answer, reply",
+      "wordExKor1": "선생님은 학생의 질문에 대답했어요.",
+      "wordExEng1": "The teacher answered the student's question.",
+      "wordExKor2": "왜 문자에 대답하지 않았니?",
+      "wordExEng2 ": "Why didn't you answer the text?"
     }
   ]
 }

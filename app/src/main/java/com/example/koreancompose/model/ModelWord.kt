@@ -8,4 +8,17 @@ class ModelWord {
 
     @SerializedName("def")
     var def: String = ""
+
+    @SerializedName("wordExKor1")
+    var wordExKor1: String = ""
+
+    @SerializedName("wordExEng1")
+    var wordExEng1: String = ""
+
+    @SerializedName("wordExKor2")
+    var wordExKor2: String = ""
+
+    @SerializedName("wordExEng2")
+    var wordExEng2: String = ""
+
 }

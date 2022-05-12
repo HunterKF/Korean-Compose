@@ -15,12 +15,15 @@ fun Navigation() {
             PracticeScreen(navController = navController)
         }
         composable(
-            route = Screen.InfoScreen.route + "/{textFieldState}/{word}/{wordDef}/{grammar}/{grammarDef}/{grammarExample}",
+            route = Screen.InfoScreen.route +
+                    "/{textFieldState}/{word}/{wordDef}/{wordExKor1}/{wordExEng1}/{wordExKor2}/{wordExEng2}/{grammar}/{gramInDepth1}/{inDepth1ExKor}/{inDepth1ExEng}/{gramInDepth2}/{inDepth2ExKor}/{inDepth2ExEng}",
             arguments = listOf(
+                /*Inputted sentence*/
                 navArgument("textFieldState") {
                     type = NavType.StringType
                     defaultValue = "Did you enter something in?"
                 },
+                /*Words*/
                 navArgument("word") {
                     type = NavType.StringType
                     defaultValue = "이건 안 했어?"
@@ -29,15 +32,32 @@ fun Navigation() {
                     type = NavType.StringType
                     defaultValue = "이건 안 했어?"
                 },
+                /*Grammar*/
                 navArgument("grammar") {
                     type = NavType.StringType
                     defaultValue = "이건 안 했어?"
                 },
-                navArgument("grammarDef") {
+                navArgument("gramInDepth1") {
                     type = NavType.StringType
                     defaultValue = "이건 안 했어?"
                 },
-                navArgument("grammarExample") {
+                navArgument("inDepth1ExKor") {
+                    type = NavType.StringType
+                    defaultValue = "이건 안 했어?"
+                },
+                navArgument("inDepth1ExEng") {
+                    type = NavType.StringType
+                    defaultValue = "이건 안 했어?"
+                },
+                navArgument("gramInDepth2") {
+                    type = NavType.StringType
+                    defaultValue = "이건 안 했어?"
+                },
+                navArgument("inDepth2ExKor") {
+                    type = NavType.StringType
+                    defaultValue = "이건 안 했어?"
+                },
+                navArgument("inDepth2ExEng") {
                     type = NavType.StringType
                     defaultValue = "이건 안 했어?"
                 }
@@ -47,9 +67,15 @@ fun Navigation() {
                 textFieldState = entry.arguments?.getString("textFieldState"),
                 word = entry.arguments?.getString("word"),
                 wordDef = entry.arguments?.getString("wordDef"),
+//                all grammar string
                 grammar = entry.arguments?.getString("grammar"),
-                grammarDef = entry.arguments?.getString("grammarDef"),
-                grammarExample = entry.arguments?.getString("grammarExample")
+                gramInDepth1 = entry.arguments?.getString("gramInDepth1"),
+                inDepth1ExKor = entry.arguments?.getString("inDepth1ExKor"),
+                inDepth1ExEng = entry.arguments?.getString("inDepth1ExEng"),
+                gramInDepth2 = entry.arguments?.getString("gramInDepth2"),
+                inDepth2ExKor = entry.arguments?.getString("inDepth2ExKor"),
+                inDepth2ExEng = entry.arguments?.getString("inDepth2ExEng")
+
             )
         }
     }

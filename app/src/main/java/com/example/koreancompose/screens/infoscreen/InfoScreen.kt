@@ -17,9 +17,14 @@ fun InfoScreen(
     textFieldState: String?,
     word: String?,
     wordDef: String?,
+//    all grammar string
     grammar: String?,
-    grammarDef: String?,
-    grammarExample: String?
+    gramInDepth1: String?,
+    inDepth1ExKor: String?,
+    inDepth1ExEng: String?,
+    gramInDepth2: String?,
+    inDepth2ExKor: String?,
+    inDepth2ExEng: String?
 ) {
     val scrollState = rememberScrollState()
     Column(
@@ -33,6 +38,6 @@ fun InfoScreen(
             InfoSentence(textFieldState)
         }
         InfoWord(word, wordDef)
-        InfoGrammar(grammar, grammarDef, grammarExample)
+        InfoGrammar(grammar, gramInDepth1, inDepth1ExKor, inDepth1ExEng, gramInDepth2, inDepth2ExKor, inDepth2ExEng)
     }
 }

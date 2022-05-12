@@ -1,26 +1,33 @@
 package com.example.koreancompose
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.model.ModelJSONWord
-import com.example.koreancompose.model.ModelWord
-import com.example.koreancompose.repository.CardRepository
 
-class ViewModel: ViewModel() {
+class ViewModel : ViewModel() {
 
     private val wordModelJSONWord = ModelJSONWord()
+
     //TextField = mutableStateOf("")
     val textFieldState = mutableStateOf("")
+
     //Mutable states for learning bar
     var wordFieldState = mutableStateOf("가다")
     var wordDefFieldState = mutableStateOf("to go")
+    var wordExKor1 = mutableStateOf("1")
+    var wordExEng1 = mutableStateOf("2")
+    var wordExKor2 = mutableStateOf("3")
+    var wordExEng2 = mutableStateOf("4")
 
     //Mutable states for grammar
     var grammarFieldState = mutableStateOf("(으)려고")
-    var grammarDefFieldState = mutableStateOf("to intend to do something")
-    var grammarExampleFieldState = mutableStateOf("(으)려고")
+    var grammarInD1State = mutableStateOf("to intend to do something")
+    var grammarInD1ExKor = mutableStateOf("5")
+    var grammarInD1ExEng = mutableStateOf("6")
+    var grammarInD2State = mutableStateOf("7")
+    var grammarInD2ExKor = mutableStateOf("8")
+    var grammarInD2ExEng = mutableStateOf("9")
 
     //Mutable state for InfoWord and InfoGrammar - Just in case I want to add more than verbs
     var infoWordType = mutableStateOf("verb")
@@ -30,11 +37,13 @@ class ViewModel: ViewModel() {
     fun onTextFieldChange(query: String) {
         this.textFieldState.value = query
     }
-    
+
     //Words for practice
     val word = "가다"
+
     //Grammar points for practice
     val grammar = "으려고"
+
     //Captured user inputted sentence
     var sentence = ""
 
@@ -52,9 +61,19 @@ class ViewModel: ViewModel() {
         return (start..end).random()
     }
 
-//returns a random word
-    data class WordData(var word: String, var def: String)
+    //returns a random word
+    data class WordData(
+        var word: String,
+        var def: String,
+        var wordExKor1: String,
+        var wordExEng1: String,
+        var wordExKor2: String,
+        var wordExEng2: String,
+    )
+
     fun returnWord(item: ModelJSONWord): WordData {
+        println("The data is for dataGrammar is ${item.dataWords.size}")
+
         var randomNumber = rand(item.dataWords.size)
 
         if (randomNumber === item.dataWords.size) {
@@ -62,20 +81,39 @@ class ViewModel: ViewModel() {
         }
         val grammar = item.dataWords[randomNumber].word
         val def = item.dataWords[randomNumber].def
-        return WordData(grammar, def)
+        val wordExKor1 = item.dataWords[randomNumber].wordExKor1
+        val wordExEng1 = item.dataWords[randomNumber].wordExEng1
+        val wordExKor2 = item.dataWords[randomNumber].wordExKor2
+        val wordExEng2 = item.dataWords[randomNumber].wordExEng2
+        return WordData(grammar, def, wordExKor1, wordExEng1, wordExKor2, wordExEng2)
     }
-//returns a random grammar point
-    data class GrammarData(var grammar: String, var def: String, var exampleSentence: String)
+
+    //returns a random grammar point
+    data class GrammarData(
+        var grammar: String,
+        var gramInDepth1: String,
+        var inDepth1ExKor: String,
+        var inDepth1ExEng: String,
+        var gramInDepth2: String,
+        var inDepth2ExKor: String,
+        var inDepth2ExEng: String,
+    )
+
     fun returnGrammar(item: ModelJSONGrammar): GrammarData {
+        println("The data is for dataGrammar is ${item.dataGrammar.size}")
         var randomNumber = rand(item.dataGrammar.size)
 
         if (randomNumber === item.dataGrammar.size) {
             randomNumber -= 1
         }
         val grammar = item.dataGrammar[randomNumber].grammar
-        val def = item.dataGrammar[randomNumber].def
-        val exampleSentence = item.dataGrammar[randomNumber].exampleSentence
-        return GrammarData(grammar, def, exampleSentence)
+        val gramInDepth1 = item.dataGrammar[randomNumber].gramInDepth1
+        val inDepth1ExKor = item.dataGrammar[randomNumber].inDepth1ExKor
+        val inDepth1ExEng = item.dataGrammar[randomNumber].inDepth1ExEng
+        val gramInDepth2 = item.dataGrammar[randomNumber].gramInDepth2
+        val inDepth2ExKor = item.dataGrammar[randomNumber].inDepth2ExKor
+        val inDepth2ExEng = item.dataGrammar[randomNumber].inDepth2ExEng
+        return GrammarData(grammar, gramInDepth1, inDepth1ExKor, inDepth1ExEng, gramInDepth2, inDepth2ExKor, inDepth2ExEng)
     }
 
 }

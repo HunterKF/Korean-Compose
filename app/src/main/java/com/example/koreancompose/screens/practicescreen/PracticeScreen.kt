@@ -1,7 +1,6 @@
 package com.example.koreancompose
 
 import androidx.compose.foundation.*
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,18 +10,14 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.koreancompose.model.ModelJSONGrammar
-import com.example.koreancompose.model.ModelJSONWord
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 import com.example.koreancompose.screens.practicescreen.LearningPoint
@@ -141,12 +136,23 @@ fun Button(
             } else {
                 dataWord.allCards.add(
                     PracticeCard(
+                        viewModel.sentence,
+
                         viewModel.wordFieldState.value,
                         viewModel.wordDefFieldState.value,
+                        viewModel.wordExKor1.value,
+                        viewModel.wordExEng1.value,
+                        viewModel.wordExKor2.value,
+                        viewModel.wordExEng2.value,
+
                         viewModel.grammarFieldState.value,
-                        viewModel.grammarDefFieldState.value,
-                        viewModel.grammarExampleFieldState.value,
-                        viewModel.sentence
+                        viewModel.grammarInD1State.value,
+                        viewModel.grammarInD1ExKor.value,
+                        viewModel.grammarInD1ExEng.value,
+                        viewModel.grammarInD2State.value,
+                        viewModel.grammarInD2ExKor.value,
+                        viewModel.grammarInD2ExEng.value,
+
                     )
                 )
                 onCardItemAdded(viewModel.sentence)
@@ -154,17 +160,26 @@ fun Button(
                 //Change word
 
                 val randWord = viewModel.allWords.let { viewModel.returnWord(it) }
+                //Word - Takes the data class from returnGrammar and then populates the states in the viewModel.
+                viewModel.wordFieldState.value = randWord.word
+                viewModel.wordDefFieldState.value = randWord.def
+                viewModel.wordExKor1.value = randWord.wordExKor1
+                viewModel.wordExEng1.value = randWord.wordExEng1
+                viewModel.wordExKor2.value = randWord.wordExKor2
+                viewModel.wordExEng2.value = randWord.wordExEng2
 
-                viewModel.wordFieldState.value = randWord?.word.toString()
-                viewModel.wordDefFieldState.value = randWord?.def.toString()
 
                 //Change grammar
 
                 val randGrammar = viewModel.allGrammar.let { viewModel.returnGrammar(it) }
-
-                viewModel.grammarFieldState.value = randGrammar?.grammar.toString()
-                viewModel.grammarDefFieldState.value = randGrammar?.def.toString()
-                viewModel.grammarExampleFieldState.value = randGrammar?.exampleSentence.toString()
+                //Grammar - Takes the data class from returnGrammar and then populates the states in the viewModel.
+                viewModel.grammarFieldState.value = randGrammar.grammar
+                viewModel.grammarInD1State.value = randGrammar.gramInDepth1
+                viewModel.grammarInD1ExKor.value = randGrammar.inDepth1ExKor
+                viewModel.grammarInD1ExEng.value = randGrammar.inDepth1ExEng
+                viewModel.grammarInD2State.value = randGrammar.gramInDepth2
+                viewModel.grammarInD2ExKor.value = randGrammar.inDepth1ExKor
+                viewModel.grammarInD2ExEng.value = randGrammar.inDepth2ExEng
 
             }
             viewModel.textFieldState.value = ""
@@ -179,6 +194,7 @@ fun Button(
 @Composable
 fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavController) {
     val listState = rememberLazyListState()
+
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
@@ -188,13 +204,16 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
         userScrollEnabled = true,
         state = listState
     ) {
-
-
+        if (listState.isScrollInProgress) {
+            println("The list state is scrolling")
+        }
         items(cardState.size) {}
         items(items = getAllData) { card ->
             CustomItem(practiceCard = card, navController = navController)
             Spacer(Modifier.size(10.dp))
+
         }
+
 
     }
 }
