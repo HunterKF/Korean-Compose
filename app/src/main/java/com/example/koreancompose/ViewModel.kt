@@ -10,6 +10,8 @@ class ViewModel : ViewModel() {
 
     private val wordModelJSONWord = ModelJSONWord()
 
+
+
     //TextField = mutableStateOf("")
     val textFieldState = mutableStateOf("")
 

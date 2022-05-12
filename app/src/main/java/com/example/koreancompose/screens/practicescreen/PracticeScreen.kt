@@ -97,7 +97,9 @@ fun PracticeScreen(navController: NavController) {
                 navController = navController
             )
         }
+
     }
+
 }
 
 
@@ -217,5 +219,7 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
 
     }
 }
+
+
 
 

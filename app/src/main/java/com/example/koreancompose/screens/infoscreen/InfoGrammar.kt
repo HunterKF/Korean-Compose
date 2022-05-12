@@ -71,21 +71,20 @@ fun InfoGrammar(
                     .padding(start = 12.dp)
             ) {
 
-                if (inDepth1ExKor != null) {
-                    ExampleG(
-                        gramInDepth1.toString(),
-                        inDepth1ExKor!!,
-                        inDepth1ExEng!!
-                    )
-                }
 
-                if (inDepth1ExKor != null) {
-                    ExampleG(
-                        gramInDepth2.toString(),
-                        inDepth2ExKor!!,
-                        inDepth2ExEng!!
-                    )
-                }
+                ExampleG(
+                    gramInDepth1.toString(),
+                    inDepth1ExKor!!,
+                    inDepth1ExEng!!
+                )
+
+
+                ExampleG(
+                    gramInDepth2.toString(),
+                    inDepth2ExKor!!,
+                    inDepth2ExEng!!
+                )
+
             }
 
         }
@@ -100,7 +99,7 @@ fun ExampleG(
     learningKoreanPoint1: String,
     learningEnglishPoint1: String
 ) {
-    if (grammarExplanation1 != null) {
+    if (grammarExplanation1 != null && grammarExplanation1 != "null") {
         Text(
             modifier = Modifier.padding(vertical = 2.dp),
             fontSize = 16.sp,
