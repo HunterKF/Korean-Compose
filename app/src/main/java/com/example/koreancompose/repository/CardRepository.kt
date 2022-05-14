@@ -16,10 +16,6 @@ class CardRepository {
 
     val allCards = mutableListOf<PracticeCard>(
     )
-//    fun getRecentCard(): PracticeCard {
-//        allCards.forEach { i -> if(i > allCards.size) return@forEach
-//    }
-//        Log.d("forEach test")
 
     fun getAllData(): List<PracticeCard> {
         return allCards

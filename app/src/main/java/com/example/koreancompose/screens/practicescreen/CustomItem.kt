@@ -24,9 +24,12 @@ import com.example.koreancompose.model.PracticeCard
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
-    var expandedState by remember { mutableStateOf(false) }
-    val rotateState by animateFloatAsState(targetValue = if (expandedState) 180f else 0f)
+fun CustomItem(
+    practiceCard: PracticeCard,
+    navController: NavController,
+    expandedState: Boolean,
+    onClick: () -> Unit
+) {
     //For the share sheet
     val appName = "Korean Practice"
     val sendIntent: Intent = Intent().apply {
@@ -45,9 +48,7 @@ fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
             .shadow(2.dp, RoundedCornerShape(16.dp), true)
             .fillMaxWidth(),
         shape = RoundedCornerShape(16.dp),
-        onClick = {
-            expandedState = !expandedState
-        }
+        onClick = onClick
     ) {
         Column(
             modifier = Modifier

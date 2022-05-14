@@ -226,6 +226,7 @@ fun Button(
 @Composable
 fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavController, listState: LazyListState) {
 
+    var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
 
 
     LazyColumn(
@@ -242,8 +243,14 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
             println("The list state is scrolling")
         }
 
-        items(items = getAllData) { card ->
-            CustomItem(practiceCard = card, navController = navController)
+        items(getAllData) { card ->
+            CustomItem(
+                practiceCard = card,
+                navController = navController,
+                expandedState = expandedState == card,
+                onClick = {
+                    expandedState = if (expandedState == card) null else card}
+            )
             Spacer(Modifier.size(10.dp))
 
         }
