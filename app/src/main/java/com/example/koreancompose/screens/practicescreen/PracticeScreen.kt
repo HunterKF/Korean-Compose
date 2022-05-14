@@ -1,27 +1,35 @@
 package com.example.koreancompose
 
 import android.util.Log
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 import com.example.koreancompose.screens.practicescreen.LearningPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 
 val viewModel = ViewModel()
@@ -33,6 +41,7 @@ val cardRepository = CardRepository()
 val getAllData = cardRepository.getAllData()
 
 
+
 @Composable
 fun PracticeScreen(navController: NavController) {
 
@@ -42,6 +51,11 @@ fun PracticeScreen(navController: NavController) {
     val scrollState = rememberScrollState()
     //Remove column's clickable effects
     val interactionSource = remember { MutableInteractionSource() }
+    //lazyColumn state
+    val listState = rememberLazyListState()
+    //coroutineScope
+    val coroutineScope = rememberCoroutineScope()
+
 
     Column(
         modifier = Modifier
@@ -80,7 +94,7 @@ fun PracticeScreen(navController: NavController) {
                 .focusRequester(focusRequester)
         )
 
-        Button(focusRequester = focusRequester) { PracticeCard ->
+        Button(focusRequester = focusRequester, coroutineScope = coroutineScope, listState = listState) { PracticeCard ->
             cardState = cardState + listOf(PracticeCard)
         }
         Column(modifier = Modifier
@@ -94,7 +108,8 @@ fun PracticeScreen(navController: NavController) {
                     .fillMaxHeight()
                     .weight(2f),
                 cardState = cardState,
-                navController = navController
+                navController = navController,
+                listState = listState
             )
         }
 
@@ -121,8 +136,11 @@ fun TextField(textFieldHeight: Int, modifier: Modifier) {
 @Composable
 fun Button(
     focusRequester: FocusRequester,
-    onCardItemAdded: (String) -> Unit
+    coroutineScope: CoroutineScope,
+    listState: LazyListState,
+    onCardItemAdded: (String) -> Unit,
 ) {
+
     Button(modifier = Modifier
         .fillMaxWidth()
         .background(color = Color.Blue)
@@ -135,6 +153,15 @@ fun Button(
                 focusRequester.requestFocus()
 
             } else {
+
+                coroutineScope.launch {
+                    // Animate scroll to the first item
+                    listState.animateScrollToItem(index = viewModel.indexCounter)
+                    viewModel.incrementIndexScrollTo()
+                    println("The coroutine has fired. I is now ${viewModel.indexCounter}")
+                }
+
+
                 Log.d("onClick", "Before add card")
                 cardRepository.allCards.add(
                     PracticeCard(
@@ -155,7 +182,10 @@ fun Button(
                     )
                 )
 
-                Log.d("onClick", "Does it die here? Here the value of practice card is ${cardRepository.allCards} ")
+                Log.d(
+                    "onClick",
+                    "Does it die here? Here the value of practice card is ${cardRepository.allCards} "
+                )
                 onCardItemAdded(viewModel.sentence)
 
 
@@ -194,13 +224,15 @@ fun Button(
 }
 
 @Composable
-fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavController) {
-    val listState = rememberLazyListState()
+fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavController, listState: LazyListState) {
+
+
 
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp),
+            .padding(16.dp)
+            .simpleVerticalScrollbar(listState),
         reverseLayout = true,
         verticalArrangement = Arrangement.Top,
         userScrollEnabled = true,
@@ -209,7 +241,7 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
         if (listState.isScrollInProgress) {
             println("The list state is scrolling")
         }
-        items(cardState.size) {}
+
         items(items = getAllData) { card ->
             CustomItem(practiceCard = card, navController = navController)
             Spacer(Modifier.size(10.dp))
@@ -221,5 +253,43 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
 }
 
 
+/*
+Scrollbar for the LazyColumn. Taken from StackOverflow -
+https://stackoverflow.com/questions/66341823/jetpack-compose-scrollbars?noredirect=1&lq=1
+*/
+@Composable
+fun Modifier.simpleVerticalScrollbar(
+    state: LazyListState,
+    width: Dp = 4.dp
+): Modifier {
+    val targetAlpha = if (state.isScrollInProgress) 1f else 0f
+    val duration = if (state.isScrollInProgress) 150 else 500
+
+    val alpha by animateFloatAsState(
+        targetValue = targetAlpha,
+        animationSpec = tween(durationMillis = duration)
+    )
+
+    return drawWithContent {
+        drawContent()
+
+        val firstVisibleElementIndex = state.layoutInfo.visibleItemsInfo.firstOrNull()?.index
+        val needDrawScrollbar = state.isScrollInProgress || alpha > 0.0f
+
+        // Draw scrollbar if scrolling or if the animation is still running and lazy column has content
+        if (needDrawScrollbar && firstVisibleElementIndex != null) {
+            val elementHeight = this.size.height / state.layoutInfo.totalItemsCount
+            val scrollbarOffsetY = firstVisibleElementIndex * elementHeight
+            val scrollbarHeight = state.layoutInfo.visibleItemsInfo.size * elementHeight
+
+            drawRect(
+                color = Color.Blue,
+                topLeft = Offset(this.size.width - width.toPx(), scrollbarOffsetY),
+                size = Size(width.toPx(), scrollbarHeight),
+                alpha = alpha
+            )
+        }
+    }
+}
 
 

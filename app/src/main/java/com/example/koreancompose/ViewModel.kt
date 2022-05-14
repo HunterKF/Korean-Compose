@@ -1,7 +1,10 @@
 package com.example.koreancompose
 
 import android.util.Log
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.model.ModelJSONWord
@@ -36,10 +39,21 @@ class ViewModel : ViewModel() {
     var infoWordType = mutableStateOf("verb")
     var infoGrammarType = mutableStateOf("grammar")
 
+    //Counter for the scrollToIndex state in Button
+    var indexCounter = 0
+    fun incrementIndexScrollTo() {
+        indexCounter++
+    }
+
+
+
     //Called in Button(onClick), changes the textFieldState to current textFieldState
     fun onTextFieldChange(query: String) {
         this.textFieldState.value = query
     }
+
+    //CustomItem card's ExpandedState
+//    var expandedState = mutableStateOf(false)
 
     //Words for practice
     val word = "가다"

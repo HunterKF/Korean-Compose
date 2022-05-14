@@ -90,20 +90,7 @@ fun CustomItem(practiceCard: PracticeCard, navController: NavController) {
                     letterSpacing = 0.15.sp
 
                 )
-                Spacer(modifier = Modifier.height(10.dp))
-                IconButton(
-                    modifier = Modifier
-                        .alpha(ContentAlpha.medium)
-                        .weight(1f)
-                        .rotate(rotateState),
-                    onClick = {
-                        expandedState = !expandedState
-                    }) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowDropDown,
-                        contentDescription = "Drop"
-                    )
-                }
+
             }
 
             if (expandedState) {
