@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.window.Popup
 import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
@@ -55,7 +57,6 @@ fun PracticeScreen(navController: NavController) {
     val listState = rememberLazyListState()
     //coroutineScope
     val coroutineScope = rememberCoroutineScope()
-
 
     Column(
         modifier = Modifier
@@ -230,19 +231,15 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
 
 
     LazyColumn(
+        reverseLayout = false,
         modifier = Modifier
             .fillMaxSize()
             .padding(16.dp)
             .simpleVerticalScrollbar(listState),
-        reverseLayout = true,
         verticalArrangement = Arrangement.Top,
         userScrollEnabled = true,
         state = listState
     ) {
-        if (listState.isScrollInProgress) {
-            println("The list state is scrolling")
-        }
-
         items(getAllData) { card ->
             CustomItem(
                 practiceCard = card,
@@ -298,5 +295,7 @@ fun Modifier.simpleVerticalScrollbar(
         }
     }
 }
+
+
 
 

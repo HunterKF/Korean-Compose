@@ -1,6 +1,7 @@
 package com.example.koreancompose
 
 import android.content.Intent
+import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -95,7 +96,7 @@ fun CustomItem(
             }
 
             if (expandedState) {
-                Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp)/*.animateContentSize()*/)
                 Row(
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
