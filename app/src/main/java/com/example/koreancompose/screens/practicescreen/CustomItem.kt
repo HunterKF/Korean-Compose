@@ -1,5 +1,6 @@
 package com.example.koreancompose
 
+import android.app.Application
 import android.content.Intent
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.animateFloatAsState
@@ -21,6 +22,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.koreancompose.database.StoredItem
+import com.example.koreancompose.database.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -43,6 +46,11 @@ fun CustomItem(
     }
     val shareIntent = Intent.createChooser(sendIntent, null)
     val context = LocalContext.current
+    val application = context.applicationContext as Application
+
+    //Call StoredItemsViewModel
+    val storedItemsViewModel = StoredItemsViewModel(application)
+    val storedItem = StoredItem(0, practiceCard.inputtedSentence, practiceCard.grammar, practiceCard.word)
 
     Card(
         modifier = Modifier
@@ -133,7 +141,8 @@ fun CustomItem(
                             .alpha(ContentAlpha.medium)
                             .weight(1f),
                         onClick = {
-                            /* TODO */
+//                            storedItemsViewModel.addStoredItem(storedItem)
+//                            navController.navigate(Screen.FavoritesScreen.route)
                         }) {
                         Icon(
                             imageVector = Icons.Default.Star,

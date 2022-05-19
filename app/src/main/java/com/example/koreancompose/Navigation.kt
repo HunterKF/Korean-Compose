@@ -6,6 +6,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.koreancompose.database.StoredItem
+import com.example.koreancompose.screens.favoritesscreen.FavoritesScreen
 
 @Composable
 fun Navigation() {
@@ -98,6 +100,13 @@ fun Navigation() {
                 inDepth2ExEng = entry.arguments?.getString("inDepth2ExEng")
 
             )
+        }
+        composable(
+            route = Screen.FavoritesScreen.route + "/{storedItem}"
+            )
+        {
+            FavoritesScreen()
+
         }
     }
 }

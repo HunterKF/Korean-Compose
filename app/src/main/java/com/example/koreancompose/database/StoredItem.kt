@@ -5,17 +5,17 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "stored_items_table")
-class StoredItem {
+class StoredItem (
     @PrimaryKey
-    val itemId: Long = 0L
+    val itemId: Long = 0L,
 
     @ColumnInfo
-    val inputtedWord: String = ""
+    val inputtedWord: String = "",
 
     @ColumnInfo
-    val inputtedGrammar: String = ""
+    val inputtedGrammar: String = "",
 
     @ColumnInfo
     val inputtedSentence: String = ""
 
-}
+)
