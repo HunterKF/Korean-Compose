@@ -2,17 +2,17 @@ package com.example.koreancompose
 
 import android.app.Application
 import android.os.Bundle
-import android.util.Log
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -26,9 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.database.StoredItemsViewModel
-import com.example.koreancompose.model.ModelJSONWord
-import com.example.koreancompose.screens.jsonfiles.LoadJsonGrammar
-import com.example.koreancompose.screens.jsonfiles.LoadJsonWords
 import com.example.koreancompose.ui.theme.KoreanComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -117,17 +114,18 @@ fun ScreenSetup(
     viewModel: StoredItemsViewModel =
         StoredItemsViewModel(LocalContext.current.applicationContext as Application)
 ) {
-    val allItems by viewModel.readAllData.observeAsState(listOf())
+    val allItems by viewModel.readAllData.observeAsState(mutableListOf())
+
 
     MainScreen(
-        allProducts = allItems,
+        allItems = allItems as MutableList<StoredItem>,
         viewModel = viewModel
     )
 }
 
 @Composable
 fun MainScreen(
-    allProducts: List<StoredItem>,
+    allItems: MutableList<StoredItem>,
     viewModel: StoredItemsViewModel
 ) {
     var storedItemSentence by remember { mutableStateOf("") }
@@ -170,10 +168,10 @@ fun MainScreen(
                 .fillMaxWidth()
                 .padding(10.dp)
         ) {
-            androidx.compose.material.Button(onClick = {
+            Button(onClick = {
                 viewModel.addStoredItem(
                     StoredItem(
-                        0,
+                        0L,
                         storedItemSentence,
                         storedItemWord,
                         storedItemGrammar
@@ -182,6 +180,7 @@ fun MainScreen(
             }) {
                 Text("Add")
             }
+
 
 //            androidx.compose.material.Button(onClick = {
 //                searching = true
@@ -205,15 +204,26 @@ fun MainScreen(
 //                Text("Clear")
 //            }
 
-            LazyColumn(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(10.dp)
-            ) {
-//                val list = if (searching) searchResults else allProducts
+            var storedItemList by remember { mutableStateOf(emptyList<StoredItem>()) }
+            val listState = rememberLazyListState()
 
-                item {
-                    TitleRow(head1 = "ID", head2 = "Product", head3 = "Quantity")
+            LazyColumn(
+                reverseLayout = false,
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+                    .simpleVerticalScrollbar(listState),
+                verticalArrangement = Arrangement.Top,
+                userScrollEnabled = true,
+                state = listState
+            ) {
+
+//                item {
+//                    TitleRow(head1 = "ID", head2 = "Product", head3 = "Quantity")
+//                }
+
+                items(allItems) { item ->
+                    ProductRow(item.inputtedSentence, item.inputtedWord, item.inputtedGrammar)
                 }
 
 //                items(list) { product ->

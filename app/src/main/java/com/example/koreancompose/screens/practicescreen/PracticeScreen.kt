@@ -10,7 +10,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
@@ -27,7 +26,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.Popup
 import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
@@ -104,7 +102,7 @@ fun PracticeScreen(navController: NavController) {
                 .focusRequester(focusRequester)
         )
 
-        Button(focusRequester = focusRequester, coroutineScope = coroutineScope, listState = listState) { PracticeCard ->
+        EnterButton(focusRequester = focusRequester, coroutineScope = coroutineScope, listState = listState) { PracticeCard ->
             cardState = cardState + listOf(PracticeCard)
         }
         Column(modifier = Modifier
@@ -144,7 +142,7 @@ fun TextField(textFieldHeight: Int, modifier: Modifier) {
 }
 
 @Composable
-fun Button(
+fun EnterButton(
     focusRequester: FocusRequester,
     coroutineScope: CoroutineScope,
     listState: LazyListState,

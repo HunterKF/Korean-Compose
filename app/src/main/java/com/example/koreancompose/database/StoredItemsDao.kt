@@ -5,6 +5,7 @@ import androidx.room.*
 
 @Dao
 interface StoredItemsDao {
+    //ONCONFLICT IGNORE DOESN'T WORK, BUT REPLACE DOES... Why?
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(item: StoredItem)
 
@@ -17,7 +18,7 @@ interface StoredItemsDao {
     @Query("SELECT * FROM stored_items_table WHERE itemId = :key")
     suspend fun get(key: Long): StoredItem?
 
-    @Query("SELECT * FROM stored_items_table ORDER BY itemId DESC LIMIT 1")
+    @Query("SELECT * FROM stored_items_table ORDER BY itemId DESC")
     fun getAllItems(): LiveData<List<StoredItem>>
 
 

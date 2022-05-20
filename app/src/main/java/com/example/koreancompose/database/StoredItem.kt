@@ -6,16 +6,16 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "stored_items_table")
 class StoredItem (
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val itemId: Long = 0L,
 
-    @ColumnInfo
+    @ColumnInfo(name = "word")
     val inputtedWord: String = "",
 
-    @ColumnInfo
+    @ColumnInfo(name = "grammar")
     val inputtedGrammar: String = "",
 
-    @ColumnInfo
+    @ColumnInfo(name = "sentence")
     val inputtedSentence: String = ""
 
 )

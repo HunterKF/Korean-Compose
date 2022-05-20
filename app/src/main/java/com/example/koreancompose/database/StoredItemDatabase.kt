@@ -5,7 +5,7 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [StoredItem::class], version = 1, exportSchema = false)
+@Database(entities = [StoredItem::class], version = 3, exportSchema = false)
 abstract class StoredItemDatabase : RoomDatabase() {
     abstract fun userDao(): StoredItemsDao
 
@@ -13,17 +13,19 @@ abstract class StoredItemDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: StoredItemDatabase? = null
 
-        fun getDatabase(context: Context): StoredItemDatabase{
+        fun getDatabase(context: Context): StoredItemDatabase {
             val tempInstance = INSTANCE
-            if(tempInstance != null){
+            if (tempInstance != null) {
                 return tempInstance
             }
-            synchronized(this){
+            synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     StoredItemDatabase::class.java,
                     "user_database"
-                ).build()
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
                 return instance
             }
