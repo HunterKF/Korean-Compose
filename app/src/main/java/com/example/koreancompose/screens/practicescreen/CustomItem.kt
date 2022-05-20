@@ -25,6 +25,9 @@ import androidx.navigation.NavController
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.database.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
+import com.example.koreancompose.screens.practicescreen.CustomItemFuns.FavoriteFun
+import com.example.koreancompose.screens.practicescreen.CustomItemFuns.InfoFun
+import com.example.koreancompose.screens.practicescreen.CustomItemFuns.ShareFun
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -112,72 +115,10 @@ fun CustomItem(
                     verticalAlignment = Alignment.Bottom,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    IconButton(
-                        modifier = Modifier
-                            .alpha(ContentAlpha.medium)
-                            .weight(1f),
-                        onClick = {
-                            context.startActivity(shareIntent)
-                        }) {
-                        Icon(
-                            imageVector = Icons.Default.Share,
-                            contentDescription = "Share"
-                        )
-                    }
-                    IconButton(
-                        modifier = Modifier
-                            .alpha(ContentAlpha.medium)
-                            .weight(1f),
-                        onClick = {
+                    ShareFun(context, shareIntent)
+                    FavoriteFun(practiceCard)
+                    InfoFun(practiceCard, navController)
 
-                        }) {
-                        Icon(
-                            imageVector = Icons.Default.Add,
-                            contentDescription = "Copy"
-                        )
-                    }
-                    IconButton(
-                        modifier = Modifier
-                            .alpha(ContentAlpha.medium)
-                            .weight(1f),
-                        onClick = {
-//                            storedItemsViewModel.addStoredItem(storedItem)
-//                            navController.navigate(Screen.FavoritesScreen.route)
-                        }) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = "Star"
-                        )
-                    }
-                    IconButton(
-                        modifier = Modifier
-                            .alpha(ContentAlpha.medium)
-                            .weight(1f),
-                        onClick = {
-                            navController.navigate(
-                                Screen.InfoScreen.withArgs(
-                                    practiceCard.inputtedSentence,
-                                    practiceCard.word,
-                                    practiceCard.wordDef,
-                                    practiceCard.wordExampleKorean1,
-                                    practiceCard.wordExampleEnglish1,
-                                    practiceCard.wordExampleKorean2,
-                                    practiceCard.wordExampleEnglish2,
-                                    practiceCard.grammar,
-                                    practiceCard.gramInDepth1,
-                                    practiceCard.inDepth1ExKor,
-                                    practiceCard.inDepth1ExEng,
-                                    practiceCard.gramInDepth2,
-                                    practiceCard.inDepth2ExKor,
-                                    practiceCard.inDepth2ExEng
-                                )
-                            )
-                        }) {
-                        Icon(
-                            imageVector = Icons.Default.Info,
-                            contentDescription = "Info"
-                        )
-                    }
                 }
             }
         }

@@ -102,11 +102,10 @@ fun Navigation() {
             )
         }
         composable(
-            route = Screen.FavoritesScreen.route + "/{storedItem}"
+            route = Screen.FavoritesScreen.route
             )
         {
             FavoritesScreen()
-
         }
     }
 }

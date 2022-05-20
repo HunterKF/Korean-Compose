@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import com.example.koreancompose.database.StoredItem
 
 @Composable
-fun FavoriteItem(storedItem: StoredItem) {
+fun FavoriteItem(sentence: String, word: String, grammar: String) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -19,7 +19,8 @@ fun FavoriteItem(storedItem: StoredItem) {
     ) {
         Text(
             fontWeight = FontWeight.Light,
-            text = storedItem.inputtedSentence
+            text = sentence
+
         )
     }
 }

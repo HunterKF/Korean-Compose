@@ -71,7 +71,7 @@ fun PracticeScreen(navController: NavController) {
 
     ) {
         var cardState by remember { mutableStateOf(viewModel.itemList) }
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = { navController.navigate(Screen.FavoritesScreen.route) } ) {
             Icon(
                 imageVector = Icons.Default.Star,
                 contentDescription = "Star"
