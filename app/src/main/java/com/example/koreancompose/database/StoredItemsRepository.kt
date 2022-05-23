@@ -11,11 +11,21 @@ class StoredItemsRepository(private val storedItemDao: StoredItemsDao) {
     suspend fun addStoredItem(storedItem: StoredItem) {
         storedItemDao.insert(storedItem)
     }
-//    fun deleteStoredItem(item: String) {
-//        coroutineScope.launch(Dispatchers.IO) {
-//            storedItemDao.delete(item)
-//        }
-//    }
+
+    suspend fun deleteStoredItem(storedItem: StoredItem) {
+        storedItemDao.delete(storedItem)
+    }
+
+    fun deleteAllStoredItem() {
+        coroutineScope.launch(Dispatchers.IO) {
+            storedItemDao.deleteAll()
+        }
+    }
+    fun deleteOne(key: String) {
+        coroutineScope.launch(Dispatchers.IO) {
+            storedItemDao.delete(key)
+        }
+    }
 
 
 

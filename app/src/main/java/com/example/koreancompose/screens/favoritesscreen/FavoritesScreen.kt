@@ -6,10 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Button
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
+import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -32,13 +29,12 @@ fun FavoritesScreen(
         StoredItemsViewModel(LocalContext.current.applicationContext as Application)
 ) {
     val allItems by viewModel.readAllData.observeAsState(mutableListOf())
-
-
     MainScreen(
         allItems = allItems as MutableList<StoredItem>
     )
 }
 
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun MainScreen(
     allItems: MutableList<StoredItem>
@@ -49,25 +45,16 @@ fun MainScreen(
         reverseLayout = false,
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
             .simpleVerticalScrollbar(listState),
         verticalArrangement = Arrangement.Top,
         userScrollEnabled = true,
         state = listState
     ) {
 
-//                item {
-//                    TitleRow(head1 = "ID", head2 = "Product", head3 = "Quantity")
-//                }
-
         items(allItems) { item ->
-            FavoriteItem(item.inputtedSentence, item.inputtedWord, item.inputtedGrammar)
+            swipeToDismiss(item.inputtedSentence, item.inputtedWord, item.inputtedGrammar)
         }
 
-//                items(list) { product ->
-//                    ProductRow(id = product.id, name = product.productName,
-//                        quantity = product.quantity)
-//                }
     }
 
 }

@@ -237,6 +237,7 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
     var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
 
 
+
     LazyColumn(
         reverseLayout = false,
         modifier = Modifier
@@ -253,7 +254,7 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
                 navController = navController,
                 expandedState = expandedState == card,
                 onClick = {
-                    expandedState = if (expandedState == card) null else card}
+                    expandedState = if (expandedState == card) null else card},
             )
             Spacer(Modifier.size(10.dp))
 

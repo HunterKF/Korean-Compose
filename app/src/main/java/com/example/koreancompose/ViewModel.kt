@@ -134,5 +134,8 @@ class ViewModel : ViewModel() {
 
     }
 
+//    //isClickedState
+//    var isClicked = false
+
 }
 

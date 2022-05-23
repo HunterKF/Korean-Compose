@@ -2,19 +2,12 @@ package com.example.koreancompose
 
 import android.app.Application
 import android.content.Intent
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
-import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -22,8 +15,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.koreancompose.database.StoredItem
-import com.example.koreancompose.database.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.FavoriteFun
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.InfoFun
@@ -51,10 +42,7 @@ fun CustomItem(
     val context = LocalContext.current
     val application = context.applicationContext as Application
 
-    //Call StoredItemsViewModel
-    val storedItemsViewModel = StoredItemsViewModel(application)
-    val storedItem = StoredItem(0, practiceCard.inputtedSentence, practiceCard.grammar, practiceCard.word)
-
+    var isClicked = remember { mutableStateOf(false)}
     Card(
         modifier = Modifier
             .shadow(2.dp, RoundedCornerShape(16.dp), true)
@@ -115,8 +103,9 @@ fun CustomItem(
                     verticalAlignment = Alignment.Bottom,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
+
                     ShareFun(context, shareIntent)
-                    FavoriteFun(practiceCard)
+                    FavoriteFun(isClicked, practiceCard)
                     InfoFun(practiceCard, navController)
 
                 }

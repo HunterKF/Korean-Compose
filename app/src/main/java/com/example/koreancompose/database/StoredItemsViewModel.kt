@@ -1,7 +1,6 @@
 package com.example.koreancompose.database
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -24,7 +23,15 @@ class StoredItemsViewModel(application: Application): AndroidViewModel(applicati
             repository.addStoredItem(storedItem)
         }
     }
-//    fun deleteStoredItem(item: String) {
-//        repository.deleteStoredItem(item)
-//    }
+    fun deleteStoredItem(storedItem: StoredItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.deleteStoredItem(storedItem)
+        }
+    }
+    fun deleteOne(key: String) {
+        repository.deleteOne(key)
+    }
+    fun deleteAllStoredItem() {
+        repository.deleteAllStoredItem()
+    }
 }
