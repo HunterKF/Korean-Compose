@@ -19,6 +19,7 @@ fun LoadJsonWords() {
     }
 
     viewModel.allWords = loadWord()!!
+
     //Change the values of word on start
     val randWord = viewModel.allWords.let { viewModel.returnWord(it) }
     viewModel.wordFieldState.value = randWord.word

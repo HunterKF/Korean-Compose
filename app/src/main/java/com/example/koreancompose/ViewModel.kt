@@ -1,10 +1,7 @@
 package com.example.koreancompose
 
 import android.util.Log
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.model.ModelJSONWord
@@ -77,9 +74,8 @@ class ViewModel : ViewModel() {
         require(start <= end) { "Illegal Argument" }
         return (0..end).shuffled().last()
     }
-
     //returns a random word
-    data class WordData(
+    data class RandomWordData(
         var word: String,
         var def: String,
         var wordExKor1: String,
@@ -88,7 +84,7 @@ class ViewModel : ViewModel() {
         var wordExEng2: String,
     )
 
-    fun returnWord(item: ModelJSONWord): WordData {
+    fun returnWord(item: ModelJSONWord): RandomWordData {
 
         var randomNumber = rand(item.dataWords.size)
         Log.d(TAG, "The value of randomNumber in returnWord is $randomNumber")
@@ -102,7 +98,7 @@ class ViewModel : ViewModel() {
         val wordExEng1 = item.dataWords[randomNumber].wordExEng1
         val wordExKor2 = item.dataWords[randomNumber].wordExKor2
         val wordExEng2 = item.dataWords[randomNumber].wordExEng2
-        return WordData(grammar, def, wordExKor1, wordExEng1, wordExKor2, wordExEng2)
+        return RandomWordData(grammar, def, wordExKor1, wordExEng1, wordExKor2, wordExEng2)
     }
 
     //returns a random grammar point
@@ -133,9 +129,6 @@ class ViewModel : ViewModel() {
         return GrammarData(grammar, gramInDepth1, inDepth1ExKor, inDepth1ExEng, gramInDepth2, inDepth2ExKor, inDepth2ExEng)
 
     }
-
-//    //isClickedState
-//    var isClicked = false
 
 }
 
