@@ -7,6 +7,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -18,9 +20,11 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.koreancompose.*
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.database.StoredItemsViewModel
+import kotlinx.coroutines.Job
 
 
 @Composable
@@ -29,6 +33,7 @@ fun FavoritesScreen(
         StoredItemsViewModel(LocalContext.current.applicationContext as Application)
 ) {
     val allItems by viewModel.readAllData.observeAsState(mutableListOf())
+
     MainScreen(
         allItems = allItems as MutableList<StoredItem>
     )

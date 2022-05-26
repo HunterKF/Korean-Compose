@@ -107,7 +107,6 @@ fun CustomItem(
                     ShareFun(context, shareIntent)
                     FavoriteFun(isClicked, practiceCard)
                     InfoFun(practiceCard, navController)
-
                 }
             }
         }

@@ -1,6 +1,9 @@
 package com.example.koreancompose
 
+import androidx.compose.material.DrawerValue
+import androidx.compose.material.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -8,10 +11,15 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.screens.favoritesscreen.FavoritesScreen
+import com.example.koreancompose.screens.grammarlistscreen.GrammarListScreen
+import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
+import com.example.koreancompose.screens.wordlistscreen.WordListScreen
+import kotlinx.coroutines.launch
 
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
+
     NavHost(navController = navController, startDestination = Screen.PracticeScreen.route) {
         composable(route = Screen.PracticeScreen.route) {
             PracticeScreen(navController = navController)
@@ -106,6 +114,16 @@ fun Navigation() {
             )
         {
             FavoritesScreen()
+        }
+        composable(
+            route = Screen.WordListScreen.route
+        ) {
+            WordListScreen()
+        }
+        composable(
+            route = Screen.GrammarListScreen.route
+        ) {
+            GrammarListScreen()
         }
     }
 }

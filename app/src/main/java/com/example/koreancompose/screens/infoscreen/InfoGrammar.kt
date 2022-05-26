@@ -95,17 +95,17 @@ fun InfoGrammar(
 
 @Composable
 fun ExampleG(
-    grammarExplanation1: String?,
+    grammarExplanation1: String,
     learningKoreanPoint1: String,
     learningEnglishPoint1: String
 ) {
-    if (grammarExplanation1 != null && grammarExplanation1 != "null") {
+    if (grammarExplanation1 != "null") {
         Text(
             modifier = Modifier.padding(vertical = 2.dp),
             fontSize = 16.sp,
             fontWeight = FontWeight.Normal,
             color = Color.DarkGray,
-            text = "$grammarExplanation1"
+            text = grammarExplanation1
         )
     }
 
@@ -117,14 +117,14 @@ fun ExampleG(
             fontSize = 16.sp,
             fontWeight = FontWeight.Light,
             color = Color.DarkGray,
-            text = "$learningKoreanPoint1"
+            text = learningKoreanPoint1
         )
         Text(
             modifier = Modifier.padding(vertical = 2.dp),
             fontSize = 16.sp,
             fontWeight = FontWeight.Light,
             color = Color.DarkGray,
-            text = "$learningEnglishPoint1"
+            text = learningEnglishPoint1
         )
     }
 

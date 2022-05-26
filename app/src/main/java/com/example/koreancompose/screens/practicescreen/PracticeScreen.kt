@@ -24,12 +24,15 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 import com.example.koreancompose.screens.practicescreen.LearningPoint
+import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -57,71 +60,79 @@ fun PracticeScreen(navController: NavController) {
     val listState = rememberLazyListState()
     //coroutineScope
     val coroutineScope = rememberCoroutineScope()
-
-    Column(
-        modifier = Modifier
-            .padding(vertical = 16.dp)
-            .fillMaxSize()
-            .verticalScroll(scrollState)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null
-            ) { focusManager.clearFocus() },
-        horizontalAlignment = Alignment.CenterHorizontally
-
+    //For the scaffold
+    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+    val scope = rememberCoroutineScope()
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState)},
+        drawerBackgroundColor = colorResource(id = R.color.purple_200),
+        // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
+        drawerContent = {
+            SideDrawer(scaffoldState = scaffoldState, navController = navController)
+        },
     ) {
-        var cardState by remember { mutableStateOf(viewModel.itemList) }
-        IconButton(onClick = { navController.navigate(Screen.FavoritesScreen.route) } ) {
-            Icon(
-                imageVector = Icons.Default.Star,
-                contentDescription = "Star"
-            )
-            
-        }
-        LearningPoint(
-            learningPointWord = viewModel.wordFieldState.value,
-            learningPointGrammar = viewModel.grammarFieldState.value
-        )
-
-        var textFieldHeight by remember { mutableStateOf(250) }
-
-        TextField(textFieldHeight,
+        Column(
             modifier = Modifier
-                .onFocusChanged { focusState ->
-                    when {
-                        focusState.isFocused -> {
-                            textFieldHeight = 100
-                            println("I have focus!")
-                            println(" The current value of textFieldHeight is $textFieldHeight")
-                        }
-                        else ->
-                            textFieldHeight = 200
-                    }
-                }
+                .padding(vertical = 16.dp)
                 .fillMaxSize()
-                .focusRequester(focusRequester)
-        )
+                .verticalScroll(scrollState)
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null
+                ) { focusManager.clearFocus() },
+            horizontalAlignment = Alignment.CenterHorizontally
 
-        EnterButton(focusRequester = focusRequester, coroutineScope = coroutineScope, listState = listState) { PracticeCard ->
-            cardState = cardState + listOf(PracticeCard)
-        }
-        Column(modifier = Modifier
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null
-            ) { focusManager.clearFocus() }
-            .weight(2f)) {
-            DisplayList(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .weight(2f),
-                cardState = cardState,
-                navController = navController,
-                listState = listState
+        ) {
+            var cardState by remember { mutableStateOf(viewModel.itemList) }
+
+            LearningPoint(
+                learningPointWord = viewModel.wordFieldState.value,
+                learningPointGrammar = viewModel.grammarFieldState.value
             )
-        }
 
+            var textFieldHeight by remember { mutableStateOf(250) }
+
+            TextField(textFieldHeight,
+                modifier = Modifier
+                    .onFocusChanged { focusState ->
+                        when {
+                            focusState.isFocused -> {
+                                textFieldHeight = 100
+                                println("I have focus!")
+                                println(" The current value of textFieldHeight is $textFieldHeight")
+                            }
+                            else ->
+                                textFieldHeight = 200
+                        }
+                    }
+                    .fillMaxSize()
+                    .focusRequester(focusRequester)
+            )
+
+            EnterButton(focusRequester = focusRequester, coroutineScope = coroutineScope, listState = listState) { PracticeCard ->
+                cardState = cardState + listOf(PracticeCard)
+            }
+            Column(modifier = Modifier
+                .clickable(
+                    interactionSource = interactionSource,
+                    indication = null
+                ) { focusManager.clearFocus() }
+                .weight(2f)) {
+                DisplayList(
+                    modifier = Modifier
+                        .fillMaxHeight()
+                        .weight(2f),
+                    cardState = cardState,
+                    navController = navController,
+                    listState = listState
+                )
+            }
+
+        }
     }
+
+
 
 }
 
