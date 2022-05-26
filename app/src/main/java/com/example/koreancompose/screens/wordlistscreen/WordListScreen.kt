@@ -7,6 +7,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -22,14 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.koreancompose.ExampleW
-import com.example.koreancompose.LoadJSON
-import com.example.koreancompose.Screen
+import com.example.koreancompose.*
 import com.example.koreancompose.model.ModelJSONWord
 import com.example.koreancompose.model.ModelWord
 import com.example.koreancompose.screens.jsonfiles.LoadJsonWords
-import com.example.koreancompose.viewModel
-
 
 
 @Composable
@@ -45,6 +43,8 @@ fun WordListScreen() {
 
     val loadWord = loadWord()
     val allWords = loadWord?.dataWords?.size!!
+
+
 
     Column {
         Row(
@@ -94,6 +94,7 @@ fun WordListLazyItem(
             .clickable(onClick = { state.value = state.value === false })
 
     ) {
+
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -133,7 +134,7 @@ fun WordListLazyItem(
                 ExampleW(loadWord.dataWords[index].wordExEng1)
                 ExampleW(loadWord.dataWords[index].wordExKor1)
                 ExampleW(loadWord.dataWords[index].wordExEng2)
-                Divider(modifier = Modifier.padding(bottom = 8.dp))
+                Spacer(modifier = Modifier.padding(bottom = 8.dp))
             }
 
         }
