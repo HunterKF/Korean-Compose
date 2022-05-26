@@ -11,9 +11,9 @@ class ViewModel : ViewModel() {
     private val wordModelJSONWord = ModelJSONWord()
 
 
-
     //TextField = mutableStateOf("")
     val textFieldState = mutableStateOf("")
+
 
     //Mutable states for learning bar
     var wordFieldState = mutableStateOf("가다")
