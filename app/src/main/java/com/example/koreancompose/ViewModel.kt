@@ -67,6 +67,9 @@ class ViewModel : ViewModel() {
     var allWords: ModelJSONWord = ModelJSONWord()
     var allGrammar: ModelJSONGrammar = ModelJSONGrammar()
 
+    //isClicked for Favorite fun
+    var isClicked = mutableStateOf(false)
+
 
     //Random function, requires an end parameter so you can check the size of the array.
     private fun rand(end: Int): Int {
@@ -129,6 +132,9 @@ class ViewModel : ViewModel() {
         return GrammarData(grammar, gramInDepth1, inDepth1ExKor, inDepth1ExEng, gramInDepth2, inDepth2ExKor, inDepth2ExEng)
 
     }
+
+    //Translate stuff
+    var translatedText = mutableStateOf("Testing")
 
 }
 

@@ -6,7 +6,7 @@ import kotlinx.coroutines.*
 
 class StoredItemsRepository(private val storedItemDao: StoredItemsDao) {
     val readAllData: LiveData<List<StoredItem>> = storedItemDao.getAllItems()
-    private val coroutineScope = CoroutineScope(Dispatchers.Main)
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     suspend fun addStoredItem(storedItem: StoredItem) {
         storedItemDao.insert(storedItem)

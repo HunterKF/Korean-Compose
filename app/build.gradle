@@ -11,6 +11,7 @@ android {
         applicationId "com.example.koreancompose"
         minSdk 21
         targetSdk 32
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
 
@@ -101,4 +102,16 @@ dependencies {
 
     //Google MLKit Translate
     implementation 'com.google.mlkit:translate:17.0.0'
+
+    //Multidex
+    def multidex_version = "2.0.1"
+    implementation("androidx.multidex:multidex:$multidex_version")
+
+    def lifecycle_version = "2.5.0-rc01"
+    // optional - helpers for implementing LifecycleOwner in a Service
+    implementation("androidx.lifecycle:lifecycle-service:$lifecycle_version")
+
+    // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+    implementation("androidx.lifecycle:lifecycle-process:$lifecycle_version")
+
 }

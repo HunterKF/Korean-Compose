@@ -42,7 +42,7 @@ fun CustomItem(
     val context = LocalContext.current
     val application = context.applicationContext as Application
 
-    var isClicked = remember { mutableStateOf(false)}
+    var isClicked = viewModel.isClicked
     Card(
         modifier = Modifier
             .shadow(2.dp, RoundedCornerShape(16.dp), true)
