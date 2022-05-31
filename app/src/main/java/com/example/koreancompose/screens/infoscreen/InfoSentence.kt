@@ -1,21 +1,36 @@
 package com.example.koreancompose.screens.infoscreen
 
+import android.util.Log
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.example.koreancompose.translate.TranslateViewModel
 
 @Composable
 fun InfoSentence(textFieldState: String) {
-    Text(
-        fontSize = MaterialTheme.typography.h6.fontSize,
-        fontWeight = FontWeight.Medium,
-        text = "$textFieldState"
-    )
-}
-@Preview(showSystemUi = true)
-@Composable
-fun PreviewInfoSentence() {
-    InfoSentence(textFieldState = "저는 산책하거나 자전거를 타고 싶은 사람이 있냐고 물어봤어요. 왜냐하면 제가 운동하고 싶은 마음이 가졌는데 혼자 하는 것은 좀 외로워요.")
+    var translateViewModel by remember { mutableStateOf(TranslateViewModel()) }
+    translateViewModel.translate(textFieldState).toString()
+    Column(modifier = Modifier.padding(bottom = 12.dp)) {
+        Text(
+            fontSize = MaterialTheme.typography.h6.fontSize,
+            fontWeight = FontWeight.Medium,
+            text = "$textFieldState"
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        Text(
+            fontSize = MaterialTheme.typography.h6.fontSize,
+            fontWeight = FontWeight.Medium,
+            text = translateViewModel.translatedTextTVM.value
+        )
+    }
+
 }

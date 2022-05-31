@@ -134,7 +134,7 @@ class ViewModel : ViewModel() {
     }
 
     //Translate stuff
-    var translatedText = mutableStateOf("Testing")
+    var translatedTextVM = mutableStateOf("Testing")
 
 }
 

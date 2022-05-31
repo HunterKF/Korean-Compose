@@ -12,12 +12,14 @@ import androidx.lifecycle.LifecycleEventObserver
 import com.example.koreancompose.screens.TranslateScreen
 import com.example.koreancompose.screens.jsonfiles.LoadJsonGrammar
 import com.example.koreancompose.screens.jsonfiles.LoadJsonWords
+import com.example.koreancompose.translate.TranslateViewModel
 import com.example.koreancompose.ui.theme.KoreanComposeTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 
+        TranslateViewModel().checkIfModelIsDownloaded()
 
         super.onCreate(savedInstanceState)
         setContent {
@@ -26,8 +28,7 @@ class MainActivity : ComponentActivity() {
 
                 LoadJsonWords()
                 LoadJsonGrammar()
-//                Navigation()
-                TranslateScreen()
+                Navigation()
             }
         }
     }
