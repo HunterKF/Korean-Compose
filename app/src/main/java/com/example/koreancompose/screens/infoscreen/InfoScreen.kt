@@ -2,6 +2,7 @@ package com.example.koreancompose
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -14,7 +15,7 @@ import com.example.koreancompose.screens.infoscreen.InfoSentence
 
 @Composable
 fun InfoScreen(
-    textFieldState: String?,
+    textFieldState: String,
     word: String?,
     def: String?,
     wordExKor1: String?,
@@ -34,14 +35,20 @@ fun InfoScreen(
     Column(
         modifier = Modifier
             .background(Color.White)
-            .fillMaxWidth()
+            .fillMaxSize()
             .verticalScroll(scrollState)
             .padding(16.dp)
     ) {
-        if (textFieldState != null) {
-            InfoSentence(textFieldState)
-        }
+        InfoSentence(textFieldState)
         InfoWord(word, def, wordExKor1, wordExEng1, wordExKor2, wordExEng2)
-        InfoGrammar(grammar, gramInDepth1, inDepth1ExKor, inDepth1ExEng, gramInDepth2, inDepth2ExKor, inDepth2ExEng)
+        InfoGrammar(
+            grammar,
+            gramInDepth1,
+            inDepth1ExKor,
+            inDepth1ExEng,
+            gramInDepth2,
+            inDepth2ExKor,
+            inDepth2ExEng
+        )
     }
 }

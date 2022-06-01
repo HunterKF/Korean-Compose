@@ -1,10 +1,13 @@
 package com.example.koreancompose.screens.practicescreen.CustomItemFuns
 
 import android.app.Application
+import android.content.Context
+import android.util.Log
+import android.widget.Toast
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -20,9 +23,9 @@ import com.example.koreancompose.model.PracticeCard
 
 @Composable
 fun FavoriteFun(
-    clicked: MutableState<Boolean>,
     practiceCard: PracticeCard
 ) {
+    Log.d("From FavFun", "It has loaded...")
     val context = LocalContext.current
     val application = context.applicationContext as Application
     val storedItemsViewModel = StoredItemsViewModel(application)
@@ -31,35 +34,42 @@ fun FavoriteFun(
     val storedItem = StoredItem(0L, practiceCard.word,
         practiceCard.grammar,
         practiceCard.inputtedSentence)
+
     IconButton(
         modifier = Modifier
             .alpha(ContentAlpha.medium),
         onClick = {
-            clicked.value = !clicked.value
-            isClicked(clicked, storedItemsViewModel, storedItem)
+            Log.d("From FavFun", "isClicked was fired. The value before firing is ${practiceCard.isClicked.value}")
+
+            practiceCard.isClicked.value= !practiceCard.isClicked.value
+            Log.d("From FavFun", "isClicked was fired. The value after firing is $practiceCard.isClicked.value")
+            isClicked(practiceCard.isClicked.value, storedItemsViewModel, storedItem, context)
 
         }) {
         Icon(
-            tint = if(clicked.value) Color.Yellow else Color.DarkGray,
-            imageVector = Icons.Default.Star,
-            contentDescription = "Star"
+            tint = if(practiceCard.isClicked.value) Color.Red else Color.DarkGray,
+            imageVector = Icons.Default.Favorite,
+            contentDescription = "Favorite"
         )
     }
 }
-fun isClicked(isClicked: MutableState<Boolean>, viewModel: StoredItemsViewModel, storedItem: StoredItem) {
 
-    if (isClicked.value) {
+fun isClicked(isClicked: Boolean, viewModel: StoredItemsViewModel, storedItem: StoredItem, context: Context) {
+
+    if (isClicked) {
         viewModel.addStoredItem(
             storedItem
             )
-        println("The current value of isClicked is ${isClicked.value} 1")
+        Toast.makeText(context, "Saved to Favorites!", Toast.LENGTH_LONG).show()
+        Log.d("From FavFun", "isClicked if statement was fired. The value before firing is $isClicked")
     } else {
-        println("The current value of isClicked is ${isClicked.value} 2")
+        Log.d("From FavFun", "isClicked else statement was fired. The value before firing is $isClicked")
         viewModel.deleteStoredItem(
             storedItem
         )
+        Toast.makeText(context, "Deleted from Favorites!", Toast.LENGTH_LONG).show()
+
         viewModel.deleteOne(storedItem.inputtedSentence)
     }
-    println("The current value of isClicked is ${isClicked.value} 3")
 
 }

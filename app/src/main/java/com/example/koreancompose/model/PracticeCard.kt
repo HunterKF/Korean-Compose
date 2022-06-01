@@ -1,5 +1,8 @@
 package com.example.koreancompose.model
 
+import androidx.compose.runtime.MutableState
+import kotlinx.coroutines.flow.MutableStateFlow
+
 data class PracticeCard(
     val inputtedSentence: String,
     val word: String,
@@ -15,5 +18,6 @@ data class PracticeCard(
     val gramInDepth2: String,
     val inDepth2ExKor: String,
     val inDepth2ExEng: String,
+    var isClicked: MutableState<Boolean>
 
 )

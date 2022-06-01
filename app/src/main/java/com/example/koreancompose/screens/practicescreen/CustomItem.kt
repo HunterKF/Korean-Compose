@@ -42,7 +42,7 @@ fun CustomItem(
     val context = LocalContext.current
     val application = context.applicationContext as Application
 
-    var isClicked = viewModel.isClicked
+    var isClicked = practiceCard.isClicked
     Card(
         modifier = Modifier
             .shadow(2.dp, RoundedCornerShape(16.dp), true)
@@ -105,7 +105,7 @@ fun CustomItem(
                 ) {
 
                     ShareFun(context, shareIntent)
-                    FavoriteFun(isClicked, practiceCard)
+                    FavoriteFun(practiceCard)
                     InfoFun(practiceCard, navController)
                 }
             }
@@ -114,9 +114,3 @@ fun CustomItem(
 
     }
 }
-
-//@Preview
-//@Composable
-//fun CustomItemPreview() {
-//    CustomItem(practiceCard = PracticeCard("가다", "으려고", "가려고 했어요."),)
-//}

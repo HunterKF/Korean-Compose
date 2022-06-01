@@ -39,8 +39,6 @@ fun InfoFun(practiceCard: PracticeCard, navController: NavController) {
                     practiceCard.inDepth2ExEng
                 )
             )
-            TranslateViewModel().translate(practiceCard.inputtedSentence).toString()
-            Log.d("BUTTON","9 From BUTTON: New value is ${TranslateViewModel().translatedTextTVM.value}")
 
         }) {
         Icon(

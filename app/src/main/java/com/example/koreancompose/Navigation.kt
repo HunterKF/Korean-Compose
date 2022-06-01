@@ -90,7 +90,7 @@ fun Navigation() {
             )
         ) { entry ->
             InfoScreen(
-                textFieldState = entry.arguments?.getString("textFieldState"),
+                textFieldState = entry.arguments?.getString("textFieldState").toString(),
                 word = entry.arguments?.getString("word"),
                 def = entry.arguments?.getString("def"),
                 wordExKor1 = entry.arguments?.getString("wordExKor1"),

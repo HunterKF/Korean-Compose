@@ -11,8 +11,6 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,7 +26,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 import com.example.koreancompose.screens.practicescreen.LearningPoint
@@ -74,7 +71,6 @@ fun PracticeScreen(navController: NavController) {
     ) {
         Column(
             modifier = Modifier
-                .padding(vertical = 16.dp)
                 .fillMaxSize()
                 .verticalScroll(scrollState)
                 .clickable(
@@ -198,12 +194,8 @@ fun EnterButton(
                         viewModel.grammarInD2State.value,
                         viewModel.grammarInD2ExKor.value,
                         viewModel.grammarInD2ExEng.value,
+                        isClicked = mutableStateOf(false)
                     )
-                )
-
-                Log.d(
-                    "onClick",
-                    "Does it die here? Here the value of practice card is ${cardRepository.allCards} "
                 )
                 onCardItemAdded(viewModel.sentence)
 
@@ -253,7 +245,8 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
         reverseLayout = false,
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp )
+            .padding(top = 16.dp )
             .simpleVerticalScrollbar(listState),
         verticalArrangement = Arrangement.Top,
         userScrollEnabled = true,
