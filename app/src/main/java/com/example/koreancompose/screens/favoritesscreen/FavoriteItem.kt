@@ -1,11 +1,14 @@
 package com.example.koreancompose.screens.favoritesscreen
 
 import android.app.Application
+import android.widget.Toast
+import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -15,90 +18,108 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.koreancompose.R
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.database.StoredItemsViewModel
 
-@ExperimentalMaterialApi
+
+@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun swipeToDismiss(sentence: String, word: String, grammar: String) {
+fun StyledCard(
+    modifier: Modifier,
+    storedItem: StoredItem,
+) {
     val context = LocalContext.current
     val application = context.applicationContext as Application
+
     val storedItemsViewModel = StoredItemsViewModel(application)
 
-    val dismissState = rememberDismissState(
-        confirmStateChange = {
-            if (it == DismissValue.DismissedToStart) {
-                storedItemsViewModel.deleteOne(sentence)
-            }
-            true
-        }
-    )
 
+    val shape = RoundedCornerShape(30.dp)
+    val backgroundColor = Color(240, 240, 240)
+    val dismissState = rememberDismissState(confirmStateChange = { dismissValue ->
+        when (dismissValue) {
+            DismissValue.Default -> { // dismissThresholds 만족 안한 상태
+                false
+            }
+            DismissValue.DismissedToEnd -> { // -> 방향 스와이프 (수정)
+                Toast.makeText(context, "Still in progress", Toast.LENGTH_SHORT).show()
+                false
+            }
+            DismissValue.DismissedToStart -> { // <- 방향 스와이프 (삭제)
+                storedItemsViewModel.deleteOne(storedItem.inputtedSentence)
+                true
+            }
+        }
+    })
 
     SwipeToDismiss(
         state = dismissState,
-        /***  create dismiss alert Background */
-        directions = setOf(
-            DismissDirection.EndToStart
-        ),
-        dismissThresholds = { /*direction ->*/
-//            FractionalThreshold(if (direction == DismissDirection.EndToStart) 0.1f else 0.5f)
-            FractionalThreshold(0.2f)
-        },
-
-        background = {
-            val color = when (dismissState.dismissDirection) {
-                DismissDirection.StartToEnd -> Color.Green
-                DismissDirection.EndToStart -> Color.Red
-                null -> Color.Transparent
-            }
-            val direction = dismissState.dismissDirection
-
-            val alignment = Alignment.CenterEnd
-            val icon = Icons.Default.Delete
-
-            val scale by animateFloatAsState(
-                if (dismissState.targetValue == DismissValue.Default) 0.75f else 1f
+        dismissThresholds = { FractionalThreshold(0.25f) },
+        modifier = modifier
+            .fillMaxWidth()
+            .height(100.dp)
+            .clip(shape),
+        dismissContent = { // content
+            FavoriteItem(
+                storedItem = storedItem
             )
+        },
+        background = { // dismiss content
+            val direction = dismissState.dismissDirection ?: return@SwipeToDismiss
+            val color by animateColorAsState(
+                when (dismissState.targetValue) {
+                    DismissValue.Default -> backgroundColor.copy(alpha = 0.5f) // dismissThresholds 만족 안한 상태
+                    DismissValue.DismissedToEnd -> Color.Green.copy(alpha = 0.4f) // -> 방향 스와이프 (수정)
+                    DismissValue.DismissedToStart -> Color.Red.copy(alpha = 0.5f) // <- 방향 스와이프 (삭제)
+                }
+            )
+            val icon = when (dismissState.targetValue) {
+                DismissValue.Default -> painterResource(R.drawable.ic_circle)
+                DismissValue.DismissedToEnd -> painterResource(R.drawable.ic_edit_24)
+                DismissValue.DismissedToStart -> painterResource(R.drawable.ic_delete)
+            }
+            val scale by animateFloatAsState(
+                when (dismissState.targetValue == DismissValue.Default) {
+                    true -> 0.8f
+                    else -> 1.5f
+                }
+            )
+            val alignment = when (direction) {
+                DismissDirection.EndToStart -> Alignment.CenterEnd
+                DismissDirection.StartToEnd -> Alignment.CenterStart
+            }
             Box(
-                Modifier
+                modifier = Modifier
                     .fillMaxSize()
                     .background(color)
-                    .padding(horizontal = Dp(20f)),
+                    .padding(horizontal = 30.dp),
                 contentAlignment = alignment
             ) {
                 Icon(
-                    icon,
-                    contentDescription = "Delete Icon",
-                    modifier = Modifier.scale(scale)
+                    modifier = Modifier.scale(scale),
+                    painter = icon,
+                    contentDescription = null
                 )
             }
-        },
-
-
-        /**** Dismiss Content */
-
-        dismissContent = {
-            Card(elevation = animateDpAsState( if (dismissState.dismissDirection != null) 4.dp else 0.dp).value) {
-                FavoriteItem(sentence, word, grammar)
-            }
-
-        },
-
+        }
     )
 }
 
+
 @Composable
-fun FavoriteItem(sentence: String, word: String, grammar: String) {
+fun FavoriteItem(storedItem: StoredItem) {
 
     Row(
         modifier = Modifier
@@ -109,12 +130,12 @@ fun FavoriteItem(sentence: String, word: String, grammar: String) {
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 fontWeight = FontWeight.Light,
-                text = word
+                text = storedItem.inputtedWord
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 fontWeight = FontWeight.Light,
-                text = grammar
+                text = storedItem.inputtedGrammar
             )
         }
         Text(
@@ -122,17 +143,19 @@ fun FavoriteItem(sentence: String, word: String, grammar: String) {
                 .weight(3f),
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,
-            text = sentence
+            text = storedItem.inputtedSentence
         )
     }
-    Divider(modifier = Modifier
-        .width(1.dp)
-        .padding(vertical = 16.dp))
+    Divider(
+        modifier = Modifier
+            .width(1.dp)
+            .padding(vertical = 16.dp)
+    )
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Preview(showSystemUi = true)
 @Composable
 fun FavoritePreview() {
-    swipeToDismiss("hi", "hello", "boo")
+//    swipeToDismiss("hi", "hello", "boo")
 }

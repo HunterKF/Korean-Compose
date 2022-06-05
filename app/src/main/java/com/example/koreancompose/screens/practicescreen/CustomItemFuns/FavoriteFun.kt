@@ -60,14 +60,14 @@ fun isClicked(isClicked: Boolean, viewModel: StoredItemsViewModel, storedItem: S
         viewModel.addStoredItem(
             storedItem
             )
-        Toast.makeText(context, "Saved to Favorites!", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Saved to Favorites!", Toast.LENGTH_SHORT).show()
         Log.d("From FavFun", "isClicked if statement was fired. The value before firing is $isClicked")
     } else {
         Log.d("From FavFun", "isClicked else statement was fired. The value before firing is $isClicked")
         viewModel.deleteStoredItem(
             storedItem
         )
-        Toast.makeText(context, "Deleted from Favorites!", Toast.LENGTH_LONG).show()
+        Toast.makeText(context, "Deleted from Favorites!", Toast.LENGTH_SHORT).show()
 
         viewModel.deleteOne(storedItem.inputtedSentence)
     }

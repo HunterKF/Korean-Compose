@@ -29,9 +29,6 @@ fun InfoSentence(textFieldState: String) {
 //This is the function to use papago. Everything works, but don't turn it on unless you really have to.
 //    translateViewModel.translateText(textFieldState)
 
-
-
-
     Column(modifier = Modifier.padding(bottom = 12.dp)) {
         Text(
             fontSize = MaterialTheme.typography.h6.fontSize,

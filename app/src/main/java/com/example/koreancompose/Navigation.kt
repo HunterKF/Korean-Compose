@@ -118,6 +118,7 @@ fun Navigation() {
         composable(
             route = Screen.WordListScreen.route
         ) {
+
             WordListScreen()
         }
         composable(
