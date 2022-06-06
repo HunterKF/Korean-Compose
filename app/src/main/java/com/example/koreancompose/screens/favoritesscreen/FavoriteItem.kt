@@ -34,92 +34,78 @@ import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.database.StoredItemsViewModel
 
 
-@OptIn(ExperimentalMaterialApi::class)
+@ExperimentalMaterialApi
 @Composable
-fun StyledCard(
-    modifier: Modifier,
-    storedItem: StoredItem,
-) {
+fun swipeToDismiss(sentence: String, word: String, grammar: String) {
     val context = LocalContext.current
     val application = context.applicationContext as Application
-
     val storedItemsViewModel = StoredItemsViewModel(application)
 
-
-    val shape = RoundedCornerShape(30.dp)
-    val backgroundColor = Color(240, 240, 240)
-    val dismissState = rememberDismissState(confirmStateChange = { dismissValue ->
-        when (dismissValue) {
-            DismissValue.Default -> { // dismissThresholds 만족 안한 상태
-                false
+    val dismissState = rememberDismissState(
+        confirmStateChange = {
+            if (it == DismissValue.DismissedToStart) {
+                storedItemsViewModel.deleteOne(sentence)
             }
-            DismissValue.DismissedToEnd -> { // -> 방향 스와이프 (수정)
-                Toast.makeText(context, "Still in progress", Toast.LENGTH_SHORT).show()
-                false
-            }
-            DismissValue.DismissedToStart -> { // <- 방향 스와이프 (삭제)
-                storedItemsViewModel.deleteOne(storedItem.inputtedSentence)
-                true
-            }
+            true
         }
-    })
+    )
+
 
     SwipeToDismiss(
         state = dismissState,
-        dismissThresholds = { FractionalThreshold(0.25f) },
-        modifier = modifier
-            .fillMaxWidth()
-            .height(100.dp)
-            .clip(shape),
-        dismissContent = { // content
-            FavoriteItem(
-                storedItem = storedItem
-            )
+        /***  create dismiss alert Background */
+        directions = setOf(
+            DismissDirection.EndToStart
+        ),
+        dismissThresholds = { /*direction ->*/
+//            FractionalThreshold(if (direction == DismissDirection.EndToStart) 0.1f else 0.5f)
+            FractionalThreshold(0.2f)
         },
-        background = { // dismiss content
-            val direction = dismissState.dismissDirection ?: return@SwipeToDismiss
-            val color by animateColorAsState(
-                when (dismissState.targetValue) {
-                    DismissValue.Default -> backgroundColor.copy(alpha = 0.5f) // dismissThresholds 만족 안한 상태
-                    DismissValue.DismissedToEnd -> Color.Green.copy(alpha = 0.4f) // -> 방향 스와이프 (수정)
-                    DismissValue.DismissedToStart -> Color.Red.copy(alpha = 0.5f) // <- 방향 스와이프 (삭제)
-                }
-            )
-            val icon = when (dismissState.targetValue) {
-                DismissValue.Default -> painterResource(R.drawable.ic_circle)
-                DismissValue.DismissedToEnd -> painterResource(R.drawable.ic_edit_24)
-                DismissValue.DismissedToStart -> painterResource(R.drawable.ic_delete)
+
+        background = {
+            val color = when (dismissState.dismissDirection) {
+                DismissDirection.StartToEnd -> Color.Green
+                DismissDirection.EndToStart -> Color.Red
+                null -> Color.Transparent
             }
+            val direction = dismissState.dismissDirection
+
+            val alignment = Alignment.CenterEnd
+            val icon = Icons.Default.Delete
+
             val scale by animateFloatAsState(
-                when (dismissState.targetValue == DismissValue.Default) {
-                    true -> 0.8f
-                    else -> 1.5f
-                }
+                if (dismissState.targetValue == DismissValue.Default) 0.75f else 1f
             )
-            val alignment = when (direction) {
-                DismissDirection.EndToStart -> Alignment.CenterEnd
-                DismissDirection.StartToEnd -> Alignment.CenterStart
-            }
             Box(
-                modifier = Modifier
+                Modifier
                     .fillMaxSize()
                     .background(color)
-                    .padding(horizontal = 30.dp),
+                    .padding(horizontal = Dp(20f)),
                 contentAlignment = alignment
             ) {
                 Icon(
-                    modifier = Modifier.scale(scale),
-                    painter = icon,
-                    contentDescription = null
+                    icon,
+                    contentDescription = "Delete Icon",
+                    modifier = Modifier.scale(scale)
                 )
             }
-        }
-    )
+        },
+
+
+        /**** Dismiss Content */
+
+        dismissContent = {
+            Card(elevation = animateDpAsState( if (dismissState.dismissDirection != null) 4.dp else 0.dp).value) {
+                FavoriteItem(sentence, word, grammar)
+            }
+
+        },
+
+        )
 }
 
-
 @Composable
-fun FavoriteItem(storedItem: StoredItem) {
+fun FavoriteItem(sentence: String, word: String, grammar: String) {
 
     Row(
         modifier = Modifier
@@ -130,12 +116,12 @@ fun FavoriteItem(storedItem: StoredItem) {
         Column(modifier = Modifier.weight(1f)) {
             Text(
                 fontWeight = FontWeight.Light,
-                text = storedItem.inputtedWord
+                text = word
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
                 fontWeight = FontWeight.Light,
-                text = storedItem.inputtedGrammar
+                text = grammar
             )
         }
         Text(
@@ -143,19 +129,17 @@ fun FavoriteItem(storedItem: StoredItem) {
                 .weight(3f),
             fontWeight = FontWeight.SemiBold,
             fontSize = 16.sp,
-            text = storedItem.inputtedSentence
+            text = sentence
         )
     }
-    Divider(
-        modifier = Modifier
-            .width(1.dp)
-            .padding(vertical = 16.dp)
-    )
+    Divider(modifier = Modifier
+        .width(1.dp)
+        .padding(vertical = 16.dp))
 }
 
 @OptIn(ExperimentalMaterialApi::class)
 @Preview(showSystemUi = true)
 @Composable
 fun FavoritePreview() {
-//    swipeToDismiss("hi", "hello", "boo")
+    swipeToDismiss("hi", "hello", "boo")
 }
