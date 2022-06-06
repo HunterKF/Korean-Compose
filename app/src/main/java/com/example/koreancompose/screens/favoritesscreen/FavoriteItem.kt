@@ -57,8 +57,8 @@ fun SwipeTest(allItems: MutableList<StoredItem>) {
                 val state = rememberDismissState(
                     confirmStateChange = {
                         if (it == DismissValue.DismissedToStart) {
-                            storedItemsViewModel.deleteOne(item.inputtedSentence)
                             allItems.remove(item)
+                            storedItemsViewModel.deleteOne(item.inputtedSentence)
                         }
                         true
                     }

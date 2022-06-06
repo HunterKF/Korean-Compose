@@ -39,10 +39,7 @@ fun FavoriteFun(
         modifier = Modifier
             .alpha(ContentAlpha.medium),
         onClick = {
-            Log.d("From FavFun", "isClicked was fired. The value before firing is ${practiceCard.isClicked.value}")
-
             practiceCard.isClicked.value= !practiceCard.isClicked.value
-            Log.d("From FavFun", "isClicked was fired. The value after firing is $practiceCard.isClicked.value")
             isClicked(practiceCard.isClicked.value, storedItemsViewModel, storedItem, context)
 
         }) {
@@ -61,9 +58,7 @@ fun isClicked(isClicked: Boolean, viewModel: StoredItemsViewModel, storedItem: S
             storedItem
             )
         Toast.makeText(context, "Saved to Favorites!", Toast.LENGTH_SHORT).show()
-        Log.d("From FavFun", "isClicked if statement was fired. The value before firing is $isClicked")
     } else {
-        Log.d("From FavFun", "isClicked else statement was fired. The value before firing is $isClicked")
         viewModel.deleteStoredItem(
             storedItem
         )
