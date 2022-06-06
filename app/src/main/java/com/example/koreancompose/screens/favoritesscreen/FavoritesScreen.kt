@@ -24,39 +24,4 @@ fun FavoritesScreen(
 
     SwipeTest(allItems as MutableList<StoredItem>)
 
-//    MainScreen(
-//        allItems = allItems as MutableList<StoredItem>
-//    )
 }
-
-@OptIn(ExperimentalMaterialApi::class)
-@Composable
-fun MainScreen(
-    allItems: MutableList<StoredItem>
-) {
-    val listState = rememberLazyListState()
-
-    LazyColumn(
-        reverseLayout = false,
-        modifier = Modifier
-            .fillMaxSize()
-            .simpleVerticalScrollbar(listState),
-        verticalArrangement = Arrangement.Top,
-        userScrollEnabled = true,
-        state = listState
-    ) {
-
-        items(allItems) { item ->
-            swipeToDismiss(item.inputtedSentence, item.inputtedWord, item.inputtedGrammar)
-        }
-
-    }
-
-}
-
-
-
-
-
-
-

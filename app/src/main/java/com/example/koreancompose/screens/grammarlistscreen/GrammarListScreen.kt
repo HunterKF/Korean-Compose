@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -19,11 +20,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.koreancompose.ExampleG
-import com.example.koreancompose.ExampleW
 import com.example.koreancompose.LoadJSON
 import com.example.koreancompose.model.ModelJSONGrammar
-import com.example.koreancompose.model.ModelJSONWord
-import com.example.koreancompose.screens.wordlistscreen.WordListLazyItem
 
 @Composable
 fun GrammarListScreen() {
@@ -39,6 +37,7 @@ fun GrammarListScreen() {
     val loadGrammar = loadGrammar()
     val allWords = loadGrammar?.dataGrammar?.size!!
 
+    val grammarListItem = GrammarListItem(loadGrammar.dataGrammar, expandedState = false)
 
 
     Column {
@@ -61,7 +60,7 @@ fun GrammarListScreen() {
             state = listState
         ) {
             items(allWords) { index ->
-                GrammarListLazyItem(index = index, loadGrammar = loadGrammar)
+                GrammarListLazyItem(index = index, grammarListItem = grammarListItem)
             }
         }
     }
@@ -71,20 +70,23 @@ fun GrammarListScreen() {
 @Composable
 fun GrammarListLazyItem(
     index: Int,
-    loadGrammar: ModelJSONGrammar,
-    fontSize: TextUnit = 16.sp
+    fontSize: TextUnit = 16.sp,
+    grammarListItem: GrammarListItem
 ) {
 
     val state = remember {
         mutableStateOf(false)
     }
 
+    val isClicked = rememberSaveable { mutableStateOf(grammarListItem.expandedState) }
 
     val indexPlusOne = index + 1
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = { state.value = state.value === false })
+            .clickable(onClick = {
+                isClicked.value = isClicked.value.not()
+            })
 
     ) {
 
@@ -105,20 +107,20 @@ fun GrammarListLazyItem(
                 modifier = Modifier.weight(1f),
                 fontWeight = FontWeight.Bold,
                 fontSize = fontSize,
-                text = loadGrammar.dataGrammar[index].grammar
+                text = grammarListItem.dataGrammar[index].grammar
             )
 
 
         }
-        if (state.value) {
+        if (isClicked.value) {
 
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start,
                 modifier = Modifier.padding(start = 30.dp)
             ) {
-                ExampleG(loadGrammar.dataGrammar[index].gramInDepth1, loadGrammar.dataGrammar[index].inDepth1ExKor, loadGrammar.dataGrammar[index].inDepth1ExEng )
-                ExampleG(loadGrammar.dataGrammar[index].gramInDepth2, loadGrammar.dataGrammar[index].inDepth2ExKor, loadGrammar.dataGrammar[index].inDepth2ExEng )
+                ExampleG(grammarListItem.dataGrammar[index].gramInDepth1, grammarListItem.dataGrammar[index].inDepth1ExKor, grammarListItem.dataGrammar[index].inDepth1ExEng )
+                ExampleG(grammarListItem.dataGrammar[index].gramInDepth2, grammarListItem.dataGrammar[index].inDepth2ExKor, grammarListItem.dataGrammar[index].inDepth2ExEng )
 
                 Spacer(modifier = Modifier.padding(bottom = 8.dp))
             }

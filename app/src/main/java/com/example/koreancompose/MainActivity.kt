@@ -6,14 +6,9 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.koreancompose.screens.jsonfiles.LoadJsonGrammar
 import com.example.koreancompose.screens.jsonfiles.LoadJsonWords
-import com.example.koreancompose.translate.TranslateViewModel
+import com.example.koreancompose.screens.wordlistscreen.WordListScreen
 import com.example.koreancompose.ui.theme.KoreanComposeTheme
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaType
-import org.json.JSONObject
-import java.io.IOException
 
 
 class MainActivity : ComponentActivity() {
