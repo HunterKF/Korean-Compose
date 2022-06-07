@@ -19,8 +19,6 @@ import com.example.koreancompose.database.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
 
 
-
-
 @Composable
 fun FavoriteFun(
     practiceCard: PracticeCard
@@ -31,32 +29,39 @@ fun FavoriteFun(
     val storedItemsViewModel = StoredItemsViewModel(application)
 
 
-    val storedItem = StoredItem(0L, practiceCard.word,
+    val storedItem = StoredItem(
+        0L, practiceCard.word,
         practiceCard.grammar,
-        practiceCard.inputtedSentence)
+        practiceCard.inputtedSentence
+    )
 
     IconButton(
         modifier = Modifier
             .alpha(ContentAlpha.medium),
         onClick = {
-            practiceCard.isClicked.value= !practiceCard.isClicked.value
+            practiceCard.isClicked.value = !practiceCard.isClicked.value
             isClicked(practiceCard.isClicked.value, storedItemsViewModel, storedItem, context)
 
         }) {
         Icon(
-            tint = if(practiceCard.isClicked.value) Color.Red else Color.DarkGray,
+            tint = if (practiceCard.isClicked.value) Color.Red else Color.DarkGray,
             imageVector = Icons.Default.Favorite,
             contentDescription = "Favorite"
         )
     }
 }
 
-fun isClicked(isClicked: Boolean, viewModel: StoredItemsViewModel, storedItem: StoredItem, context: Context) {
+fun isClicked(
+    isClicked: Boolean,
+    viewModel: StoredItemsViewModel,
+    storedItem: StoredItem,
+    context: Context
+) {
 
     if (isClicked) {
         viewModel.addStoredItem(
             storedItem
-            )
+        )
         Toast.makeText(context, "Saved to Favorites!", Toast.LENGTH_SHORT).show()
     } else {
         viewModel.deleteStoredItem(

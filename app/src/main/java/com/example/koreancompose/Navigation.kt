@@ -1,16 +1,13 @@
 package com.example.koreancompose
 
 import androidx.compose.runtime.*
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.koreancompose.model.ModelJSONWord
 import com.example.koreancompose.screens.favoritesscreen.FavoritesScreen
 import com.example.koreancompose.screens.grammarlistscreen.GrammarListScreen
-import com.example.koreancompose.screens.wordlistscreen.WordListItem
 import com.example.koreancompose.screens.wordlistscreen.WordListScreen
 
 @Composable

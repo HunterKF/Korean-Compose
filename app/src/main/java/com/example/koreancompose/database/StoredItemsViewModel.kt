@@ -1,6 +1,7 @@
 package com.example.koreancompose.database
 
 import android.app.Application
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -34,4 +35,7 @@ class StoredItemsViewModel(application: Application): AndroidViewModel(applicati
     fun deleteAllStoredItem() {
         repository.deleteAllStoredItem()
     }
+
+    var favoriteItemState = mutableStateOf(false)
+
 }

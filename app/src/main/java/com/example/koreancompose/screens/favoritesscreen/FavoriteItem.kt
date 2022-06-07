@@ -20,6 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.database.StoredItemsViewModel
 
@@ -34,6 +35,11 @@ fun SwipeTest(allItems: MutableList<StoredItem>) {
     val application = context.applicationContext as Application
     val storedItemsViewModel = StoredItemsViewModel(application)
 
+    if (allItems.size != 0) {
+        storedItemsViewModel.favoriteItemState.value = true
+    }
+
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -47,54 +53,77 @@ fun SwipeTest(allItems: MutableList<StoredItem>) {
             )
         }
     ) {
-        LazyColumn {
-            itemsIndexed(
-                items = allItems,
-                key = { _, item ->
-                    item.hashCode()
-                }
-            ) { index, item ->
-                val state = rememberDismissState(
-                    confirmStateChange = {
-                        if (it == DismissValue.DismissedToStart) {
-                            allItems.remove(item)
-                            storedItemsViewModel.deleteOne(item.inputtedSentence)
+        when (storedItemsViewModel.favoriteItemState.value) {
+            true -> {
+                Text("THIS IS LAZY COLUMN DERH")
+                Text("${storedItemsViewModel.favoriteItemState.value}")
+                LazyColumn {
+
+                    itemsIndexed(
+                        items = allItems,
+                        key = { _, item ->
+                            item.hashCode()
                         }
-                        true
+                    ) { index, item ->
+                        val state = rememberDismissState(
+                            confirmStateChange = {
+                                if (it == DismissValue.DismissedToStart) {
+                                    allItems.remove(item)
+                                    storedItemsViewModel.deleteOne(item.inputtedSentence)
+                                    println(allItems.size)
+                                    if (allItems.size == 0) {
+                                        storedItemsViewModel.favoriteItemState.value = false
+                                    }
+                                }
+                                true
+                            }
+                        )
+
+                        SwipeToDismiss(
+                            state = state,
+                            background = {
+                                val color = when (state.dismissDirection) {
+                                    DismissDirection.StartToEnd -> Color.Transparent
+                                    DismissDirection.EndToStart -> Color.Red
+                                    null -> Color.Transparent
+                                }
+
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .background(color = color)
+                                        .padding(8.dp)
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Delete,
+                                        contentDescription = "Delete",
+                                        tint = Color.White,
+                                        modifier = Modifier.align(Alignment.CenterEnd)
+                                    )
+                                }
+                            },
+                            dismissContent = {
+                                SampleItems(item)
+                            },
+                            directions = setOf(DismissDirection.EndToStart)
+                        )
+                        Divider()
                     }
-                )
+                }
+            }
+            false -> {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.SpaceEvenly,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text("No favorites yet?")
+                    Text("Start practicing now!")
+                }
 
-                SwipeToDismiss(
-                    state = state,
-                    background = {
-                        val color = when (state.dismissDirection) {
-                            DismissDirection.StartToEnd -> Color.Transparent
-                            DismissDirection.EndToStart -> Color.Red
-                            null -> Color.Transparent
-                        }
-
-                        Box(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .background(color = color)
-                                .padding(8.dp)
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Delete,
-                                contentDescription = "Delete",
-                                tint = Color.White,
-                                modifier = Modifier.align(Alignment.CenterEnd)
-                            )
-                        }
-                    },
-                    dismissContent = {
-                        SampleItems(item)
-                    },
-                    directions = setOf(DismissDirection.EndToStart)
-                )
-                Divider()
             }
         }
+
     }
 }
 
