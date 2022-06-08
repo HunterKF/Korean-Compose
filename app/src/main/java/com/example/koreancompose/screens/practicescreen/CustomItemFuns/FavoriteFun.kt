@@ -25,11 +25,12 @@ import com.example.koreancompose.model.PracticeCard
 @Composable
 fun FavoriteFun(
     practiceCard: PracticeCard,
-    searchResults: List<StoredItem>
+    searchResults: List<StoredItem>,
+    storedItemsViewModel: StoredItemsViewModel,
+    searchResults2: MutableState<List<StoredItem>>
 ) {
     val context = LocalContext.current
     val application = context.applicationContext as Application
-    val storedItemsViewModel = StoredItemsViewModel(application)
 
     val storedItem = StoredItem(
         0L, practiceCard.word,
@@ -37,31 +38,13 @@ fun FavoriteFun(
         practiceCard.inputtedSentence,
         practiceCard.isClicked.value
     )
-
-    storedItemsViewModel.searchStoredItem(practiceCard.inputtedSentence)
-    println(storedItemsViewModel.searchResults.value)
-    println(searchResults.size)
-    println(searchResults)
-
-    var found = remember { mutableStateOf(false) }
-    Button(onClick = {
-        storedItemsViewModel.searchStoredItem(practiceCard.inputtedSentence)
-        if (searchResults.isEmpty()) {
-            found.value = true
-        }
-        println(searchResults)
-
-
-        Toast.makeText(context, "HET", Toast.LENGTH_LONG).show()
-    }) {
-        Text("search!")
-    }
-    Text("${found.value}")
-    Text("$searchResults")
-    Text("${storedItemsViewModel.searchResults.value}")
-
-
-
+    checkRoom(
+        practiceCard = practiceCard,
+        searchResults = searchResults,
+        storedItem = storedItem,
+        storedItemsViewModel = storedItemsViewModel,
+        searchResults2 = searchResults2
+    )
 
     IconButton(
         modifier = Modifier
@@ -71,12 +54,15 @@ fun FavoriteFun(
             isClicked(practiceCard.isClicked.value, storedItemsViewModel, storedItem, context)
 
         }) {
+
         Icon(
             tint = if (practiceCard.isClicked.value) Color.Red else Color.DarkGray,
             imageVector = Icons.Default.Favorite,
             contentDescription = "Favorite"
         )
     }
+
+
 }
 
 fun isClicked(
@@ -100,4 +86,19 @@ fun isClicked(
         viewModel.deleteOne(storedItem.inputtedSentence)
     }
 
+}
+
+fun checkRoom(
+    practiceCard: PracticeCard,
+    searchResults: List<StoredItem>,
+    storedItemsViewModel: StoredItemsViewModel,
+    storedItem: StoredItem,
+    searchResults2: MutableState<List<StoredItem>>
+) {
+    val TAG = "CHECKROOm"
+    Log.d(TAG, "Check room has fired. Waiting for results... isClicked value is: ${practiceCard.isClicked.value} and search result size is ${searchResults.size}")
+    storedItemsViewModel.searchStoredItem(storedItem.inputtedSentence)
+    Log.d(TAG, "Search fun has fired. Waiting for results... isClicked value is: ${practiceCard.isClicked.value} and search result size is ${searchResults.size}")
+
+    practiceCard.isClicked.value = searchResults.isNotEmpty()
 }

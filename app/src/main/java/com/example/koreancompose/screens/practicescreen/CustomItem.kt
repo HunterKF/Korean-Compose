@@ -46,6 +46,7 @@ fun CustomItem(
 
     val storedItemsViewModel = StoredItemsViewModel(application)
     val searchResults by storedItemsViewModel.searchResults.observeAsState(listOf())
+    val searchResults2 = remember { mutableStateOf(searchResults)}
 
 
     Card(
@@ -110,7 +111,7 @@ fun CustomItem(
                 ) {
 
                     ShareFun(context, shareIntent)
-                    FavoriteFun(practiceCard, searchResults = searchResults)
+                    FavoriteFun(practiceCard, searchResults = searchResults, storedItemsViewModel = storedItemsViewModel, searchResults2 = searchResults2)
                     InfoFun(practiceCard, navController)
                 }
             }

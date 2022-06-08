@@ -3,7 +3,6 @@ package com.example.koreancompose.database
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
 
 class StoredItemsRepository(private val storedItemDao: StoredItemsDao) {
     val readAllData: LiveData<List<StoredItem>> = storedItemDao.getAllItems()
@@ -32,9 +31,16 @@ class StoredItemsRepository(private val storedItemDao: StoredItemsDao) {
     }
 
 
-    suspend fun searchStoredItem(sentence: String): Flow<List<StoredItem>> {
-        return storedItemDao.searchStoredItem(sentence)
+    fun searchStoredItem(sentence: String) {
+        coroutineScope.launch(Dispatchers.Main) {
+            searchResults.value = asyncFind(sentence).await()
+        }
     }
+
+    private fun asyncFind(sentence: String): Deferred<List<StoredItem>?> =
+        coroutineScope.async(Dispatchers.IO) {
+            return@async storedItemDao.searchStoredItem(sentence)
+        }
 
 
 

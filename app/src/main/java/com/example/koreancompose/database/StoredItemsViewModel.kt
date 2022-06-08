@@ -36,10 +36,10 @@ class StoredItemsViewModel(application: Application): AndroidViewModel(applicati
     }
 
     fun searchStoredItem(sentence: String) {
-        viewModelScope.launch(Dispatchers.Main) {
             repository.searchStoredItem(sentence)
-        }
     }
+
+
 
     fun deleteOne(key: String) {
         repository.deleteOne(key)
