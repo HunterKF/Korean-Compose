@@ -55,8 +55,6 @@ fun SwipeTest(allItems: MutableList<StoredItem>) {
     ) {
         when (storedItemsViewModel.favoriteItemState.value) {
             true -> {
-                Text("THIS IS LAZY COLUMN DERH")
-                Text("${storedItemsViewModel.favoriteItemState.value}")
                 LazyColumn {
 
                     itemsIndexed(

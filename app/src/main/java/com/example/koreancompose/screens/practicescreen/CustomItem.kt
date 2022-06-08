@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -15,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.koreancompose.database.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.FavoriteFun
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.InfoFun
@@ -41,6 +43,10 @@ fun CustomItem(
     val shareIntent = Intent.createChooser(sendIntent, null)
     val context = LocalContext.current
     val application = context.applicationContext as Application
+
+    val storedItemsViewModel = StoredItemsViewModel(application)
+    val searchResults by storedItemsViewModel.searchResults.observeAsState(listOf())
+
 
     Card(
         modifier = Modifier
@@ -104,7 +110,7 @@ fun CustomItem(
                 ) {
 
                     ShareFun(context, shareIntent)
-                    FavoriteFun(practiceCard)
+                    FavoriteFun(practiceCard, searchResults = searchResults)
                     InfoFun(practiceCard, navController)
                 }
             }

@@ -3,9 +3,13 @@ package com.example.koreancompose.database
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.Flow
 
 class StoredItemsRepository(private val storedItemDao: StoredItemsDao) {
     val readAllData: LiveData<List<StoredItem>> = storedItemDao.getAllItems()
+
+    val searchResults = MutableLiveData<List<StoredItem>>()
+
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
 
     suspend fun addStoredItem(storedItem: StoredItem) {
@@ -26,6 +30,14 @@ class StoredItemsRepository(private val storedItemDao: StoredItemsDao) {
             storedItemDao.delete(key)
         }
     }
+
+
+    suspend fun searchStoredItem(sentence: String): Flow<List<StoredItem>> {
+        return storedItemDao.searchStoredItem(sentence)
+    }
+
+
+
 
 
 

@@ -16,6 +16,9 @@ class StoredItem (
     val inputtedGrammar: String = "",
 
     @ColumnInfo(name = "sentence")
-    val inputtedSentence: String = ""
+    val inputtedSentence: String = "",
+
+    @ColumnInfo(name = "favorited")
+    val isFavorite: Boolean
 
 )

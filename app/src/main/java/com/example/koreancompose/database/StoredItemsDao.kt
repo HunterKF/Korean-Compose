@@ -2,6 +2,7 @@ package com.example.koreancompose.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface StoredItemsDao {
@@ -18,6 +19,9 @@ interface StoredItemsDao {
     @Query("DELETE FROM stored_items_table")
     suspend fun deleteAll()
 
+    @Query("SELECT * FROM stored_items_table WHERE sentence = :inputtedSentence")
+    fun searchStoredItem(inputtedSentence: String): Flow<List<StoredItem>>
+
     //This one works
     @Query("DELETE FROM stored_items_table WHERE sentence = :inputtedSentence")
     suspend fun delete(inputtedSentence: String)
@@ -27,6 +31,7 @@ interface StoredItemsDao {
 
     @Query("SELECT * FROM stored_items_table ORDER BY itemId DESC")
     fun getAllItems(): LiveData<List<StoredItem>>
+
 
 
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -12,12 +13,16 @@ class StoredItemsViewModel(application: Application): AndroidViewModel(applicati
     var readAllData: LiveData<List<StoredItem>>
     private var repository: StoredItemsRepository
 
+    val searchResults: MutableLiveData<List<StoredItem>>
+
+
     init {
         val storedItemsDb = StoredItemDatabase.getDatabase(application)
         val storedItemDao = storedItemsDb.userDao()
         repository = StoredItemsRepository(storedItemDao)
 
         readAllData = repository.readAllData
+        searchResults = repository.searchResults
     }
     fun addStoredItem(storedItem: StoredItem){
         viewModelScope.launch(Dispatchers.IO) {
@@ -29,6 +34,13 @@ class StoredItemsViewModel(application: Application): AndroidViewModel(applicati
             repository.deleteStoredItem(storedItem)
         }
     }
+
+    fun searchStoredItem(sentence: String) {
+        viewModelScope.launch(Dispatchers.Main) {
+            repository.searchStoredItem(sentence)
+        }
+    }
+
     fun deleteOne(key: String) {
         repository.deleteOne(key)
     }
