@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
@@ -45,8 +44,8 @@ fun CustomItem(
     val application = context.applicationContext as Application
 
     val storedItemsViewModel = StoredItemsViewModel(application)
-    val searchResults by storedItemsViewModel.searchResults.observeAsState(listOf())
-    val searchResults2 = remember { mutableStateOf(searchResults)}
+    val searchResults = storedItemsViewModel.searchResults.value
+
 
 
     Card(
@@ -111,7 +110,7 @@ fun CustomItem(
                 ) {
 
                     ShareFun(context, shareIntent)
-                    FavoriteFun(practiceCard, searchResults = searchResults, storedItemsViewModel = storedItemsViewModel, searchResults2 = searchResults2)
+                    FavoriteFun(practiceCard)
                     InfoFun(practiceCard, navController)
                 }
             }
