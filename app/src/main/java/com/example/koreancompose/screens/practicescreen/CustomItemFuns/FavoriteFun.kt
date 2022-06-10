@@ -1,6 +1,6 @@
 package com.example.koreancompose.screens.practicescreen.CustomItemFuns
 
-import android.app.Application
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
@@ -17,32 +17,31 @@ import androidx.compose.ui.platform.LocalContext
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.database.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
+import kotlinx.coroutines.*
 
 
+@SuppressLint("UnrememberedMutableState")
 @Composable
 fun FavoriteFun(
-    practiceCard: PracticeCard
+    practiceCard: PracticeCard,
+    searchResults: List<StoredItem>,
+    storedItemsViewModel: StoredItemsViewModel
 ) {
     val context = LocalContext.current
-    val application = context.applicationContext as Application
-    val storedItemsViewModel = StoredItemsViewModel(application)
 
-    val searchResults = storedItemsViewModel.searchResults.value
 
-    val isClicked = practiceCard.isClicked
-    checkRoom(
-        practiceCard = practiceCard,
-        storedItemsViewModel = storedItemsViewModel,
-        searchResults = searchResults
-    )
-
+//Hoist the checking function, and then pass in the boolean for isClicked into the function.
+    //Maybe checking before the composable is composed would solve the issue...
     val storedItem = StoredItem(
         0L, practiceCard.word,
         practiceCard.grammar,
         practiceCard.inputtedSentence,
         practiceCard.isClicked.value
     )
-
+    LaunchedEffect(key1 = practiceCard.isClicked) {
+        storedItemsViewModel.searchStoredItem(practiceCard.inputtedSentence)
+        println("LaunchedEffect has been fired!")
+    }
 
     Log.d("FavoriteFun", "FavoriteFun has been called!")
     IconButton(
@@ -60,6 +59,15 @@ fun FavoriteFun(
             contentDescription = "Favorite"
         )
     }
+
+
+    println(searchResults.size)
+
+        checkIsClicked(
+            isClicked = practiceCard.isClicked.value,
+            practiceCard = practiceCard,
+            searchResults = searchResults
+        )
 
 
 
@@ -98,7 +106,44 @@ fun checkRoom(
     val TAG = "CHECKROOM"
     storedItemsViewModel.searchStoredItem(practiceCard.inputtedSentence)
     Log.d(TAG, "checkRoom() has been called!")
+    Log.d(TAG, "${searchResults?.size}")
     if (searchResults.isNullOrEmpty()) {
         practiceCard.isClicked.value = false
     }
+}
+
+fun checkIsClicked(
+    isClicked: Boolean,
+    searchResults: List<StoredItem>,
+    practiceCard: PracticeCard
+) {
+    val coroutineScope = CoroutineScope(Dispatchers.IO)
+    coroutineScope.launch {
+        if (isClicked) {
+            delay(1000)
+            if (searchResults.isEmpty()) {
+                practiceCard.isClicked.value = false
+                println("If-and statement has fired! isClicked is now: ${practiceCard.isClicked.value}")
+            }
+            if (searchResults.isNotEmpty()) {
+                practiceCard.isClicked.value = true
+                println("If statement has fired! isClicked is now: ${practiceCard.isClicked.value}")
+            }
+        }
+    }
+
+}
+
+fun searchRoom(
+    isInRoom: MutableState<Boolean>,
+    storedItemsViewModel: StoredItemsViewModel,
+    practiceCard: PracticeCard,
+    searchResults: List<StoredItem>
+): Boolean {
+//    storedItemsViewModel.searchStoredItem(practiceCard.inputtedSentence)
+    println("The search function has been called!")
+    println("The results for searchResult is: ${searchResults.isEmpty()}")
+    isInRoom.value = !searchResults.isNullOrEmpty()
+    return isInRoom.value
+
 }

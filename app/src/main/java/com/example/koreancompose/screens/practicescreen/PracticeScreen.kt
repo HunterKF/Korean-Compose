@@ -156,6 +156,7 @@ fun EnterButton(
     onCardItemAdded: (String) -> Unit,
 ) {
 
+
     Button(modifier = Modifier
         .fillMaxWidth()
         .background(color = Color.Blue)
