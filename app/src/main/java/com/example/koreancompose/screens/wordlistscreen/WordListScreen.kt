@@ -63,33 +63,20 @@ fun WordListScreen(navController: NavHostController, focusManager: FocusManager)
         },
     ) {
 
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = MaterialTheme.typography.h3.fontSize,
-                    text = "Words"
-                )
-            }
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                state = listState
-            ) {
-                items(allWords) { index ->
-                    WordListLazyItem(index = index, wordListItem = wordListItem)
-                }
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            state = listState
+        ) {
+            items(allWords) { index ->
+                WordListLazyItem(index = index, wordListItem = wordListItem)
             }
         }
-
-
     }
+
+
 }
 
 

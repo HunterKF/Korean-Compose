@@ -44,7 +44,6 @@ val cardRepository = CardRepository()
 val getAllData = cardRepository.getAllData()
 
 
-
 @Composable
 fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
@@ -67,7 +66,14 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
     }
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState, viewModel = viewModel, focusManager = focusManager)},
+        topBar = {
+            TopBar(
+                scope = scope,
+                scaffoldState = scaffoldState,
+                viewModel = viewModel,
+                focusManager = focusManager
+            )
+        },
         drawerBackgroundColor = colorResource(id = R.color.purple_200),
         // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
         drawerContent = {
@@ -104,8 +110,6 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                         when {
                             focusState.isFocused -> {
                                 textFieldHeight = 100
-                                println("I have focus!")
-                                println(" The current value of textFieldHeight is $textFieldHeight")
                             }
                             else ->
                                 textFieldHeight = 200
@@ -115,7 +119,11 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                     .focusRequester(focusRequester)
             )
 
-            EnterButton(focusRequester = focusRequester, coroutineScope = coroutineScope, listState = listState) { PracticeCard ->
+            EnterButton(
+                focusRequester = focusRequester,
+                coroutineScope = coroutineScope,
+                listState = listState
+            ) { PracticeCard ->
                 cardState = cardState + listOf(PracticeCard)
             }
             Column(modifier = Modifier
@@ -136,7 +144,6 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
         }
     }
-
 
 
 }
@@ -244,7 +251,12 @@ fun EnterButton(
 }
 
 @Composable
-fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavController, listState: LazyListState) {
+fun DisplayList(
+    modifier: Modifier,
+    cardState: List<String>,
+    navController: NavController,
+    listState: LazyListState
+) {
 
     var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
 
@@ -267,7 +279,8 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
                 navController = navController,
                 expandedState = expandedState == card,
                 onClick = {
-                    expandedState = if (expandedState == card) null else card},
+                    expandedState = if (expandedState == card) null else card
+                },
             )
             Spacer(Modifier.size(10.dp))
 

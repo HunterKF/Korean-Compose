@@ -67,28 +67,15 @@ fun GrammarListScreen(navController: NavController, focusManager: FocusManager) 
             )
         },
     ) {
-        Column {
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    fontWeight = FontWeight.Bold,
-                    fontSize = MaterialTheme.typography.h3.fontSize,
-                    text = "Grammar"
-                )
-            }
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                state = listState
-            ) {
-                items(allWords) { index ->
-                    GrammarListLazyItem(index = index, grammarListItem = grammarListItem)
-                }
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            state = listState
+        ) {
+            items(allWords) { index ->
+                GrammarListLazyItem(index = index, grammarListItem = grammarListItem)
             }
         }
     }

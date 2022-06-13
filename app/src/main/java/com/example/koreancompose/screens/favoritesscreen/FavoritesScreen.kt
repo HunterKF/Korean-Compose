@@ -28,6 +28,7 @@ fun FavoritesScreen(
 //For the scaffold
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     val scope = rememberCoroutineScope()
+
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
