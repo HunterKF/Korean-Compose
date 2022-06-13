@@ -45,7 +45,7 @@ fun FavoritesScreen(
             )
         },
     ) {
-        SwipeTest(allItems as MutableList<StoredItem>)
+        SwipeTest(allItems as MutableList<StoredItem>, navController = navController)
     }
 }
 
