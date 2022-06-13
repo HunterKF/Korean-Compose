@@ -100,20 +100,23 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
                         Divider()
 
                     }
+                    item {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(12.dp),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.Bottom
+                        ) {
+                            Button(modifier = Modifier.fillMaxWidth(),
+                                onClick = { openDialog.value = true }) {
+                                Text("Delete all")
+                            }
+                        }
+                    }
 
                 }
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.Bottom
-                ) {
-                    Button(modifier = Modifier.fillMaxWidth(),
-                        onClick = { openDialog.value = true }) {
-                        Text("Delete all")
-                    }
-                }
+
             }
 
         }

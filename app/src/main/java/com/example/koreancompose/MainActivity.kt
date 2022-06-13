@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.example.koreancompose.screens.jsonfiles.LoadJsonGrammar
 import com.example.koreancompose.screens.jsonfiles.LoadJsonWords
+import com.example.koreancompose.screens.practicescreen.testLazyColumn
 import com.example.koreancompose.screens.wordlistscreen.WordListScreen
 import com.example.koreancompose.ui.theme.KoreanComposeTheme
 import okhttp3.*
@@ -21,6 +22,7 @@ class MainActivity : ComponentActivity() {
                 LoadJsonWords()
                 LoadJsonGrammar()
                 Navigation()
+//                testLazyColumn()
             }
         }
     }
