@@ -10,18 +10,22 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.koreancompose.*
+import com.example.koreancompose.R
 import com.example.koreancompose.model.ModelJSONWord
+import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 
 
 @Composable
-fun WordListScreen() {
+fun WordListScreen(navController: NavHostController) {
     val listState = rememberLazyListState()
 
     val context = LocalContext.current
@@ -35,33 +39,55 @@ fun WordListScreen() {
     val allWords = loadWord?.dataWords?.size!!
 
     val wordListItem = WordListItem(loadWord.dataWords, expandedState = false)
-
-    Column {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text(
-                fontWeight = FontWeight.Bold,
-                fontSize = MaterialTheme.typography.h3.fontSize,
-                text = "Words"
+    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+    val scope = rememberCoroutineScope()
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = {
+            TopBar(
+                scope = scope,
+                scaffoldState = scaffoldState,
+                viewModel = com.example.koreancompose.viewModel
             )
-        }
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            state = listState
-        ) {
-            items(allWords) { index ->
-                WordListLazyItem(index = index, wordListItem = wordListItem)
+        },
+        drawerBackgroundColor = colorResource(id = R.color.purple_200),
+        // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
+        drawerContent = {
+            SideDrawer(
+                scaffoldState = scaffoldState,
+                navController = navController,
+                viewModel = viewModel
+            )
+        },
+    ) {
+
+        Column {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                horizontalArrangement = Arrangement.Center
+            ) {
+                Text(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = MaterialTheme.typography.h3.fontSize,
+                    text = "Words"
+                )
+            }
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                state = listState
+            ) {
+                items(allWords) { index ->
+                    WordListLazyItem(index = index, wordListItem = wordListItem)
+                }
             }
         }
+
+
     }
-
-
 }
 
 

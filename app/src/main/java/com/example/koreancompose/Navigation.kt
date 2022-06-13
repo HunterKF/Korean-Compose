@@ -103,23 +103,18 @@ fun Navigation() {
 
             )
         }
-        composable(
-            route = Screen.FavoritesScreen.route
-            )
-        {
-            FavoritesScreen()
+        composable(route = Screen.FavoritesScreen.route) {
+            FavoritesScreen(navController = navController)
         }
         composable(
             route = Screen.WordListScreen.route
         ) {
-
-
-            WordListScreen()
+            WordListScreen(navController = navController)
         }
         composable(
             route = Screen.GrammarListScreen.route
         ) {
-            GrammarListScreen()
+            GrammarListScreen(navController = navController)
         }
     }
 }

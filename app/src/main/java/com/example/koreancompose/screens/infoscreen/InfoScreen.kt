@@ -7,11 +7,19 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.DrawerValue
+import androidx.compose.material.Scaffold
+import androidx.compose.material.rememberDrawerState
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
 import com.example.koreancompose.screens.infoscreen.InfoSentence
+import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 
 @Composable
 fun InfoScreen(
@@ -31,7 +39,9 @@ fun InfoScreen(
     inDepth2ExKor: String?,
     inDepth2ExEng: String?
 ) {
+
     val scrollState = rememberScrollState()
+
     Column(
         modifier = Modifier
             .background(Color.White)
@@ -52,3 +62,5 @@ fun InfoScreen(
         )
     }
 }
+
+

@@ -60,13 +60,21 @@ fun PracticeScreen(navController: NavController) {
     //For the scaffold
     val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
     val scope = rememberCoroutineScope()
+
+    LaunchedEffect(key1 = viewModel.topBarText) {
+        viewModel.topBarText.value = "Practice"
+    }
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState)},
+        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState, viewModel = viewModel)},
         drawerBackgroundColor = colorResource(id = R.color.purple_200),
         // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
         drawerContent = {
-            SideDrawer(scaffoldState = scaffoldState, navController = navController)
+            SideDrawer(
+                scaffoldState = scaffoldState,
+                navController = navController,
+                viewModel = viewModel
+            )
         },
     ) {
         Column(
@@ -246,8 +254,8 @@ fun DisplayList(modifier: Modifier, cardState: List<String>, navController: NavC
         reverseLayout = false,
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp )
-            .padding(top = 16.dp )
+            .padding(horizontal = 16.dp)
+            .padding(top = 16.dp)
             .simpleVerticalScrollbar(listState),
         verticalArrangement = Arrangement.Top,
         userScrollEnabled = true,

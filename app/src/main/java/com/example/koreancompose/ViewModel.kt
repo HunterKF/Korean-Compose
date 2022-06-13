@@ -133,6 +133,8 @@ class ViewModel : ViewModel() {
 
     }
 
+    val topBarText = mutableStateOf("Practice")
+
 
 
 }

@@ -1,5 +1,6 @@
 package com.example.koreancompose.screens.sidedrawerscreen
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -11,22 +12,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.koreancompose.Screen
+import com.example.koreancompose.ViewModel
 import kotlinx.coroutines.launch
 
 enum class Items(val label: String, val icon: ImageVector) {
+    Practice(label = "Practice", Icons.Default.Edit),
     Favorites(label = "Favorites", Icons.Default.Home),
     Words(label = "Words", Icons.Default.Email),
     Grammar(label = "Grammar", Icons.Default.Favorite)
 }
 @Composable
-fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController) {
+fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewModel: ViewModel) {
 
     val scope = rememberCoroutineScope()
-    var text by remember {
-        mutableStateOf("")
-    }
     ModalDrawer(
         drawerState = scaffoldState.drawerState,
         gesturesEnabled = scaffoldState.drawerState.isOpen,
@@ -38,12 +39,26 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController) {
                 when(it) {
                     Items.Grammar -> {
                         navController.navigate(Screen.GrammarListScreen.route)
+                        viewModel.topBarText.value = "Grammar"
+                        Log.d("SideDrawer", "The current value of topBarText is: ${viewModel.topBarText.value}")
                     }
                     Items.Favorites -> {
                         navController.navigate(Screen.FavoritesScreen.route)
+                        viewModel.topBarText.value = "Favorites"
+                        Log.d("SideDrawer", "The current value of topBarText is: ${viewModel.topBarText.value}")
+
                     }
                     Items.Words -> {
                         navController.navigate(Screen.WordListScreen.route)
+                        viewModel.topBarText.value = "Words"
+                        Log.d("SideDrawer", "The current value of topBarText is: ${viewModel.topBarText.value}")
+
+                    }
+                    Items.Practice -> {
+                        navController.navigate(Screen.PracticeScreen.route)
+                        viewModel.topBarText.value = "Practice"
+                        Log.d("SideDrawer", "The current value of topBarText is: ${viewModel.topBarText.value}")
+
                     }
                 }
                 scope.launch {
@@ -64,7 +79,7 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController) {
 //            Button(onClick = { scope.launch { drawerState.open() } } ){
 //                Text(text = "Open Drawer")
 //            }
-            Text(text = text)
+            Text(text = "text")
 
         }
     }

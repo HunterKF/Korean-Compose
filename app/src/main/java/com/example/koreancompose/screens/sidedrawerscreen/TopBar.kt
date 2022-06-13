@@ -24,9 +24,11 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun TopBar(scope: CoroutineScope, scaffoldState: ScaffoldState) {
+fun TopBar(scope: CoroutineScope, scaffoldState: ScaffoldState, viewModel: ViewModel) {
+    println("This is from the TopBar: the current value for viewModel.topBarText is: ${viewModel.topBarText.value}")
+    val textState = viewModel.topBarText.value
     TopAppBar(
-        title = { Text(text = "Practice", fontSize = 18.sp) },
+        title = { Text(text = textState, fontSize = 18.sp) },
         navigationIcon = {
             IconButton(onClick = {
                 scope.launch {
