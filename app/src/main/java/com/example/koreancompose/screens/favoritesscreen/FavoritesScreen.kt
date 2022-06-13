@@ -5,6 +5,7 @@ import android.app.Application
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavController
@@ -20,7 +21,8 @@ import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 fun FavoritesScreen(
     viewModel: StoredItemsViewModel =
         StoredItemsViewModel(LocalContext.current.applicationContext as Application),
-    navController: NavController
+    navController: NavController,
+    focusManager: FocusManager
 ) {
     val allItems by viewModel.readAllData.observeAsState(mutableListOf())
 //For the scaffold
@@ -32,7 +34,8 @@ fun FavoritesScreen(
             TopBar(
                 scope = scope,
                 scaffoldState = scaffoldState,
-                viewModel = com.example.koreancompose.viewModel
+                viewModel = com.example.koreancompose.viewModel,
+                focusManager = focusManager
             )
         },
         drawerBackgroundColor = colorResource(id = R.color.purple_200),

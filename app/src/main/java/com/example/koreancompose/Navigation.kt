@@ -1,6 +1,8 @@
 package com.example.koreancompose
 
 import androidx.compose.runtime.*
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalFocusManager
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,9 +16,11 @@ import com.example.koreancompose.screens.wordlistscreen.WordListScreen
 fun Navigation() {
     val navController = rememberNavController()
 
+    val focusManager = LocalFocusManager.current
+
     NavHost(navController = navController, startDestination = Screen.PracticeScreen.route) {
         composable(route = Screen.PracticeScreen.route) {
-            PracticeScreen(navController = navController)
+            PracticeScreen(navController = navController, focusManager = focusManager)
         }
         composable(
             route = Screen.InfoScreen.route +
@@ -104,17 +108,17 @@ fun Navigation() {
             )
         }
         composable(route = Screen.FavoritesScreen.route) {
-            FavoritesScreen(navController = navController)
+            FavoritesScreen(navController = navController, focusManager = focusManager)
         }
         composable(
             route = Screen.WordListScreen.route
         ) {
-            WordListScreen(navController = navController)
+            WordListScreen(navController = navController, focusManager = focusManager)
         }
         composable(
             route = Screen.GrammarListScreen.route
         ) {
-            GrammarListScreen(navController = navController)
+            GrammarListScreen(navController = navController, focusManager = focusManager)
         }
     }
 }

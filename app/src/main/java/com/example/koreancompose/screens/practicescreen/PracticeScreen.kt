@@ -15,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
@@ -45,11 +46,11 @@ val getAllData = cardRepository.getAllData()
 
 
 @Composable
-fun PracticeScreen(navController: NavController) {
+fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
     //Focus request for Button to force focus to text field
     val focusRequester = FocusRequester()
-    val focusManager = LocalFocusManager.current
+//    val focusManager = LocalFocusManager.current
     val scrollState = rememberScrollState()
     //Remove column's clickable effects
     val interactionSource = remember { MutableInteractionSource() }
@@ -66,7 +67,7 @@ fun PracticeScreen(navController: NavController) {
     }
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState, viewModel = viewModel)},
+        topBar = { TopBar(scope = scope, scaffoldState = scaffoldState, viewModel = viewModel, focusManager = focusManager)},
         drawerBackgroundColor = colorResource(id = R.color.purple_200),
         // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
         drawerContent = {
@@ -175,7 +176,6 @@ fun EnterButton(
             viewModel.sentence = viewModel.textFieldState.value
             if (viewModel.sentence === "") {
                 focusRequester.requestFocus()
-
             } else {
 
                 coroutineScope.launch {

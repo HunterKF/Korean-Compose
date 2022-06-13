@@ -12,6 +12,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -28,7 +29,7 @@ import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 
 @Composable
-fun GrammarListScreen(navController: NavController) {
+fun GrammarListScreen(navController: NavController, focusManager: FocusManager) {
     val listState = rememberLazyListState()
 
     val context = LocalContext.current
@@ -52,7 +53,8 @@ fun GrammarListScreen(navController: NavController) {
             TopBar(
                 scope = scope,
                 scaffoldState = scaffoldState,
-                viewModel = com.example.koreancompose.viewModel
+                viewModel = com.example.koreancompose.viewModel,
+                focusManager = focusManager
             )
         },
         drawerBackgroundColor = colorResource(id = R.color.purple_200),
