@@ -103,17 +103,21 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                         learningPointWord = viewModel.wordFieldState.value,
                         learningPointGrammar = viewModel.grammarFieldState.value
                     )
-                    var textFieldHeight by remember { mutableStateOf(250) }
 
-                    TextField(textFieldHeight,
+                    TextField(
+                        viewModel.textFieldHeight.value,
                         modifier = Modifier
                             .onFocusChanged { focusState ->
                                 when {
                                     focusState.isFocused -> {
-                                        textFieldHeight = 100
+                                        println("Focused state has fired!")
+                                        viewModel.textFieldHeight.value = 100
                                     }
-                                    else ->
-                                        textFieldHeight = 200
+                                    else -> {
+                                        println("Else state has fired!")
+                                        viewModel.textFieldHeight.value = 200
+                                    }
+
                                 }
                             }
                             .fillMaxSize()
@@ -162,7 +166,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 fun TextField(textFieldHeight: Int, modifier: Modifier) {
     TextField(
         modifier = modifier
-            .height(200.dp),
+            .height(textFieldHeight.dp),
         value = viewModel.textFieldState.value,
         label = {
             Text("Start typing now...")
@@ -180,10 +184,7 @@ fun EnterButton(
     lazyListState: LazyListState,
     onCardItemAdded: (String) -> Unit,
 
-) {
-
-
-    var text = remember { mutableStateOf("Enter") }
+    ) {
     Button(modifier = Modifier
         .fillMaxWidth()
         .background(color = Color.Blue)
@@ -195,18 +196,17 @@ fun EnterButton(
 
             when {
                 viewModel.sentence === "" && lazyListState.firstVisibleItemIndex == 0 -> {
-                    println("1 has fired!")
                     focusRequester.requestFocus()
                 }
-                viewModel.sentence === "" &&  lazyListState.firstVisibleItemIndex > 0 -> {
-                    println("2 has fired!")
-
+                viewModel.sentence === "" && lazyListState.firstVisibleItemIndex > 0 -> {
+                    focusRequester.requestFocus()
+                    coroutineScope.launch { lazyListState.animateScrollToItem(0) }
+                }
+                viewModel.sentence != "" && lazyListState.firstVisibleItemIndex > 0 -> {
                     focusRequester.requestFocus()
                     coroutineScope.launch { lazyListState.animateScrollToItem(0) }
                 }
                 else -> {
-                    println("3 has fired!")
-
                     cardRepository.allCards.add(
                         PracticeCard(
                             viewModel.sentence,
@@ -253,63 +253,13 @@ fun EnterButton(
                     viewModel.grammarInD2ExKor.value = randGrammar.inDepth2ExKor
                     viewModel.grammarInD2ExEng.value = randGrammar.inDepth2ExEng
 
+                    viewModel.textFieldState.value = ""
                 }
             }
-
-//            if (viewModel.sentence === "") {
-//                focusRequester.requestFocus()
-//            } else {
-//
-//            }
-            viewModel.textFieldState.value = ""
-            println("${lazyListState.firstVisibleItemIndex}")
 
         }
     ) {
         Text(text = if (lazyListState.firstVisibleItemIndex == 0) "Enter" else "Let's Practice!")
     }
 }
-
-
-/*
-Scrollbar for the LazyColumn. Taken from StackOverflow -
-https://stackoverflow.com/questions/66341823/jetpack-compose-scrollbars?noredirect=1&lq=1
-*/
-@Composable
-fun Modifier.simpleVerticalScrollbar(
-    state: LazyListState,
-    width: Dp = 4.dp
-): Modifier {
-    val targetAlpha = if (state.isScrollInProgress) 1f else 0f
-    val duration = if (state.isScrollInProgress) 150 else 500
-
-    val alpha by animateFloatAsState(
-        targetValue = targetAlpha,
-        animationSpec = tween(durationMillis = duration)
-    )
-
-    return drawWithContent {
-        drawContent()
-
-        val firstVisibleElementIndex = state.layoutInfo.visibleItemsInfo.firstOrNull()?.index
-        val needDrawScrollbar = state.isScrollInProgress || alpha > 0.0f
-
-        // Draw scrollbar if scrolling or if the animation is still running and lazy column has content
-        if (needDrawScrollbar && firstVisibleElementIndex != null) {
-            val elementHeight = this.size.height / state.layoutInfo.totalItemsCount
-            val scrollbarOffsetY = firstVisibleElementIndex * elementHeight
-            val scrollbarHeight = state.layoutInfo.visibleItemsInfo.size * elementHeight
-
-            drawRect(
-                color = Color.Blue,
-                topLeft = Offset(this.size.width - width.toPx(), scrollbarOffsetY),
-                size = Size(width.toPx(), scrollbarHeight),
-                alpha = alpha
-            )
-        }
-    }
-}
-
-
-
 

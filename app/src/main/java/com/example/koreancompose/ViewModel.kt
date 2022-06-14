@@ -133,7 +133,11 @@ class ViewModel : ViewModel() {
 
     }
 
+    //TopBar text. On loading will make it practice by default
     val topBarText = mutableStateOf("Practice")
+
+    //Textheight for the textField
+    var textFieldHeight = mutableStateOf(200)
 
 
 
