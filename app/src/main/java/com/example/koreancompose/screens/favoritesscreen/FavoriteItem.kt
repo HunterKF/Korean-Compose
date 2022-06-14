@@ -51,7 +51,7 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
 
                     itemsIndexed(
                         items = allItems,
-                        key = { _, item ->
+                        key = { index, item ->
                             item.hashCode()
                         }
                     ) { index, item ->

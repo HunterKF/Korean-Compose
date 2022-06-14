@@ -22,6 +22,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.Dp
@@ -44,6 +45,7 @@ val cardRepository = CardRepository()
 val getAllData = cardRepository.getAllData()
 
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
@@ -64,6 +66,99 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
     LaunchedEffect(key1 = viewModel.topBarText) {
         viewModel.topBarText.value = "Practice"
     }
+    val lazyListState = rememberLazyListState()
+    var scrolledY = 0f
+    var previousOffset = 0
+
+    Scaffold(
+        scaffoldState = scaffoldState,
+        topBar = {
+            TopBar(
+                scope = scope,
+                scaffoldState = scaffoldState,
+                viewModel = viewModel,
+                focusManager = focusManager
+            )
+        },
+        drawerBackgroundColor = colorResource(id = R.color.purple_200),
+        // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
+        drawerContent = {
+            SideDrawer(
+                scaffoldState = scaffoldState,
+                navController = navController,
+                viewModel = viewModel
+            )
+        },
+    ) {
+
+        var cardState by remember { mutableStateOf(viewModel.itemList) }
+        var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
+        LazyColumn(state = lazyListState) {
+            println("LazyColumn has recomposed!")
+            item {
+                Column(modifier = Modifier.graphicsLayer {
+                    scrolledY += lazyListState.firstVisibleItemScrollOffset - previousOffset
+                    translationY = scrolledY * 0.1f
+                    previousOffset = lazyListState.firstVisibleItemScrollOffset
+                }) {
+                    LearningPoint(
+                        learningPointWord = viewModel.wordFieldState.value,
+                        learningPointGrammar = viewModel.grammarFieldState.value
+                    )
+                    var textFieldHeight by remember { mutableStateOf(250) }
+
+                    TextField(textFieldHeight,
+                        modifier = Modifier
+                            .onFocusChanged { focusState ->
+                                when {
+                                    focusState.isFocused -> {
+                                        textFieldHeight = 100
+                                    }
+                                    else ->
+                                        textFieldHeight = 200
+                                }
+                            }
+                            .fillMaxSize()
+                            .focusRequester(focusRequester)
+                    )
+                }
+
+            }
+
+            item {
+
+            }
+            stickyHeader {
+                EnterButton(
+                    focusRequester = focusRequester,
+                    coroutineScope = coroutineScope,
+                    listState = listState
+                ) { PracticeCard ->
+                    cardState = cardState + listOf(PracticeCard)
+                }
+            }
+            item {
+                Spacer(modifier = Modifier.height(16.dp))
+            }
+
+            items(getAllData) { card ->
+                println("items has fired too!")
+                CustomItem(
+                    practiceCard = card,
+                    navController = navController,
+                    expandedState = expandedState == card,
+                    onClick = {
+                        expandedState = if (expandedState == card) null else card
+                    },
+                )
+                Spacer(Modifier.size(10.dp))
+            }
+
+        }
+    }
+
+}
+/*
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
@@ -146,14 +241,14 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
     }
 
 
-}
+}*/
 
 
 @Composable
 fun TextField(textFieldHeight: Int, modifier: Modifier) {
     TextField(
         modifier = modifier
-            .height(textFieldHeight.dp),
+            .height(200.dp),
         value = viewModel.textFieldState.value,
         label = {
             Text("Start typing now...")

@@ -1,61 +1,103 @@
-package com.example.koreancompose.screens.practicescreen
-
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.example.koreancompose.viewModel
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-fun testLazyColumn() {
-//    val scrollState = rememberScrollState()
-    Column(modifier = Modifier.fillMaxSize()) {
-
-
-        LazyColumn {
-            stickyHeader {
-                TextField(
-                    modifier = Modifier
-                        .height(150.dp)
-                        .fillMaxWidth(),
-                    value = viewModel.textFieldState.value,
-                    label = {
-                        Text("Start typing now...")
-                    },
-                    onValueChange = { newValue ->
-                        viewModel.onTextFieldChange(newValue)
-                    }
-                )
-
-                Button(modifier = Modifier.fillMaxWidth(),
-                    onClick = { /*TODO*/ }) {
-                    Text("Click me!")
-                }
-            }
-            items(20) { index ->
-                Row(modifier = Modifier.fillMaxWidth().padding(16.dp),
-                horizontalArrangement = Arrangement.Center) {
-                    Text(fontSize = 16.sp,
-                        text = "Item: $index")
-                }
-            }
-        }
-    }
-
-}
-
-@Preview(showSystemUi = true)
-@Composable
-fun preview() {
-    testLazyColumn()
-}
+//import androidx.compose.foundation.layout.Spacer
+//import androidx.compose.foundation.layout.fillMaxSize
+//import androidx.compose.foundation.layout.size
+//import androidx.compose.foundation.lazy.LazyColumn
+//import androidx.compose.foundation.lazy.items
+//import androidx.compose.foundation.lazy.rememberLazyListState
+//import androidx.compose.material.DrawerValue
+//import androidx.compose.material.Scaffold
+//import androidx.compose.material.rememberDrawerState
+//import androidx.compose.material.rememberScaffoldState
+//import androidx.compose.runtime.*
+//import androidx.compose.ui.Modifier
+//import androidx.compose.ui.focus.focusRequester
+//import androidx.compose.ui.focus.onFocusChanged
+//import androidx.compose.ui.res.colorResource
+//import androidx.compose.ui.unit.dp
+//import com.example.koreancompose.*
+//import com.example.koreancompose.R
+//import com.example.koreancompose.screens.practicescreen.LearningPoint
+//import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
+//
+//@Composable
+//fun TestLazyColumn() {
+//
+//    val scaffoldState = rememberScaffoldState(rememberDrawerState(DrawerValue.Closed))
+//    val scope = rememberCoroutineScope()
+//
+//    val lazyListState = rememberLazyListState()
+//    var scrolledY = 0f
+//    var previousOffset = 0
+//
+//    Scaffold(
+//        scaffoldState = scaffoldState,
+//        topBar = {
+//            TopBar(
+//                scope = scope,
+//                scaffoldState = scaffoldState,
+//                viewModel = viewModel,
+//                focusManager = focusManager
+//            )
+//        },
+//        drawerBackgroundColor = colorResource(id = R.color.purple_200),
+//        // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
+//        drawerContent = {
+//            SideDrawer(
+//                scaffoldState = scaffoldState,
+//                navController = navController,
+//                viewModel = viewModel
+//            )
+//        },
+//    ) {
+//        LazyColumn() {
+//            item {
+//                LearningPoint(
+//                    learningPointWord = viewModel.wordFieldState.value,
+//                    learningPointGrammar = viewModel.grammarFieldState.value
+//                )
+//            }
+//
+//            item {
+//                var textFieldHeight by remember { mutableStateOf(250) }
+//
+//                TextField(textFieldHeight,
+//                    modifier = Modifier
+//                        .onFocusChanged { focusState ->
+//                            when {
+//                                focusState.isFocused -> {
+//                                    textFieldHeight = 100
+//                                }
+//                                else ->
+//                                    textFieldHeight = 200
+//                            }
+//                        }
+//                        .fillMaxSize()
+//                        .focusRequester(focusRequester)
+//                )
+//            }
+//            item {
+//                EnterButton(
+//                    focusRequester = focusRequester,
+//                    coroutineScope = coroutineScope,
+//                    listState = listState
+//                ) { PracticeCard ->
+//                    cardState = cardState + listOf(PracticeCard)
+//                }
+//            }
+//            items(getAllData) { card ->
+//                CustomItem(
+//                    practiceCard = card,
+//                    navController = navController,
+//                    expandedState = expandedState == card,
+//                    onClick = {
+//                        expandedState = if (expandedState == card) null else card
+//                    },
+//                )
+//                Spacer(Modifier.size(10.dp))
+//
+//            }
+//
+//        }
+//    }
+//
+//}
