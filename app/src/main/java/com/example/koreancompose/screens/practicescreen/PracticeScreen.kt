@@ -1,8 +1,5 @@
 package com.example.koreancompose
 
-import android.util.Log
-import androidx.compose.animation.core.animateFloatAsState
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.*
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
@@ -13,17 +10,13 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
@@ -92,9 +85,8 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
         var cardState by remember { mutableStateOf(viewModel.itemList) }
         var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
         LazyColumn(state = lazyListState) {
+
             if(lazyListState.isScrollInProgress && lazyListState.firstVisibleItemIndex != 0) {
-                println("lazyListState = ${lazyListState.firstVisibleItemIndex}")
-                println("Hello, I'm scrolling!!")
                 focusManager.clearFocus()
             }
             item {
@@ -141,20 +133,22 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                     cardState = cardState + listOf(PracticeCard)
                 }
             }
-            item {
-                Spacer(modifier = Modifier.height(16.dp))
-            }
+//            item {
+//                Spacer(modifier = Modifier.height(16.dp))
+//            }
 
             items(getAllData.reversed()) { card ->
                 CustomItem(
                     practiceCard = card,
                     navController = navController,
+                    focusManager = focusManager,
                     expandedState = expandedState == card,
                     onClick = {
                         expandedState = if (expandedState == card) null else card
+                        focusManager.clearFocus()
                     },
                 )
-                Spacer(Modifier.size(10.dp))
+//                Spacer(Modifier.size(10.dp))
             }
 
         }
@@ -260,7 +254,7 @@ fun EnterButton(
 
         }
     ) {
-        Text(text = if (lazyListState.firstVisibleItemIndex == 0) "Enter" else "Let's Practice!")
+        Text(text = if (lazyListState.firstVisibleItemIndex == 0) "Enter" else "Back to top")
     }
 }
 

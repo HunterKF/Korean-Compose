@@ -93,20 +93,13 @@ fun LearningPoint(
         }
     }
     when {
-        expandedWordState ->
-
-            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-                InfoWord(
-                    word = viewModel.wordFieldState.value,
-                    def = viewModel.wordDefFieldState.value,
-                    wordExKor1 = viewModel.wordExKor1.value,
-                    wordExEng1 = viewModel.wordExEng1.value,
-                    wordExKor2 = viewModel.wordExKor2.value,
-                    wordExEng2 = viewModel.wordExEng2.value
-                )
-            }
         expandedGrammarState ->
-            Column(modifier = Modifier.padding(horizontal = 16.dp)) {
+            Column(modifier = Modifier.padding(horizontal = 16.dp).clickable {
+                if(expandedWordState) {
+                    expandedWordState = false
+                }
+                expandedGrammarState = !expandedGrammarState
+            }) {
                 InfoGrammar(
                     grammar = viewModel.grammarFieldState.value,
                     gramInDepth1 = viewModel.grammarInD1State.value,
@@ -118,6 +111,23 @@ fun LearningPoint(
                 )
             }
 
+        expandedWordState ->
+
+            Column(modifier = Modifier.padding(horizontal = 16.dp).clickable {
+                if(expandedGrammarState) {
+                    expandedGrammarState = false
+                }
+                expandedWordState = !expandedWordState
+            }) {
+                InfoWord(
+                    word = viewModel.wordFieldState.value,
+                    def = viewModel.wordDefFieldState.value,
+                    wordExKor1 = viewModel.wordExKor1.value,
+                    wordExEng1 = viewModel.wordExEng1.value,
+                    wordExKor2 = viewModel.wordExKor2.value,
+                    wordExEng2 = viewModel.wordExEng2.value
+                )
+            }
     }
 }
 

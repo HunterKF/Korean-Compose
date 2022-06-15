@@ -10,6 +10,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -32,7 +33,8 @@ fun CustomItem(
     practiceCard: PracticeCard,
     navController: NavController,
     expandedState: Boolean,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    focusManager: FocusManager
 ) {
     //For the share sheet
     val appName = "Korean Practice"
@@ -54,74 +56,77 @@ fun CustomItem(
     storedItemsViewModel.searchStoredItem(practiceCard.inputtedSentence)
 
 
-    Card(
-        modifier = Modifier
-            .shadow(2.dp, RoundedCornerShape(16.dp), true)
-            .fillMaxWidth(),
-        shape = RoundedCornerShape(16.dp),
-        onClick = onClick
-    ) {
-        Column(
+    Column(modifier = Modifier.padding(10.dp)) {
+        Card(
             modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
+                .shadow(2.dp, RoundedCornerShape(16.dp), true)
+                .fillMaxWidth(),
+            shape = RoundedCornerShape(16.dp),
+            onClick = onClick
         ) {
-            Row {
-                Column(
-                    modifier = Modifier
-                        .weight(1f),
-                    verticalArrangement = Arrangement.SpaceBetween
-                ) {
-                    Text(
-                        text = practiceCard.word,
-                        color = Color.DarkGray,
-                        fontWeight = FontWeight.Light
-                    )
-                    Spacer(
+            Column(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth()
+            ) {
+                Row {
+                    Column(
                         modifier = Modifier
-                            .height(10.dp)
+                            .weight(1f),
+                        verticalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Text(
+                            text = practiceCard.word,
+                            color = Color.DarkGray,
+                            fontWeight = FontWeight.Light
+                        )
+                        Spacer(
+                            modifier = Modifier
+                                .height(10.dp)
+                        )
+                        Text(
+                            text = practiceCard.grammar,
+                            color = Color.DarkGray,
+                            fontWeight = FontWeight.Light
+                        )
+                    }
+                    Divider(
+                        modifier = Modifier
+                            .width(1.dp)
                     )
                     Text(
-                        text = practiceCard.grammar,
-                        color = Color.DarkGray,
-                        fontWeight = FontWeight.Light
+                        modifier = Modifier
+                            .weight(4f),
+                        text = practiceCard.inputtedSentence,
+                        color = Color.Black,
+                        fontWeight = FontWeight.Medium,
+                        fontSize = 16.sp,
+                        lineHeight = 24.sp,
+                        letterSpacing = 0.15.sp
+
                     )
+
                 }
-                Divider(
-                    modifier = Modifier
-                        .width(1.dp)
-                )
-                Text(
-                    modifier = Modifier
-                        .weight(4f),
-                    text = practiceCard.inputtedSentence,
-                    color = Color.Black,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 16.sp,
-                    lineHeight = 24.sp,
-                    letterSpacing = 0.15.sp
 
-                )
+                if (expandedState) {
+                    Spacer(modifier = Modifier.height(8.dp)/*.animateContentSize()*/)
+                    Row(
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp)
+                            .fillMaxWidth(),
+                        verticalAlignment = Alignment.Bottom,
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
 
-            }
-
-            if (expandedState) {
-                Spacer(modifier = Modifier.height(8.dp)/*.animateContentSize()*/)
-                Row(
-                    modifier = Modifier
-                        .padding(horizontal = 16.dp)
-                        .fillMaxWidth(),
-                    verticalAlignment = Alignment.Bottom,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-
-                    ShareFun(context, shareIntent)
-                    FavoriteFun(practiceCard, searchResults, storedItemsViewModel = storedItemsViewModel)
-                    InfoFun(practiceCard, navController)
+                        ShareFun(context, shareIntent)
+                        FavoriteFun(practiceCard, searchResults, storedItemsViewModel = storedItemsViewModel)
+                        InfoFun(practiceCard, navController)
+                    }
                 }
             }
+
+
         }
-
-
     }
+
 }

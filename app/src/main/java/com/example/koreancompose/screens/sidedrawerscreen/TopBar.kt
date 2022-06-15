@@ -36,8 +36,6 @@ fun TopBar(
     val textState = viewModel.topBarText.value
 
     TopAppBar(
-        modifier = Modifier.clickable(
-        ) { focusManager.clearFocus() },
         title = { Text(text = textState, fontSize = 18.sp) },
         navigationIcon = {
             IconButton(onClick = {
