@@ -92,7 +92,11 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
         var cardState by remember { mutableStateOf(viewModel.itemList) }
         var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
         LazyColumn(state = lazyListState) {
-            println("LazyColumn has recomposed!")
+            if(lazyListState.isScrollInProgress && lazyListState.firstVisibleItemIndex != 0) {
+                println("lazyListState = ${lazyListState.firstVisibleItemIndex}")
+                println("Hello, I'm scrolling!!")
+                focusManager.clearFocus()
+            }
             item {
                 Column(modifier = Modifier.graphicsLayer {
                     scrolledY += lazyListState.firstVisibleItemScrollOffset - previousOffset
@@ -110,11 +114,9 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                             .onFocusChanged { focusState ->
                                 when {
                                     focusState.isFocused -> {
-                                        println("Focused state has fired!")
                                         viewModel.textFieldHeight.value = 100
                                     }
                                     else -> {
-                                        println("Else state has fired!")
                                         viewModel.textFieldHeight.value = 200
                                     }
 
@@ -144,7 +146,6 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
             }
 
             items(getAllData.reversed()) { card ->
-                println("items has fired too!")
                 CustomItem(
                     practiceCard = card,
                     navController = navController,
