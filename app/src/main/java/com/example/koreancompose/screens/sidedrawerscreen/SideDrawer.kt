@@ -12,10 +12,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.koreancompose.Screen
-import com.example.koreancompose.ViewModel
+import com.example.koreancompose.viewmodels.ViewModel
 import kotlinx.coroutines.launch
 
 enum class Items(val label: String, val icon: ImageVector) {

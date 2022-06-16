@@ -1,8 +1,8 @@
 package com.example.koreancompose
 
 import androidx.compose.runtime.*
-import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -10,15 +10,20 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.koreancompose.screens.favoritesscreen.FavoritesScreen
 import com.example.koreancompose.screens.grammarlistscreen.GrammarListScreen
+import com.example.koreancompose.screens.welcomescreen.InstallKeyboardScreen
+import com.example.koreancompose.screens.welcomescreen.WelcomeScreen
 import com.example.koreancompose.screens.wordlistscreen.WordListScreen
 
 @Composable
-fun Navigation() {
-    val navController = rememberNavController()
+fun Navigation(navController: NavHostController, startDestination: String) {
+
 
     val focusManager = LocalFocusManager.current
 
-    NavHost(navController = navController, startDestination = Screen.PracticeScreen.route) {
+    NavHost(navController = navController, startDestination = startDestination) {
+        composable(route = Screen.WelcomeScreen.route) {
+            WelcomeScreen(navController = navController)
+        }
         composable(route = Screen.PracticeScreen.route) {
             PracticeScreen(navController = navController, focusManager = focusManager)
         }
@@ -119,6 +124,11 @@ fun Navigation() {
             route = Screen.GrammarListScreen.route
         ) {
             GrammarListScreen(navController = navController, focusManager = focusManager)
+        }
+        composable(
+            route = Screen.InstallKeyboardScreen.route
+        ) {
+            InstallKeyboardScreen()
         }
     }
 }

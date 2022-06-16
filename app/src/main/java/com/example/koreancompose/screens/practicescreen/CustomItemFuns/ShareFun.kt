@@ -2,6 +2,8 @@ package com.example.koreancompose.screens.practicescreen.CustomItemFuns
 
 import android.content.Context
 import android.content.Intent
+import android.provider.Settings.ACTION_DISPLAY_SETTINGS
+import android.provider.Settings.ACTION_HARD_KEYBOARD_SETTINGS
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons

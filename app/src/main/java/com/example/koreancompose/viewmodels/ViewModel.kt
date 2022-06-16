@@ -1,12 +1,13 @@
-package com.example.koreancompose
+package com.example.koreancompose.viewmodels
 
 import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
+import com.example.koreancompose.TAG
 import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.model.ModelJSONWord
 
-class ViewModel : ViewModel() {
+open class ViewModel : ViewModel() {
 
     private val wordModelJSONWord = ModelJSONWord()
 

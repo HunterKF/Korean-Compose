@@ -23,6 +23,7 @@ import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 import com.example.koreancompose.screens.practicescreen.LearningPoint
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
+import com.example.koreancompose.viewmodels.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -133,9 +134,6 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                     cardState = cardState + listOf(PracticeCard)
                 }
             }
-//            item {
-//                Spacer(modifier = Modifier.height(16.dp))
-//            }
 
             items(getAllData.reversed()) { card ->
                 CustomItem(
@@ -148,7 +146,6 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                         focusManager.clearFocus()
                     },
                 )
-//                Spacer(Modifier.size(10.dp))
             }
 
         }

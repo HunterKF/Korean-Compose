@@ -12,7 +12,7 @@ import androidx.navigation.NavController
 import com.example.koreancompose.*
 import com.example.koreancompose.R
 import com.example.koreancompose.database.StoredItem
-import com.example.koreancompose.database.StoredItemsViewModel
+import com.example.koreancompose.viewmodels.StoredItemsViewModel
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 
 

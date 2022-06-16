@@ -1,4 +1,4 @@
-package com.example.koreancompose.database
+package com.example.koreancompose.viewmodels
 
 import android.app.Application
 import androidx.compose.runtime.mutableStateOf
@@ -6,6 +6,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.koreancompose.database.StoredItem
+import com.example.koreancompose.database.StoredItemDatabase
+import com.example.koreancompose.database.StoredItemsRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

@@ -1,8 +1,6 @@
 package com.example.koreancompose.screens.practicescreen.CustomItemFuns
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
@@ -15,7 +13,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import com.example.koreancompose.database.StoredItem
-import com.example.koreancompose.database.StoredItemsViewModel
+import com.example.koreancompose.viewmodels.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
 import kotlinx.coroutines.*
 

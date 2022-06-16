@@ -6,6 +6,8 @@ sealed class Screen(val route: String) {
     object FavoritesScreen : Screen("favorites_screen")
     object WordListScreen : Screen("word_list_screen")
     object GrammarListScreen : Screen("grammar_list_screen")
+    object WelcomeScreen : Screen("welcome_screen")
+    object InstallKeyboardScreen : Screen("install_keyboard_screen")
 
     fun withArgs(vararg args: String): String {
         return buildString {

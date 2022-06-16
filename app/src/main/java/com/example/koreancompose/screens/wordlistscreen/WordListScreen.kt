@@ -137,7 +137,7 @@ fun WordListLazyItem(
             ) {
                 ExampleW(wordListItem.dataWords[index].wordExKor1)
                 ExampleW(wordListItem.dataWords[index].wordExEng1)
-                ExampleW(wordListItem.dataWords[index].wordExKor1)
+                ExampleW(wordListItem.dataWords[index].wordExKor2)
                 ExampleW(wordListItem.dataWords[index].wordExEng2)
                 Spacer(modifier = Modifier.padding(bottom = 8.dp))
             }

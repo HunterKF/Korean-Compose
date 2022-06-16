@@ -17,15 +17,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.koreancompose.database.StoredItem
-import com.example.koreancompose.database.StoredItemsViewModel
+import com.example.koreancompose.viewmodels.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.FavoriteFun
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.InfoFun
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.ShareFun
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
