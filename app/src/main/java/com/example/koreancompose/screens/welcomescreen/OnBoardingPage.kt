@@ -24,14 +24,4 @@ sealed class OnBoardingPage(
         title = "Ready to practice?",
         description = "Let's go!"
     )
-    object Gboard : OnBoardingPage(
-        image = R.drawable.google_gboard_logo,
-        title = "Need gboard?",
-        description = "I'm hungry..."
-    )
-    object KeyboardSetting : OnBoardingPage(
-        image = R.drawable.google_gboard_logo,
-        title = "Let's set up the keyboard",
-        description = "I'm still hungry..."
-    )
 }

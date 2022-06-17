@@ -28,11 +28,13 @@ class SplashViewModel @Inject constructor(
         viewModelScope.launch {
             repository.readOnBoardingState().collect { completed ->
                 if (completed) {
-                    _startDestination.value = Screen.PracticeScreen.route
+                    /*THIS SHOULD BE PRACTICESCREEN!!!!*/
+                    _startDestination.value = Screen.WelcomeScreen.route
                 } else {
                     _startDestination.value = Screen.WelcomeScreen.route
                 }
             }
+
             _isLoading.value = false
         }
     }

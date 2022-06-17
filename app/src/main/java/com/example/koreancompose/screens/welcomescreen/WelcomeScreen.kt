@@ -42,9 +42,6 @@ fun WelcomeScreen(
 
     val pagerState = rememberPagerState()
 
-    val context = LocalContext.current
-    val intent = Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)
-
     Column(modifier = Modifier.fillMaxSize()) {
         //Holds the 3 pages
         HorizontalPager(
@@ -66,7 +63,6 @@ fun WelcomeScreen(
         KeyboardButton(
             modifier = Modifier.weight(1f),
             pagerState = pagerState) {
-//            context.startActivity(intent)
             navController.navigate(Screen.InstallKeyboardScreen.route)
         }
         FinishButton(
@@ -142,7 +138,7 @@ fun FinishButton(
                     contentColor = Color.White
                 )
             ) {
-                Text(text = "Go to Keyboard Setting")
+                Text(text = "Start now!")
             }
         }
     }

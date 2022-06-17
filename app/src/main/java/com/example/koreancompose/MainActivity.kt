@@ -38,7 +38,6 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 LoadJsonWords()
                 LoadJsonGrammar()
-//                WelcomeScreen(navController = navController)
                 Navigation(navController = navController, startDestination = screen)
             }
         }
