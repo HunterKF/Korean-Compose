@@ -6,6 +6,7 @@ import android.provider.Settings
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
@@ -42,7 +43,7 @@ fun WelcomeScreen(
 
     val pagerState = rememberPagerState()
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
         //Holds the 3 pages
         HorizontalPager(
             modifier = Modifier.weight(10f),
@@ -52,6 +53,8 @@ fun WelcomeScreen(
         ) { position ->
             PagerScreen(onBoardingPage = pages[position])
         }
+        Spacer(modifier = Modifier.weight(1f))
+
         //Represents the 3 circles when you move from 1 page to the next
         HorizontalPagerIndicator(
             modifier = Modifier
@@ -60,19 +63,24 @@ fun WelcomeScreen(
             pagerState = pagerState
         )
 
-        KeyboardButton(
-            modifier = Modifier.weight(1f),
-            pagerState = pagerState) {
-            navController.navigate(Screen.InstallKeyboardScreen.route)
-        }
+
         FinishButton(
             modifier = Modifier.weight(1f),
             pagerState = pagerState
         ) {
-            welcomeViewModel.saveOnBoardingState(completed = true)
-            navController.popBackStack()
-            navController.navigate(Screen.PracticeScreen.route)
+            when (pagerState.currentPage) {
+                2 -> {
+                    welcomeViewModel.saveOnBoardingState(completed = true)
+                    navController.popBackStack()
+                    navController.navigate(Screen.PracticeScreen.route)
+                }
+                1 -> {
+                    navController.navigate(Screen.InstallKeyboardScreen.route)
+                }
+            }
+
         }
+        Spacer(modifier = Modifier.weight(1f))
     }
 
 
@@ -88,7 +96,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
     ) {
         Image(
             modifier = Modifier
-                .fillMaxWidth(0.5f)
+                .fillMaxWidth(0.9f)
                 .fillMaxHeight(0.7f),
             painter = painterResource(id = onBoardingPage.image),
             contentDescription = "Pager Image"
@@ -97,7 +105,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
             modifier = Modifier
                 .fillMaxWidth(),
             text = onBoardingPage.title,
-            fontSize = MaterialTheme.typography.bodyMedium.fontSize,
+            fontSize = MaterialTheme.typography.headlineMedium.fontSize,
             fontWeight = FontWeight.Bold,
             textAlign = TextAlign.Center
         )
@@ -107,7 +115,7 @@ fun PagerScreen(onBoardingPage: OnBoardingPage) {
                 .padding(horizontal = 40.dp)
                 .padding(top = 20.dp),
             text = onBoardingPage.description,
-            fontSize = MaterialTheme.typography.bodySmall.fontSize,
+            fontSize = MaterialTheme.typography.bodyLarge.fontSize,
             fontWeight = FontWeight.Medium,
             textAlign = TextAlign.Center
         )
@@ -130,7 +138,7 @@ fun FinishButton(
     ) {
         AnimatedVisibility(
             modifier = Modifier.fillMaxWidth(),
-            visible = pagerState.currentPage == 2
+            visible = pagerState.currentPage == 2 || pagerState.currentPage == 1
         ) {
             Button(
                 onClick = onClick,
@@ -138,7 +146,7 @@ fun FinishButton(
                     contentColor = Color.White
                 )
             ) {
-                Text(text = "Start now!")
+                Text(text = if (pagerState.currentPage == 1) "Add keyboard" else "Start now!")
             }
         }
     }

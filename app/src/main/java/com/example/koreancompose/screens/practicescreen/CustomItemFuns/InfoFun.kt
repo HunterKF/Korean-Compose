@@ -1,6 +1,5 @@
 package com.example.koreancompose.screens.practicescreen.CustomItemFuns
 
-import android.util.Log
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
@@ -12,7 +11,6 @@ import androidx.compose.ui.draw.alpha
 import androidx.navigation.NavController
 import com.example.koreancompose.Screen
 import com.example.koreancompose.model.PracticeCard
-import com.example.koreancompose.translate.TranslateViewModel
 
 @Composable
 fun InfoFun(practiceCard: PracticeCard, navController: NavController) {

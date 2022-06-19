@@ -17,4 +17,6 @@ class WelcomeViewModel @Inject constructor(
             repository.saveOnBoardingState(completed = completed)
         }
     }
+
+
 }

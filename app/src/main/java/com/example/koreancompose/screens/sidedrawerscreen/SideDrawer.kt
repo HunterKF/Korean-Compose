@@ -1,6 +1,7 @@
 package com.example.koreancompose.screens.sidedrawerscreen
 
 import android.util.Log
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -10,9 +11,13 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.koreancompose.R
 import com.example.koreancompose.Screen
 import com.example.koreancompose.viewmodels.ViewModel
 import kotlinx.coroutines.launch
@@ -20,8 +25,8 @@ import kotlinx.coroutines.launch
 enum class Items(val label: String, val icon: ImageVector) {
     Practice(label = "Practice", Icons.Default.Edit),
     Favorites(label = "Favorites", Icons.Default.Home),
-    Words(label = "Words", Icons.Default.Email),
-    Grammar(label = "Grammar", Icons.Default.Favorite)
+    Words(label = "Words", Icons.Default.Email)/*,
+    Grammar(label = "Grammar", Icons.Default.Favorite)*/
 }
 @Composable
 fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewModel: ViewModel) {
@@ -36,27 +41,23 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewM
                 .padding(16.dp))
             Body(items = Items.values().toList(), ) {
                 when(it) {
-                    Items.Grammar -> {
+                    /*Items.Grammar -> {
                         navController.navigate(Screen.GrammarListScreen.route)
                         viewModel.topBarText.value = "Grammar"
-                        Log.d("SideDrawer", "The current value of topBarText is: ${viewModel.topBarText.value}")
-                    }
+                    }*/
                     Items.Favorites -> {
                         navController.navigate(Screen.FavoritesScreen.route)
                         viewModel.topBarText.value = "Favorites"
-                        Log.d("SideDrawer", "The current value of topBarText is: ${viewModel.topBarText.value}")
 
                     }
                     Items.Words -> {
                         navController.navigate(Screen.WordListScreen.route)
                         viewModel.topBarText.value = "Words"
-                        Log.d("SideDrawer", "The current value of topBarText is: ${viewModel.topBarText.value}")
 
                     }
                     Items.Practice -> {
                         navController.navigate(Screen.PracticeScreen.route)
                         viewModel.topBarText.value = "Practice"
-                        Log.d("SideDrawer", "The current value of topBarText is: ${viewModel.topBarText.value}")
 
                     }
                 }
@@ -91,9 +92,9 @@ fun Header(modifier: Modifier = Modifier) {
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
-        Icon(imageVector = Icons.Default.Person, contentDescription = null)
+        Image(modifier = Modifier.size(200.dp), painter = painterResource(R.drawable._12_512), contentDescription = null)
         Spacer(modifier = Modifier.size(4.dp))
-        Text(text = "My Account")
+//        Text(text = "My Account")
     }
 }
 
