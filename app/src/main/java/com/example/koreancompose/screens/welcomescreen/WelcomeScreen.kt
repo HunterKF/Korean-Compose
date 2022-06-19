@@ -43,6 +43,8 @@ fun WelcomeScreen(
 
     val pagerState = rememberPagerState()
 
+
+
     Column(modifier = Modifier.fillMaxSize().background(color = Color.White)) {
         //Holds the 3 pages
         HorizontalPager(
@@ -88,6 +90,7 @@ fun WelcomeScreen(
 
 @Composable
 fun PagerScreen(onBoardingPage: OnBoardingPage) {
+
     Column(
         modifier = Modifier
             .fillMaxWidth(),
@@ -152,35 +155,6 @@ fun FinishButton(
     }
 }
 
-@ExperimentalAnimationApi
-@ExperimentalPagerApi
-@Composable
-fun KeyboardButton(
-    modifier: Modifier,
-    pagerState: PagerState,
-    onClick: () -> Unit
-) {
-    Row(
-        modifier = modifier
-            .padding(horizontal = 40.dp),
-        verticalAlignment = Alignment.Top,
-        horizontalArrangement = Arrangement.Center
-    ) {
-        AnimatedVisibility(
-            modifier = Modifier.fillMaxWidth(),
-            visible = pagerState.currentPage == 0
-        ) {
-            Button(
-                onClick = onClick,
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = Color.White
-                )
-            ) {
-                Text(text = "Go to Keyboard Settings")
-            }
-        }
-    }
-}
 
 @Composable
 @Preview(showBackground = true)

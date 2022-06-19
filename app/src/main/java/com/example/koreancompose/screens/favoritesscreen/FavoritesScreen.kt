@@ -2,6 +2,7 @@ package com.example.koreancompose.screens.favoritesscreen
 
 import android.annotation.SuppressLint
 import android.app.Application
+import androidx.activity.compose.BackHandler
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -50,6 +51,9 @@ fun FavoritesScreen(
         },
     ) {
         SwipeTest(allItems as MutableList<StoredItem>, navController = navController)
+    }
+    BackHandler {
+        navController.navigate(Screen.PracticeScreen.route)
     }
 }
 

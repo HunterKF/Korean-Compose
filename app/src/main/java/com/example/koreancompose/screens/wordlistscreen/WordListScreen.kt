@@ -1,5 +1,6 @@
 package com.example.koreancompose.screens.wordlistscreen
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -75,6 +76,9 @@ fun WordListScreen(navController: NavHostController, focusManager: FocusManager)
             }
         }
     }
+    BackHandler {
+        navController.navigate(Screen.PracticeScreen.route)
+    }
 
 
 }
@@ -149,6 +153,7 @@ fun WordListLazyItem(
                 .height(1.dp)
         )
     }
+
 
 }
 

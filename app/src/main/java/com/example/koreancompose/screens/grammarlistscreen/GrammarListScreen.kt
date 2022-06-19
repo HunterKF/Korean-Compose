@@ -1,5 +1,6 @@
 package com.example.koreancompose.screens.grammarlistscreen
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -21,10 +22,8 @@ import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.example.koreancompose.ExampleG
-import com.example.koreancompose.LoadJSON
+import com.example.koreancompose.*
 import com.example.koreancompose.R
-import com.example.koreancompose.TopBar
 import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 
@@ -78,6 +77,9 @@ fun GrammarListScreen(navController: NavController, focusManager: FocusManager) 
                 GrammarListLazyItem(index = index, grammarListItem = grammarListItem)
             }
         }
+    }
+    BackHandler {
+        navController.navigate(Screen.PracticeScreen.route)
     }
 }
 

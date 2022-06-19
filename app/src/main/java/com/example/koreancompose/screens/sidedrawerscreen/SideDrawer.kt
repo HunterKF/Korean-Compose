@@ -25,8 +25,8 @@ import kotlinx.coroutines.launch
 enum class Items(val label: String, val icon: ImageVector) {
     Practice(label = "Practice", Icons.Default.Edit),
     Favorites(label = "Favorites", Icons.Default.Home),
-    Words(label = "Words", Icons.Default.Email)/*,
-    Grammar(label = "Grammar", Icons.Default.Favorite)*/
+    Words(label = "Words", Icons.Default.Email),
+    Grammar(label = "Grammar", Icons.Default.Favorite)
 }
 @Composable
 fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewModel: ViewModel) {
@@ -41,10 +41,10 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewM
                 .padding(16.dp))
             Body(items = Items.values().toList(), ) {
                 when(it) {
-                    /*Items.Grammar -> {
+                    Items.Grammar -> {
                         navController.navigate(Screen.GrammarListScreen.route)
                         viewModel.topBarText.value = "Grammar"
-                    }*/
+                    }
                     Items.Favorites -> {
                         navController.navigate(Screen.FavoritesScreen.route)
                         viewModel.topBarText.value = "Favorites"
