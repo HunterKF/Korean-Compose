@@ -114,8 +114,3 @@ fun Body(items:List<Items>, onClickItem: (Items) -> Unit) {
 
     }
 }
-//@Preview(showSystemUi = true)
-//@Composable
-//fun preview() {
-//    SideDrawer()
-//}

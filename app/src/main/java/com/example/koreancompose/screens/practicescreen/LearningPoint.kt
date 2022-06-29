@@ -1,6 +1,7 @@
 package com.example.koreancompose.screens.practicescreen
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -10,11 +11,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.koreancompose.InfoGrammar
 import com.example.koreancompose.InfoWord
+import com.example.koreancompose.ui.theme.Shapes
 import com.example.koreancompose.viewModel
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -28,11 +32,11 @@ fun LearningPoint(
     val rotateStateWord by animateFloatAsState(targetValue = if (expandedWordState) 180f else 0f)
     val rotateStateGrammar by animateFloatAsState(targetValue = if (expandedGrammarState) 180f else 0f)
 
-    Column {
+    Column(modifier = Modifier.clip(shape = Shapes.large)) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly,
             verticalAlignment = Alignment.CenterVertically
         ) {

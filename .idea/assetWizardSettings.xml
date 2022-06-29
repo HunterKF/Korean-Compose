@@ -24,7 +24,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Hunte\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -67,7 +67,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="imagePath" value="C:\Users\Hunte\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -79,8 +79,9 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Hunte\OneDrive\Documents\KoreanCompose Logo\icon png.png" />
-                                                <entry key="scalingPercent" value="46" />
+                                                <entry key="imagePath" value="$USER_HOME$/Documents/Korean Compose/Korean Compose Logo/icon png.png" />
+                                                <entry key="scalingPercent" value="76" />
+                                                <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -130,7 +131,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Hunte\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -174,7 +175,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="C:\Users\Hunte\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -238,7 +239,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="imagePath" value="C:\Users\Hunte\AppData\Local\Temp\ic_android_black_24dp.xml" />
+                                                <entry key="imagePath" value="/private/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/ic_android_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>

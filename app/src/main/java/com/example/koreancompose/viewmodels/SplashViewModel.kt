@@ -29,7 +29,7 @@ class SplashViewModel @Inject constructor(
             repository.readOnBoardingState().collect { completed ->
                 if (completed) {
                     /*THIS SHOULD BE PRACTICESCREEN!!!!*/
-                    _startDestination.value = Screen.WelcomeScreen.route
+                    _startDestination.value = Screen.PracticeScreen.route
                 } else {
                     _startDestination.value = Screen.WelcomeScreen.route
                 }

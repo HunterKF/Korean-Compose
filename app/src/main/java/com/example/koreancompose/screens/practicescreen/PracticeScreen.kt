@@ -72,7 +72,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                 focusManager = focusManager
             )
         },
-        drawerBackgroundColor = colorResource(id = R.color.purple_200),
+        drawerBackgroundColor = MaterialTheme.colors.primaryVariant,
         // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
         drawerContent = {
             SideDrawer(
@@ -85,7 +85,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
         var cardState by remember { mutableStateOf(viewModel.itemList) }
         var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
-        LazyColumn(state = lazyListState) {
+        LazyColumn(state = lazyListState, modifier = Modifier.padding(horizontal = 16.dp)) {
 
             if(lazyListState.isScrollInProgress && lazyListState.firstVisibleItemIndex != 0) {
                 focusManager.clearFocus()
@@ -101,29 +101,29 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                         learningPointGrammar = viewModel.grammarFieldState.value
                     )
 
-                    TextField(
-                        viewModel.textFieldHeight.value,
-                        modifier = Modifier
-                            .onFocusChanged { focusState ->
-                                when {
-                                    focusState.isFocused -> {
-                                        viewModel.textFieldHeight.value = 100
-                                    }
-                                    else -> {
-                                        viewModel.textFieldHeight.value = 200
-                                    }
 
-                                }
-                            }
-                            .fillMaxSize()
-                            .focusRequester(focusRequester)
-                    )
                 }
 
             }
 
             item {
+                TextField(
+                    viewModel.textFieldHeight.value,
+                    modifier = Modifier
+                        .onFocusChanged { focusState ->
+                            when {
+                                focusState.isFocused -> {
+                                    viewModel.textFieldHeight.value = 100
+                                }
+                                else -> {
+                                    viewModel.textFieldHeight.value = 200
+                                }
 
+                            }
+                        }
+                        .fillMaxSize()
+                        .focusRequester(focusRequester)
+                )
             }
             stickyHeader {
                 EnterButton(
