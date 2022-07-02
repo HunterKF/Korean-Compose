@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -53,12 +54,10 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewM
                     Items.Words -> {
                         navController.navigate(Screen.WordListScreen.route)
                         viewModel.topBarText.value = "Words"
-
                     }
                     Items.Practice -> {
                         navController.navigate(Screen.PracticeScreen.route)
                         viewModel.topBarText.value = "Practice"
-
                     }
                 }
                 scope.launch {

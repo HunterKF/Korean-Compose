@@ -5,18 +5,22 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 
 private val DarkColorPalette = darkColors(
     primary = PrimaryDarkOrange,
     primaryVariant = Color.Red,
-    secondary =  Color.Red
+    background = SurfaceColorWhite,
+    secondary = Color.Red
 )
 
 private val LightColorPalette = lightColors(
     primary = PrimaryOrange,
-    primaryVariant =  Color.Red,
-    secondary =  Color.Red
+    primaryVariant = Color.Red,
+    background = SurfaceColorWhite,
+    surface = SurfaceColorWhite,
+    secondary = Color.Red
 
 
     /* Other default colors to override
@@ -39,11 +43,14 @@ fun KoreanComposeTheme(
     } else {
         LightColorPalette
     }
+    CompositionLocalProvider(LocalSpacing provides Spacing(), LocalElevation provides Elevation()) {
+        MaterialTheme(
+            colors = colors,
+            typography = Typography,
+            shapes = Shapes,
+            content = content
+        )
+    }
 
-    MaterialTheme(
-        colors = colors,
-        typography = Typography,
-        shapes = Shapes,
-        content = content
-    )
+
 }

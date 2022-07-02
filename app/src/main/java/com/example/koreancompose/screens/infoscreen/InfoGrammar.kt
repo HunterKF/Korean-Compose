@@ -8,123 +8,109 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.koreancompose.ui.theme.spacing
 
 
 @Composable
 fun InfoGrammar(
-    grammar: String?,
-    gramInDepth1: String?,
-    inDepth1ExKor: String?,
-    inDepth1ExEng: String?,
+    grammar: String,
+    gramInDepth1: String,
+    inDepth1ExKor: String,
+    inDepth1ExEng: String,
     gramInDepth2: String?,
-    inDepth2ExKor: String?,
-    inDepth2ExEng: String?
+    inDepth2ExKor: String,
+    inDepth2ExEng: String
 ) {
     Column(
         modifier = Modifier
+            .padding(MaterialTheme.spacing.medium)
             .fillMaxWidth()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 12.dp),
+                .padding(
+                    bottom = MaterialTheme.spacing.small,
+                    end = MaterialTheme.spacing.small,
+                    start = MaterialTheme.spacing.small
+                ),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (grammar != null) {
-                Text(
-                    fontSize = MaterialTheme.typography.h4.fontSize,
-                    fontWeight = FontWeight.Bold,
-                    text = grammar
-                )
-            }
-            if (gramInDepth1 != null) {
-                Text(
-                    fontSize = MaterialTheme.typography.h6.fontSize,
-                    text = viewModel.infoGrammarType.value
-                )
-            }
+            Text(
+                style = MaterialTheme.typography.body2,
+                text = grammar
+            )
         }
         Divider(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(2.dp),
-            color = Color.Black
+                .padding(vertical = MaterialTheme.spacing.small)
+                .height(0.5.dp),
+            color = Color.LightGray
         )
-        Row(
+
+        Column(
             modifier = Modifier
-                .height(IntrinsicSize.Min)
-                .padding(vertical = 16.dp, horizontal = 12.dp)
-
+                .padding(MaterialTheme.spacing.small)
         ) {
-            Divider(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .width(4.dp),
-                color = Color.Gray
+            ExampleGInfo(
+                gramInDepth1,
+                inDepth1ExKor,
+                inDepth1ExEng
             )
-            Column(
-                modifier = Modifier
-                    .padding(start = 12.dp)
-            ) {
-
-
-                ExampleG(
-                    gramInDepth1.toString(),
-                    inDepth1ExKor!!,
-                    inDepth1ExEng!!
+        }
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(0.5.dp),
+            color = Color.LightGray
+        )
+        Column(
+            modifier = Modifier
+                .padding(
+                    start = MaterialTheme.spacing.small,
+                    end = MaterialTheme.spacing.small,
+                    top = MaterialTheme.spacing.small
                 )
-
-
-                ExampleG(
-                    gramInDepth2.toString(),
-                    inDepth2ExKor!!,
-                    inDepth2ExEng!!
-                )
-
-            }
-
+        ) {
+            ExampleGInfo(
+                gramInDepth2.toString(),
+                inDepth2ExKor,
+                inDepth2ExEng
+            )
         }
     }
-
 }
 
 
 @Composable
-fun ExampleG(
-    grammarExplanation1: String,
-    learningKoreanPoint1: String,
-    learningEnglishPoint1: String
+fun ExampleGInfo(
+    grammarExplanation: String,
+    learningKoreanPoint: String,
+    learningEnglishPoint: String
 ) {
-    if (grammarExplanation1 != "null") {
+    if (grammarExplanation != "null") {
         Text(
             modifier = Modifier.padding(vertical = 2.dp),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Normal,
-            color = Color.DarkGray,
-            text = grammarExplanation1
+            style = MaterialTheme.typography.body2,
+            text = grammarExplanation
         )
     }
 
     Column(
-        modifier = Modifier.padding(start = 12.dp)
+        modifier = Modifier.padding(MaterialTheme.spacing.small)
     ) {
         Text(
             modifier = Modifier.padding(vertical = 2.dp),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Light,
-            color = Color.DarkGray,
-            text = learningKoreanPoint1
+            style = MaterialTheme.typography.h3,
+            text = learningKoreanPoint
         )
         Text(
             modifier = Modifier.padding(vertical = 2.dp),
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Light,
-            color = Color.DarkGray,
-            text = learningEnglishPoint1
+            style = MaterialTheme.typography.body2,
+            text = learningEnglishPoint
         )
     }
 

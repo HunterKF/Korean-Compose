@@ -7,22 +7,28 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 import com.example.koreancompose.screens.practicescreen.LearningPoint
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
+import com.example.koreancompose.ui.theme.Shapes
+import com.example.koreancompose.ui.theme.elevation
+import com.example.koreancompose.ui.theme.spacing
 import com.example.koreancompose.viewmodels.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -63,6 +69,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
     var previousOffset = 0
 
     Scaffold(
+        Modifier.background(MaterialTheme.colors.background),
         scaffoldState = scaffoldState,
         topBar = {
             TopBar(
@@ -85,17 +92,25 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
         var cardState by remember { mutableStateOf(viewModel.itemList) }
         var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
-        LazyColumn(state = lazyListState, modifier = Modifier.padding(horizontal = 16.dp)) {
+        LazyColumn(
+            state = lazyListState,
+            modifier = Modifier.padding(vertical = MaterialTheme.spacing.small, horizontal = MaterialTheme.spacing.medium)
+        ) {
 
-            if(lazyListState.isScrollInProgress && lazyListState.firstVisibleItemIndex != 0) {
+            if (lazyListState.isScrollInProgress && lazyListState.firstVisibleItemIndex != 0) {
                 focusManager.clearFocus()
             }
             item {
-                Column(modifier = Modifier.graphicsLayer {
-                    scrolledY += lazyListState.firstVisibleItemScrollOffset - previousOffset
-                    translationY = scrolledY * 0.1f
-                    previousOffset = lazyListState.firstVisibleItemScrollOffset
-                }) {
+                Column(modifier = Modifier
+                    .padding(vertical = MaterialTheme.spacing.small)
+                    .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(10.dp))
+                    .clip(shape = RoundedCornerShape(10.dp))
+                    .background(color = Color.White)
+                    .graphicsLayer {
+                        scrolledY += lazyListState.firstVisibleItemScrollOffset - previousOffset
+                        translationY = scrolledY * 0.1f
+                        previousOffset = lazyListState.firstVisibleItemScrollOffset
+                    }) {
                     LearningPoint(
                         learningPointWord = viewModel.wordFieldState.value,
                         learningPointGrammar = viewModel.grammarFieldState.value
@@ -110,6 +125,10 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                 TextField(
                     viewModel.textFieldHeight.value,
                     modifier = Modifier
+                        .padding(vertical = MaterialTheme.spacing.medium)
+                        .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(10.dp))
+                        .clip(shape = RoundedCornerShape(10.dp))
+                        .background(Color.White)
                         .onFocusChanged { focusState ->
                             when {
                                 focusState.isFocused -> {
@@ -127,6 +146,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
             }
             stickyHeader {
                 EnterButton(
+                    modifier = Modifier,
                     focusRequester = focusRequester,
                     coroutineScope = coroutineScope,
                     lazyListState = lazyListState
@@ -137,6 +157,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
             items(getAllData.reversed()) { card ->
                 CustomItem(
+                    modifier = Modifier,
                     practiceCard = card,
                     navController = navController,
                     focusManager = focusManager,
@@ -159,9 +180,10 @@ fun TextField(textFieldHeight: Int, modifier: Modifier) {
     TextField(
         modifier = modifier
             .height(textFieldHeight.dp),
+        colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
         value = viewModel.textFieldState.value,
         label = {
-            Text("Start typing now...")
+            Text(if (textFieldHeight == 200) "Type here..." else "")
         },
         onValueChange = { newValue ->
             viewModel.onTextFieldChange(newValue)
@@ -171,6 +193,7 @@ fun TextField(textFieldHeight: Int, modifier: Modifier) {
 
 @Composable
 fun EnterButton(
+    modifier: Modifier,
     focusRequester: FocusRequester,
     coroutineScope: CoroutineScope,
     lazyListState: LazyListState,
@@ -178,8 +201,10 @@ fun EnterButton(
 
     ) {
     Button(modifier = Modifier
+        .padding(vertical = MaterialTheme.spacing.small)
+        .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(10.dp))
+        .clip(shape = RoundedCornerShape(10.dp))
         .fillMaxWidth()
-        .background(color = Color.Blue)
         .height(50.dp),
         onClick = {
 
@@ -251,7 +276,7 @@ fun EnterButton(
 
         }
     ) {
-        Text(text = if (lazyListState.firstVisibleItemIndex == 0) "Enter" else "Back to top")
+        Text(text = if (lazyListState.firstVisibleItemIndex == 0) "Save" else "Back to top")
     }
 }
 

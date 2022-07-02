@@ -10,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.koreancompose.ui.theme.spacing
 import com.example.koreancompose.viewmodels.TranslateViewModel
 
 @Composable
@@ -19,16 +20,14 @@ fun InfoSentence(textFieldState: String) {
 //This is the function to use papago. Everything works, but don't turn it on unless you really have to.
 //    translateViewModel.translateText(textFieldState)
 
-    Column(modifier = Modifier.padding(bottom = 12.dp)) {
+    Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         Text(
-            fontSize = MaterialTheme.typography.h6.fontSize,
-            fontWeight = FontWeight.Medium,
-            text = "$textFieldState"
+            style = MaterialTheme.typography.h3,
+            text = textFieldState
         )
         Spacer(modifier = Modifier.height(12.dp))
         Text(
-            fontSize = MaterialTheme.typography.h6.fontSize,
-            fontWeight = FontWeight.Medium,
+            style = MaterialTheme.typography.body2,
             text = translateViewModel.translatedTextTVM.value
         )
 

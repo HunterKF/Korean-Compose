@@ -4,8 +4,13 @@ import android.content.Context
 import android.widget.Toast
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -49,8 +54,8 @@ fun FavoriteFun(
         }) {
 
         Icon(
-            tint = if (practiceCard.isClicked.value) Color.Red else Color.DarkGray,
-            imageVector = Icons.Default.Favorite,
+            tint = MaterialTheme.colors.primary,
+            imageVector = if (practiceCard.isClicked.value) Icons.Outlined.Favorite else Icons.Default.FavoriteBorder,
             contentDescription = "Favorite"
         )
     }

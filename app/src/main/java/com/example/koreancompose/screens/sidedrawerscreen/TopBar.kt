@@ -48,20 +48,4 @@ fun TopBar(
             }
         }
     }
-//    TopAppBar(
-//        modifier = Modifier.background(Color.Black),
-//        title = { Text(text = textState, fontSize = 18.sp)} ,
-//        navigationIcon = {
-//            IconButton(onClick = {
-//                focusManager.clearFocus()
-//                scope.launch {
-//                    scaffoldState.drawerState.open()
-//                }
-//            }) {
-//                Icon(Icons.Filled.Menu, "")
-//            }
-//        },
-//        backgroundColor = colorResource(id = R.color.white),
-//        contentColor = Color.Black
-//    )
 }

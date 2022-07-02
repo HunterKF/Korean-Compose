@@ -2,6 +2,7 @@ package com.example.koreancompose
 
 import android.app.Application
 import android.content.Intent
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -9,6 +10,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
@@ -22,6 +24,9 @@ import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.FavoriteFun
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.InfoFun
 import com.example.koreancompose.screens.practicescreen.CustomItemFuns.ShareFun
+import com.example.koreancompose.ui.theme.Typography
+import com.example.koreancompose.ui.theme.elevation
+import com.example.koreancompose.ui.theme.spacing
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -30,7 +35,8 @@ fun CustomItem(
     navController: NavController,
     expandedState: Boolean,
     onClick: () -> Unit,
-    focusManager: FocusManager
+    focusManager: FocusManager,
+    modifier: Modifier
 ) {
     //For the share sheet
     val appName = "Korean Practice"
@@ -52,60 +58,37 @@ fun CustomItem(
     storedItemsViewModel.searchStoredItem(practiceCard.inputtedSentence)
 
 
-    Column(modifier = Modifier.padding(10.dp)) {
+    Column(
+        modifier = Modifier
+            .padding(vertical = MaterialTheme.spacing.small)
+            .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(16.dp))
+            .clip(shape = RoundedCornerShape(10.dp))
+    ) {
         Card(
             modifier = Modifier
-                .shadow(2.dp, RoundedCornerShape(16.dp), true)
                 .fillMaxWidth(),
-            shape = RoundedCornerShape(16.dp),
+            backgroundColor = Color.White,
+            shape = RoundedCornerShape(10.dp),
             onClick = onClick
         ) {
             Column(
                 modifier = Modifier
-                    .padding(16.dp)
+                    .padding(MaterialTheme.spacing.medium)
                     .fillMaxWidth()
             ) {
-                Row {
-                    Column(
-                        modifier = Modifier
-                            .weight(1f),
-                        verticalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Text(
-                            text = practiceCard.word,
-                            color = Color.DarkGray,
-                            fontWeight = FontWeight.Light
-                        )
-                        Spacer(
-                            modifier = Modifier
-                                .height(10.dp)
-                        )
-                        Text(
-                            text = practiceCard.grammar,
-                            color = Color.DarkGray,
-                            fontWeight = FontWeight.Light
-                        )
-                    }
-                    Divider(
-                        modifier = Modifier
-                            .width(1.dp)
-                    )
-                    Text(
-                        modifier = Modifier
-                            .weight(4f),
-                        text = practiceCard.inputtedSentence,
-                        color = Color.Black,
-                        fontWeight = FontWeight.Medium,
-                        fontSize = 16.sp,
-                        lineHeight = 24.sp,
-                        letterSpacing = 0.15.sp
 
-                    )
+                Text(
+                    modifier = Modifier,
+                    text = practiceCard.inputtedSentence,
+                    style = MaterialTheme.typography.body2
 
-                }
+                )
+
+
 
                 if (expandedState) {
-                    Spacer(modifier = Modifier.height(8.dp)/*.animateContentSize()*/)
+                    Spacer(modifier = Modifier.height(MaterialTheme.spacing.medium)/*.animateContentSize()*/)
+                    Divider(modifier = Modifier.height(1.dp))
                     Row(
                         modifier = Modifier
                             .padding(horizontal = 16.dp)
@@ -115,7 +98,11 @@ fun CustomItem(
                     ) {
 
                         ShareFun(context, shareIntent)
-                        FavoriteFun(practiceCard, searchResults, storedItemsViewModel = storedItemsViewModel)
+                        FavoriteFun(
+                            practiceCard,
+                            searchResults,
+                            storedItemsViewModel = storedItemsViewModel
+                        )
                         InfoFun(practiceCard, navController)
                     }
                 }

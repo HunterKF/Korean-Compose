@@ -9,5 +9,6 @@ val Teal200 = Color(0xFF03DAC5)
 val PrimaryOrange = Color(0xFFF6765B)
 val PrimaryLightOrange = Color(0xFFFFAA8B)
 val PrimaryDarkOrange = Color(0xFFC74832)
-val DefaultWhite = Color.White
+val SurfaceColorWhite = Color(0xFFF8F8F8)
+
 

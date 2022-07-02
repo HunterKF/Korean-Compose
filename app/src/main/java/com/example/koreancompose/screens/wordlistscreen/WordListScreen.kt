@@ -139,10 +139,10 @@ fun WordListLazyItem(
                 horizontalAlignment = Alignment.Start,
                 modifier = Modifier.padding(start = 30.dp)
             ) {
-                ExampleW(wordListItem.dataWords[index].wordExKor1)
-                ExampleW(wordListItem.dataWords[index].wordExEng1)
-                ExampleW(wordListItem.dataWords[index].wordExKor2)
-                ExampleW(wordListItem.dataWords[index].wordExEng2)
+                ExampleKorW(wordListItem.dataWords[index].wordExKor1)
+                ExampleEngW(wordListItem.dataWords[index].wordExEng1)
+                ExampleKorW(wordListItem.dataWords[index].wordExKor2)
+                ExampleEngW(wordListItem.dataWords[index].wordExEng2)
                 Spacer(modifier = Modifier.padding(bottom = 8.dp))
             }
 

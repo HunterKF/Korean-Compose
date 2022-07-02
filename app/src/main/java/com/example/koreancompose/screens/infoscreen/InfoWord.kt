@@ -8,99 +8,120 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import com.example.koreancompose.ui.theme.spacing
 
 @Composable
-fun InfoWord(word: String?,
-             def: String?,
-             wordExKor1: String?,
-             wordExEng1: String?,
-             wordExKor2: String?,
-             wordExEng2: String?,) {
+fun InfoWord(
+    word: String,
+    def: String,
+    wordExKor1: String,
+    wordExEng1: String,
+    wordExKor2: String,
+    wordExEng2: String,
+) {
+    fun changeTitle () {
+        viewModel.topBarText.value = "Information"
+    }
+    changeTitle()
     Column(
         modifier = Modifier
+            .padding(MaterialTheme.spacing.medium)
             .fillMaxWidth()
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 12.dp),
+                .padding(
+                    bottom = MaterialTheme.spacing.small,
+                    end = MaterialTheme.spacing.small,
+                    start = MaterialTheme.spacing.small
+                ),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            if (word != null) {
-                Text(
-                    fontSize = MaterialTheme.typography.h4.fontSize,
-                    fontWeight = FontWeight.Bold,
-                    text = word
-                )
-            }
-            Text(
-                fontSize = MaterialTheme.typography.h6.fontSize,
-                text = viewModel.infoWordType.value
-                )
-        }
 
-        if (def != null) {
             Text(
-                modifier = Modifier
-                    .padding(start = 16.dp, bottom = 12.dp),
-                fontSize = MaterialTheme.typography.body1.fontSize,
-                fontWeight = FontWeight.Light,
+                style = MaterialTheme.typography.body2,
+                text = word
+            )
+            Text(
+                modifier = Modifier,
+                style = MaterialTheme.typography.body2,
                 text = def
             )
         }
-        Divider(modifier = Modifier
-            .fillMaxWidth()
-            .height(2.dp),
-            color = Color.Black
-        )
-        Row(
+
+        Divider(
             modifier = Modifier
-                .height(IntrinsicSize.Min)
-                .padding(vertical = 16.dp, horizontal = 12.dp)
+                .fillMaxWidth()
+                .height(0.5.dp),
+            color = Color.LightGray
+        )
 
+        Column(
+            modifier = Modifier
+                .padding(MaterialTheme.spacing.small)
         ) {
-            Divider(
-                modifier = Modifier
-                    .fillMaxHeight()
-                    .width(4.dp),
-                color = Color.Gray
-            )
-            Column(
-                modifier = Modifier
-                    .padding(start = 12.dp)
-            ) {
-                if (wordExKor1 != null) {
-                    ExampleW(wordExKor1)
-                }
-                if (wordExEng1 != null) {
-                    ExampleW(wordExEng1)
-                }
-                if (wordExKor2 != null) {
-                    ExampleW(wordExKor2)
-                }
-                if (wordExEng2 != null) {
-                    ExampleW(wordExEng2)
-                }
-
-            }
+            ExampleEngWInfo(wordExKor1)
+            ExampleKorWInfo(wordExEng1)
         }
-
+        Divider(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(0.5.dp),
+            color = Color.LightGray
+        )
+        Column(
+            modifier = Modifier
+                .padding(
+                    start = MaterialTheme.spacing.small,
+                    end = MaterialTheme.spacing.small,
+                    top = MaterialTheme.spacing.small
+                )
+        ) {
+            ExampleEngWInfo(wordExKor2)
+            ExampleKorWInfo(wordExEng2)
+        }
     }
 
 }
 
+
 @Composable
-fun ExampleW(learningPoint: String) {
+fun ExampleEngWInfo(learningPoint: String) {
     Text(
         modifier = Modifier.padding(vertical = 2.dp),
-        fontSize = 16.sp,
-        fontWeight = FontWeight.Light,
-        color = Color.DarkGray,
-        text = "$learningPoint"
+        style = MaterialTheme.typography.body2,
+        text = learningPoint
     )
 }
 
+@Composable
+fun ExampleKorWInfo(learningPoint: String) {
+    Text(
+        modifier = Modifier.padding(vertical = 2.dp),
+        style = MaterialTheme.typography.h3,
+        text = learningPoint
+    )
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun PreviewInfo() {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center
+    ) {
+        LearningPointWord(
+            "가다",
+            "to go",
+            wordExKor1 = "저는 집으로 갈게요.",
+            wordExEng1 = "I'll go home now.",
+            wordExKor2 = "넌 마트에 언제 갔어요?",
+            wordExEng2 = "When did you go to the mart?"
+        )
+    }
+
+}

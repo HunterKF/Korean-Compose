@@ -6,7 +6,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.koreancompose.screens.favoritesscreen.FavoritesScreen
 import com.example.koreancompose.screens.grammarlistscreen.GrammarListScreen
@@ -93,22 +92,25 @@ fun Navigation(navController: NavHostController, startDestination: String) {
             )
         ) { entry ->
             InfoScreen(
-                textFieldState = entry.arguments?.getString("textFieldState").toString(),
-                word = entry.arguments?.getString("word"),
-                def = entry.arguments?.getString("def"),
-                wordExKor1 = entry.arguments?.getString("wordExKor1"),
-                wordExEng1 = entry.arguments?.getString("wordExEng1"),
-                wordExKor2 = entry.arguments?.getString("wordExKor2"),
-                wordExEng2 = entry.arguments?.getString("wordExEng2"),
+                textFieldState = entry.arguments!!.getString("textFieldState").toString(),
+                word = entry.arguments!!.getString("word").toString(),
+                def = entry.arguments!!.getString("def").toString(),
+                wordExKor1 = entry.arguments!!.getString("wordExKor1").toString(),
+                wordExEng1 = entry.arguments!!.getString("wordExEng1").toString(),
+                wordExKor2 = entry.arguments!!.getString("wordExKor2").toString(),
+                wordExEng2 = entry.arguments!!.getString("wordExEng2").toString(),
 
 //                all grammar string
-                grammar = entry.arguments?.getString("grammar"),
-                gramInDepth1 = entry.arguments?.getString("gramInDepth1"),
-                inDepth1ExKor = entry.arguments?.getString("inDepth1ExKor"),
-                inDepth1ExEng = entry.arguments?.getString("inDepth1ExEng"),
-                gramInDepth2 = entry.arguments?.getString("gramInDepth2"),
-                inDepth2ExKor = entry.arguments?.getString("inDepth2ExKor"),
-                inDepth2ExEng = entry.arguments?.getString("inDepth2ExEng")
+                grammar = entry.arguments!!.getString("grammar").toString(),
+                gramInDepth1 = entry.arguments!!.getString("gramInDepth1").toString(),
+                inDepth1ExKor = entry.arguments!!.getString("inDepth1ExKor").toString(),
+                inDepth1ExEng = entry.arguments!!.getString("inDepth1ExEng").toString(),
+                gramInDepth2 = entry.arguments?.getString("gramInDepth2").toString(),
+                inDepth2ExKor = entry.arguments!!.getString("inDepth2ExKor").toString(),
+                inDepth2ExEng = entry.arguments!!.getString("inDepth2ExEng").toString(),
+                navController = navController,
+                focusManager = focusManager
+
 
             )
         }
