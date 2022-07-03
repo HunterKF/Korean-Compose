@@ -14,18 +14,19 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
+import com.example.koreancompose.R
+import com.example.koreancompose.ui.theme.PrimaryOrange
 
 @Composable
 fun ShareFun(context: Context, shareIntent: Intent) {
     IconButton(
-        modifier = Modifier
-            .alpha(ContentAlpha.medium),
         onClick = {
             context.startActivity(shareIntent)
         }) {
         Icon(
-            tint = MaterialTheme.colors.primary,
-            imageVector = Icons.Default.Share,
+            tint = PrimaryOrange,
+            painter = painterResource(id = R.drawable.ic_baseline_share_24),
             contentDescription = "Share"
         )
     }

@@ -13,6 +13,10 @@
         <entry key="..\:/Users/Hunte/AndroidStudioProjects/KoreanCompose2/app/src/main/res/drawable/ic_arrow_drop_down.xml" value="0.1055" />
         <entry key="..\:/Users/Hunte/AndroidStudioProjects/KoreanCompose2/app/src/main/res/drawable/ic_arrow_drop_up.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_baseline_share_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_favorite_border.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_favorite_filled.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_outline_info.xml" value="0.1" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>

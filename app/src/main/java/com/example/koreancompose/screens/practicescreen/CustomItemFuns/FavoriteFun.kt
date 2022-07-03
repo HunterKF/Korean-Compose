@@ -2,10 +2,7 @@ package com.example.koreancompose.screens.practicescreen.CustomItemFuns
 
 import android.content.Context
 import android.widget.Toast
-import androidx.compose.material.ContentAlpha
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.outlined.Favorite
@@ -17,9 +14,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import com.example.koreancompose.R
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.viewmodels.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard
+import com.example.koreancompose.ui.theme.PrimaryOrange
+import com.example.koreancompose.viewmodels.TranslateViewModel
 import kotlinx.coroutines.*
 
 
@@ -30,6 +31,8 @@ fun FavoriteFun(
     storedItemsViewModel: StoredItemsViewModel
 ) {
     val context = LocalContext.current
+
+    var translateViewModel by remember { mutableStateOf(TranslateViewModel()) }
 
     val storedItem = StoredItem(
         0L, practiceCard.word,
@@ -45,8 +48,6 @@ fun FavoriteFun(
         )
     }
     IconButton(
-        modifier = Modifier
-            .alpha(ContentAlpha.medium),
         onClick = {
             practiceCard.isClicked.value = !practiceCard.isClicked.value
             isClicked(practiceCard.isClicked.value, storedItemsViewModel, storedItem, context)
@@ -54,8 +55,10 @@ fun FavoriteFun(
         }) {
 
         Icon(
-            tint = MaterialTheme.colors.primary,
-            imageVector = if (practiceCard.isClicked.value) Icons.Outlined.Favorite else Icons.Default.FavoriteBorder,
+            tint = PrimaryOrange,
+            painter = if (practiceCard.isClicked.value) painterResource(id = R.drawable.ic_favorite_filled) else painterResource(
+                id = R.drawable.ic_favorite_border
+            ),
             contentDescription = "Favorite"
         )
     }
@@ -69,6 +72,7 @@ fun isClicked(
     storedItem: StoredItem,
     context: Context
 ) {
+
 
     if (isClicked) {
         viewModel.addStoredItem(

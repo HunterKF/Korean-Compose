@@ -75,9 +75,12 @@ fun WordListScreen(navController: NavHostController, focusManager: FocusManager)
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(horizontal = MaterialTheme.spacing.medium),
             state = listState
         ) {
+            item {
+                Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
+            }
             items(allWords) { index ->
                 WordListLazyItem(index = index, wordListItem = wordListItem)
             }
@@ -94,17 +97,14 @@ fun WordListScreen(navController: NavHostController, focusManager: FocusManager)
 @Composable
 fun WordListLazyItem(
     index: Int,
-    wordListItem: WordListItem,
-    fontSize: TextUnit = 16.sp
+    wordListItem: WordListItem
 ) {
 
     val isClicked = rememberSaveable { mutableStateOf(wordListItem.expandedState) }
-    val indexPlusOne = index + 1
     Column(
         modifier = Modifier
             .padding(vertical = MaterialTheme.spacing.small)
             .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(10.dp))
-            .clip(shape = RoundedCornerShape(10.dp))
             .background(color = Color.White)
             .fillMaxWidth()
             .clickable(onClick = {
@@ -174,9 +174,3 @@ fun WordListLazyItem(
 
 }
 
-
-@Preview(showSystemUi = true)
-@Composable
-fun Preview() {
-//    WordListScreen(wordListItem, allWords)
-}

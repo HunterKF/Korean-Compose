@@ -79,6 +79,9 @@ fun GrammarListScreen(navController: NavController, focusManager: FocusManager) 
                 .padding(horizontal = MaterialTheme.spacing.medium),
             state = listState
         ) {
+            item {
+                Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
+            }
             items(allWords) { index ->
                 GrammarListLazyItem(index = index, grammarListItem = grammarListItem)
             }
@@ -150,7 +153,11 @@ fun GrammarListLazyItem(
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start,
-                modifier = Modifier.padding(start = MaterialTheme.spacing.medium, bottom = MaterialTheme.spacing.medium, end = MaterialTheme.spacing.medium, )
+                modifier = Modifier.padding(
+                    start = MaterialTheme.spacing.medium,
+                    bottom = MaterialTheme.spacing.medium,
+                    end = MaterialTheme.spacing.medium,
+                )
             ) {
                 ExampleGInfo(
                     grammarListItem.dataGrammar[index].gramInDepth1,

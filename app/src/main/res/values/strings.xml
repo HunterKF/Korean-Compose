@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Korean Compose</string>
+    <string name="textfield_type_here">Type here...</string>
 
 </resources>

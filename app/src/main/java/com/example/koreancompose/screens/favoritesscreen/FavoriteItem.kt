@@ -3,7 +3,9 @@ package com.example.koreancompose.screens.favoritesscreen
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,11 +21,13 @@ import com.example.koreancompose.Screen
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.viewmodels.StoredItemsViewModel
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.res.stringResource
 import com.example.koreancompose.R
 import com.example.koreancompose.ui.theme.PrimaryOrange
 import com.example.koreancompose.ui.theme.elevation
@@ -46,6 +50,8 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
 
     val openDialog = remember { mutableStateOf(false) }
 
+
+
     when (storedItemsViewModel.favoriteItemState.value) {
         true -> {
             Column(
@@ -56,28 +62,97 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
                         .weight(1f)
                         .padding(horizontal = MaterialTheme.spacing.medium)
                 ) {
-
-                    items(allItems) { item ->
-                        SampleItems(item = item)
-
-                    }
                     item {
-                        Row(
+                        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
+                    }
+                    itemsIndexed(
+                        items = allItems,
+                        key = { index, item ->
+                            item.hashCode()
+                        }
+                    ) { index, item ->
+                        val sendIntent: Intent = Intent().apply {
+                            action = Intent.ACTION_SEND
+                            putExtra(
+                                Intent.EXTRA_TEXT,
+                                "Check out what I wrote in ${stringResource(R.string.textfield_type_here)}! ${item.inputtedSentence}"
+                            )
+                            type = "text/plain"
+                        }
+                        val shareIntent = Intent.createChooser(sendIntent, null)
+
+                        val state = rememberDismissState(
+                            confirmStateChange = {
+                                when (it) {
+                                    DismissValue.DismissedToStart -> {
+                                        allItems.remove(item)
+                                        storedItemsViewModel.deleteOne(item.inputtedSentence)
+                                        if (allItems.size == 0) {
+                                            storedItemsViewModel.favoriteItemState.value = false
+                                        }
+                                    }
+                                    DismissValue.DismissedToEnd -> {
+                                        context.startActivity(shareIntent)
+                                    }
+                                }
+
+                                true
+                            }
+                        )
+
+                        SwipeToDismiss(
+                            state = state,
+                            directions = setOf(DismissDirection.EndToStart, DismissDirection.StartToEnd),
+                            dismissThresholds = { FractionalThreshold(0.2f)},
+                            background = {
+                                val color = when (state.dismissDirection) {
+                                    DismissDirection.StartToEnd -> PrimaryOrange
+                                    DismissDirection.EndToStart -> Color.Red
+                                    null -> Color.Transparent
+                                }
+                                val scale by animateFloatAsState(
+                                    if (state.targetValue == DismissValue.Default) 0.85f else 1.2f
+                                )
+
+                                Box(
+                                    modifier = Modifier
+                                        .fillMaxSize()
+                                        .padding(MaterialTheme.spacing.small)
+                                        .clip(shape = RoundedCornerShape(10.dp))
+                                        .background(color = color)
+                                ) {
+                                    Icon(
+                                        painter = painterResource(id = R.drawable.ic_delete),
+                                        contentDescription = "Delete",
+                                        tint = Color.White,
+                                        modifier = Modifier
+                                            .align(Alignment.CenterEnd)
+                                            .scale(scale)
+                                            .padding(end = MaterialTheme.spacing.medium)
+                                    )
+                                }
+                            },
+                            dismissContent = {
+                                SampleItems(item)
+                            },
+                        )
+                    }
+
+                    item {
+                        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
+                        Button(
                             modifier = Modifier
+                                .height(50.dp)
+                                .padding(bottom = MaterialTheme.spacing.small)
                                 .fillMaxWidth()
-                                .padding(vertical = MaterialTheme.spacing.small)
                                 .shadow(
                                     elevation = MaterialTheme.elevation.small,
                                     shape = RoundedCornerShape(10.dp)
                                 )
                                 .clip(shape = RoundedCornerShape(10.dp)),
-                            horizontalArrangement = Arrangement.Center,
-                            verticalAlignment = Alignment.Bottom
-                        ) {
-                            Button(modifier = Modifier.fillMaxWidth(),
-                                onClick = { openDialog.value = true }) {
-                                Text("Delete all")
-                            }
+                            onClick = { openDialog.value = true }) {
+                            Text("Delete all")
+
                         }
                     }
 
@@ -94,8 +169,16 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
             ) {
                 Text("No favorites yet?")
                 Button(modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxWidth(),
+                    .padding(
+                        vertical = MaterialTheme.spacing.small,
+                        horizontal = MaterialTheme.spacing.medium
+                    )
+                    .shadow(
+                        elevation = MaterialTheme.elevation.small,
+                        shape = RoundedCornerShape(10.dp)
+                    )
+                    .fillMaxWidth()
+                    .height(50.dp),
                     onClick = { navController.navigate(Screen.PracticeScreen.route) }) {
                     Text("Practice now!")
                 }
@@ -129,47 +212,52 @@ fun SampleItems(item: StoredItem) {
             .background(color = Color.White)
             .fillMaxWidth()
     ) {
-        IconButton(modifier = Modifier
-            .offset(x = 1.dp, y = -8.dp)
-            .align(Alignment.TopEnd), onClick = { /*TODO*/ }) {
-            Icon(painter = painterResource(id = R.drawable.ic_more_horiz), tint = Color.Gray, contentDescription = "")
-            PopUpMenu(modifier = Modifier.offset(x = -5.dp, y = -10.dp))
-        }
-        Column(modifier = Modifier.padding(MaterialTheme.spacing.small)) {
+        Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
 
-            Row(modifier = Modifier.padding(top = MaterialTheme.spacing.medium)) {
-                Text(
-                    modifier = Modifier.padding(
-                        end = MaterialTheme.spacing.small
-                    ),
-                    style = MaterialTheme.typography.h6,
-                    text = "KO"
-                )
+            Row(
+                modifier = Modifier
+                    .padding(MaterialTheme.spacing.extraSmall)
+                    .fillMaxWidth()
+            ) {
                 Text(
                     modifier = Modifier,
                     style = MaterialTheme.typography.h5,
                     text = item.inputtedSentence
                 )
             }
-            Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
-            Row(modifier = Modifier) {
+            Divider(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = MaterialTheme.spacing.small)
+                    .height(0.5.dp),
+                color = Color.LightGray
+            )
+            Row(
+                modifier = Modifier
+                    .padding(MaterialTheme.spacing.extraSmall)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Text(
                     modifier = Modifier.padding(
                         end = MaterialTheme.spacing.small
                     ),
-                    style = MaterialTheme.typography.h6,
-                    text = "EN"
+                    style = MaterialTheme.typography.body2,
+                    text = item.inputtedWord
                 )
                 Text(
                     modifier = Modifier,
                     style = MaterialTheme.typography.body2,
-                    text = "This is a translation of the text. There is no translation as of yet."
+                    text = item.inputtedGrammar
                 )
 
             }
         }
     }
+
+
 }
+
 
 @Composable
 fun alertDialog(
@@ -179,6 +267,7 @@ fun alertDialog(
 ) {
     if (openDialog.value) {
         AlertDialog(
+            modifier = Modifier.clip(RoundedCornerShape(10.dp)),
             onDismissRequest = { openDialog.value = false },
             title = { Text(text = "잠깐만요!!", color = Color.DarkGray) },
             text = {
@@ -215,22 +304,55 @@ fun alertDialog(
 }
 
 @Composable
-fun PopUpMenu(modifier: Modifier) {
+fun PopUpMenu(
+    modifier: Modifier,
+    isClicked: MutableState<Boolean>,
+    item: String,
+    storedItemsViewModel: StoredItemsViewModel
+) {
     Row(
         modifier = Modifier
-            .background(PrimaryOrange)
             .clip(shape = RoundedCornerShape(10.dp))
+            .background(PrimaryOrange),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = Alignment.CenterVertically
+
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(
+                Intent.EXTRA_TEXT,
+                "Check out what I wrote in ${stringResource(R.string.app_name)}! $item"
+            )
+            type = "text/plain"
+        }
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        val context = LocalContext.current
+
+
+        IconButton(onClick = {
+            context.startActivity(shareIntent)
+            isClicked.value = false
+        }) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_baseline_share_24),
+                painter = painterResource(id = R.drawable.ic_baseline_share_20),
                 tint = Color.White,
                 contentDescription = "Share"
             )
         }
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = {
+            storedItemsViewModel.deleteOne(item)
+            isClicked.value = false
+        }) {
             Icon(
-                painter = painterResource(id = R.drawable.ic_delete),
+                painter = painterResource(id = R.drawable.ic_baseline_delete_20),
+                tint = Color.White,
+                contentDescription = "Delete"
+            )
+        }
+        IconButton(onClick = { isClicked.value = false }) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_round_close_20),
                 tint = Color.White,
                 contentDescription = "Delete"
             )
@@ -238,9 +360,4 @@ fun PopUpMenu(modifier: Modifier) {
     }
 }
 
-@Preview
-@Composable
-fun PopUpPreview() {
-    PopUpMenu(Modifier.offset())
-}
 

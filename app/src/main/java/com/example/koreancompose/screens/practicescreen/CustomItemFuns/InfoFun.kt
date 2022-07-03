@@ -10,16 +10,17 @@ import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
 import androidx.navigation.NavController
+import com.example.koreancompose.R
 import com.example.koreancompose.Screen
 import com.example.koreancompose.model.PracticeCard
+import com.example.koreancompose.ui.theme.PrimaryOrange
 
 @Composable
 fun InfoFun(practiceCard: PracticeCard, navController: NavController) {
 
     IconButton(
-        modifier = Modifier
-            .alpha(ContentAlpha.medium),
         onClick = {
             navController.navigate(
                 Screen.InfoScreen.withArgs(
@@ -42,8 +43,8 @@ fun InfoFun(practiceCard: PracticeCard, navController: NavController) {
 
         }) {
         Icon(
-            tint = MaterialTheme.colors.primary,
-            imageVector = Icons.Outlined.Info,
+            tint = PrimaryOrange,
+            painter = painterResource(id = R.drawable.ic_outline_info),
             contentDescription = "Info"
         )
     }

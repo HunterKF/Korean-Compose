@@ -11,6 +11,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.rotate
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.koreancompose.LearningPointGrammar
@@ -22,12 +24,14 @@ import com.example.koreancompose.viewModel
 @Composable
 fun LearningPoint(
     learningPointWord: String?,
-    learningPointGrammar: String?
+    learningPointGrammar: String?,
+    onClick: () -> kotlin.Unit
 ) {
     var expandedWordState by remember { mutableStateOf(false) }
     var expandedGrammarState by remember { mutableStateOf(false) }
     val rotateStateWord by animateFloatAsState(targetValue = if (expandedWordState) 180f else 0f)
     val rotateStateGrammar by animateFloatAsState(targetValue = if (expandedGrammarState) 180f else 0f)
+
 
     Column{
         Row(
@@ -40,10 +44,15 @@ fun LearningPoint(
             //Word row
             Row(
                 modifier = Modifier.clickable {
+
                     if (expandedGrammarState) {
                         expandedGrammarState = false
+
                     }
                     expandedWordState = !expandedWordState
+                    onClick
+
+
                 },
 
                 horizontalArrangement = Arrangement.Center,
@@ -76,6 +85,7 @@ fun LearningPoint(
                         expandedWordState = false
                     }
                     expandedGrammarState = !expandedGrammarState
+                    onClick
                 },
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
@@ -142,17 +152,4 @@ fun LearningPoint(text: String?) {
     if (text != null) {
         Text(text)
     }
-}
-
-
-@Preview(showSystemUi = true)
-@Composable
-fun PreviewLearningPoint() {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center
-    ) {
-        LearningPoint("가다", "때문에")
-    }
-
 }

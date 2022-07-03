@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -39,12 +40,11 @@ fun CustomItem(
     modifier: Modifier
 ) {
     //For the share sheet
-    val appName = "Korean Practice"
     val sendIntent: Intent = Intent().apply {
         action = Intent.ACTION_SEND
         putExtra(
             Intent.EXTRA_TEXT,
-            "Check out what I wrote in $appName! ${practiceCard.inputtedSentence}"
+            "Check out what I wrote in ${stringResource(R.string.textfield_type_here)}! ${practiceCard.inputtedSentence}"
         )
         type = "text/plain"
     }
