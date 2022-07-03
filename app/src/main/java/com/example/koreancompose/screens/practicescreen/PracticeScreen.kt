@@ -94,7 +94,9 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
         var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
         LazyColumn(
             state = lazyListState,
-            modifier = Modifier.padding(vertical = MaterialTheme.spacing.small, horizontal = MaterialTheme.spacing.medium)
+            modifier = Modifier.padding(
+                horizontal = MaterialTheme.spacing.medium
+            )
         ) {
 
             if (lazyListState.isScrollInProgress && lazyListState.firstVisibleItemIndex != 0) {
@@ -103,7 +105,10 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
             item {
                 Column(modifier = Modifier
                     .padding(vertical = MaterialTheme.spacing.small)
-                    .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(10.dp))
+                    .shadow(
+                        elevation = MaterialTheme.elevation.small,
+                        shape = RoundedCornerShape(10.dp)
+                    )
                     .clip(shape = RoundedCornerShape(10.dp))
                     .background(color = Color.White)
                     .graphicsLayer {
@@ -126,7 +131,10 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                     viewModel.textFieldHeight.value,
                     modifier = Modifier
                         .padding(vertical = MaterialTheme.spacing.medium)
-                        .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(10.dp))
+                        .shadow(
+                            elevation = MaterialTheme.elevation.small,
+                            shape = RoundedCornerShape(10.dp)
+                        )
                         .clip(shape = RoundedCornerShape(10.dp))
                         .background(Color.White)
                         .onFocusChanged { focusState ->

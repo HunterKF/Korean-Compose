@@ -1,10 +1,12 @@
 package com.example.koreancompose.screens.grammarlistscreen
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -13,10 +15,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusManager
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
@@ -26,6 +30,8 @@ import com.example.koreancompose.*
 import com.example.koreancompose.R
 import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
+import com.example.koreancompose.ui.theme.elevation
+import com.example.koreancompose.ui.theme.spacing
 
 @Composable
 fun GrammarListScreen(navController: NavController, focusManager: FocusManager) {
@@ -70,7 +76,7 @@ fun GrammarListScreen(navController: NavController, focusManager: FocusManager) 
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp),
+                .padding(horizontal = MaterialTheme.spacing.medium),
             state = listState
         ) {
             items(allWords) { index ->
@@ -100,6 +106,10 @@ fun GrammarListLazyItem(
     val indexPlusOne = index + 1
     Column(
         modifier = Modifier
+            .padding(vertical = MaterialTheme.spacing.small)
+            .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(10.dp))
+            .clip(shape = RoundedCornerShape(10.dp))
+            .background(color = Color.White)
             .fillMaxWidth()
             .clickable(onClick = {
                 isClicked.value = isClicked.value.not()
@@ -110,20 +120,19 @@ fun GrammarListLazyItem(
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(12.dp),
+                .padding(
+                    start = MaterialTheme.spacing.medium,
+                    top = MaterialTheme.spacing.medium,
+                    end = MaterialTheme.spacing.medium,
+                    bottom = if (isClicked.value) 0.dp else MaterialTheme.spacing.medium
+                ),
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
             Text(
-                modifier = Modifier.weight(0.5f),
-                fontSize = fontSize,
-                text = "$indexPlusOne"
-            )
-            Text(
                 textAlign = TextAlign.Left,
                 modifier = Modifier.weight(1f),
-                fontWeight = FontWeight.Bold,
-                fontSize = fontSize,
+                style = MaterialTheme.typography.body2,
                 text = grammarListItem.dataGrammar[index].grammar
             )
 
@@ -131,17 +140,24 @@ fun GrammarListLazyItem(
         }
         if (isClicked.value) {
 
+            Divider(
+                modifier = Modifier
+                    .padding(MaterialTheme.spacing.medium)
+                    .fillMaxWidth()
+                    .height(0.5.dp),
+                color = Color.LightGray
+            )
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.Start,
-                modifier = Modifier.padding(start = 30.dp)
+                modifier = Modifier.padding(start = MaterialTheme.spacing.medium, bottom = MaterialTheme.spacing.medium, end = MaterialTheme.spacing.medium, )
             ) {
-                ExampleG(
+                ExampleGInfo(
                     grammarListItem.dataGrammar[index].gramInDepth1,
                     grammarListItem.dataGrammar[index].inDepth1ExKor,
                     grammarListItem.dataGrammar[index].inDepth1ExEng
                 )
-                ExampleG(
+                ExampleGInfo(
                     grammarListItem.dataGrammar[index].gramInDepth2,
                     grammarListItem.dataGrammar[index].inDepth2ExKor,
                     grammarListItem.dataGrammar[index].inDepth2ExEng
@@ -151,10 +167,36 @@ fun GrammarListLazyItem(
             }
 
         }
-        Divider(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(1.dp)
+    }
+
+}
+
+@Composable
+fun ExampleGInfo(
+    grammarExplanation: String,
+    learningKoreanPoint: String,
+    learningEnglishPoint: String
+) {
+    if (grammarExplanation != "null") {
+        androidx.compose.material3.Text(
+            modifier = Modifier.padding(vertical = 2.dp),
+            style = MaterialTheme.typography.body2,
+            text = grammarExplanation
+        )
+    }
+
+    Column(
+        modifier = Modifier.padding(start = MaterialTheme.spacing.medium)
+    ) {
+        androidx.compose.material3.Text(
+            modifier = Modifier.padding(vertical = 2.dp),
+            style = MaterialTheme.typography.h3,
+            text = learningKoreanPoint
+        )
+        androidx.compose.material3.Text(
+            modifier = Modifier.padding(vertical = 2.dp),
+            style = MaterialTheme.typography.body2,
+            text = learningEnglishPoint
         )
     }
 

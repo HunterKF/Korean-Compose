@@ -57,6 +57,18 @@ val Typography = Typography(
         fontSize = 30.sp,
         color = Color.Black
     ),
+    h5 = TextStyle(
+        fontFamily = Roboto,
+        fontWeight = FontWeight.Normal,
+        fontSize = 18.sp,
+        color = Color.Black
+    ),
+    h6 = TextStyle(
+        fontFamily = Roboto,
+        fontWeight = FontWeight.Thin,
+        fontSize = 18.sp,
+        color = Color.Gray
+    ),
     button = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Normal,

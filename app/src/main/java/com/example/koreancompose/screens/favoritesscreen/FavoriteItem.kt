@@ -7,22 +7,27 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.koreancompose.Screen
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.viewmodels.StoredItemsViewModel
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.example.koreancompose.R
+import com.example.koreancompose.ui.theme.PrimaryOrange
+import com.example.koreancompose.ui.theme.elevation
+import com.example.koreancompose.ui.theme.spacing
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -46,64 +51,26 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
             Column(
                 modifier = Modifier.fillMaxSize(),
             ) {
-                LazyColumn(modifier = Modifier.weight(1f)) {
+                LazyColumn(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(horizontal = MaterialTheme.spacing.medium)
+                ) {
 
-                    itemsIndexed(
-                        items = allItems,
-                        key = { index, item ->
-                            item.hashCode()
-                        }
-                    ) { index, item ->
-                        val state = rememberDismissState(
-                            confirmStateChange = {
-                                if (it == DismissValue.DismissedToStart) {
-                                    allItems.remove(item)
-                                    storedItemsViewModel.deleteOne(item.inputtedSentence)
-                                    println(allItems.size)
-                                    if (allItems.size == 0) {
-                                        storedItemsViewModel.favoriteItemState.value = false
-                                    }
-                                }
-                                true
-                            }
-                        )
-
-                        SwipeToDismiss(
-                            state = state,
-                            background = {
-                                val color = when (state.dismissDirection) {
-                                    DismissDirection.StartToEnd -> Color.Transparent
-                                    DismissDirection.EndToStart -> Color.Red
-                                    null -> Color.Transparent
-                                }
-
-                                Box(
-                                    modifier = Modifier
-                                        .fillMaxSize()
-                                        .background(color = color)
-                                        .padding(8.dp)
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Delete,
-                                        contentDescription = "Delete",
-                                        tint = Color.White,
-                                        modifier = Modifier.align(Alignment.CenterEnd)
-                                    )
-                                }
-                            },
-                            dismissContent = {
-                                SampleItems(item)
-                            },
-                            directions = setOf(DismissDirection.EndToStart)
-                        )
-                        Divider()
+                    items(allItems) { item ->
+                        SampleItems(item = item)
 
                     }
                     item {
                         Row(
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(12.dp),
+                                .padding(vertical = MaterialTheme.spacing.small)
+                                .shadow(
+                                    elevation = MaterialTheme.elevation.small,
+                                    shape = RoundedCornerShape(10.dp)
+                                )
+                                .clip(shape = RoundedCornerShape(10.dp)),
                             horizontalArrangement = Arrangement.Center,
                             verticalAlignment = Alignment.Bottom
                         ) {
@@ -126,7 +93,10 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text("No favorites yet?")
-                Button(modifier = Modifier.padding(16.dp).fillMaxWidth(), onClick = { navController.navigate(Screen.PracticeScreen.route)}) {
+                Button(modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxWidth(),
+                    onClick = { navController.navigate(Screen.PracticeScreen.route) }) {
                     Text("Practice now!")
                 }
             }
@@ -147,30 +117,57 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
 @ExperimentalMaterialApi
 @Composable
 fun SampleItems(item: StoredItem) {
-    Row(
+
+    Box(
         modifier = Modifier
-            .fillMaxWidth()
+            .padding(vertical = MaterialTheme.spacing.small)
+            .shadow(
+                elevation = MaterialTheme.elevation.small,
+                shape = RoundedCornerShape(10.dp)
+            )
+            .clip(shape = RoundedCornerShape(10.dp))
             .background(color = Color.White)
-            .padding(12.dp)
+            .fillMaxWidth()
     ) {
-        Column(modifier = Modifier.weight(1f)) {
-            Text(
-                fontWeight = FontWeight.Light,
-                text = item.inputtedWord
-            )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                fontWeight = FontWeight.Light,
-                text = item.inputtedGrammar
-            )
+        IconButton(modifier = Modifier
+            .offset(x = 1.dp, y = -8.dp)
+            .align(Alignment.TopEnd), onClick = { /*TODO*/ }) {
+            Icon(painter = painterResource(id = R.drawable.ic_more_horiz), tint = Color.Gray, contentDescription = "")
+            PopUpMenu(modifier = Modifier.offset(x = -5.dp, y = -10.dp))
         }
-        Text(
-            modifier = Modifier
-                .weight(3f),
-            fontWeight = FontWeight.SemiBold,
-            fontSize = 16.sp,
-            text = item.inputtedSentence
-        )
+        Column(modifier = Modifier.padding(MaterialTheme.spacing.small)) {
+
+            Row(modifier = Modifier.padding(top = MaterialTheme.spacing.medium)) {
+                Text(
+                    modifier = Modifier.padding(
+                        end = MaterialTheme.spacing.small
+                    ),
+                    style = MaterialTheme.typography.h6,
+                    text = "KO"
+                )
+                Text(
+                    modifier = Modifier,
+                    style = MaterialTheme.typography.h5,
+                    text = item.inputtedSentence
+                )
+            }
+            Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
+            Row(modifier = Modifier) {
+                Text(
+                    modifier = Modifier.padding(
+                        end = MaterialTheme.spacing.small
+                    ),
+                    style = MaterialTheme.typography.h6,
+                    text = "EN"
+                )
+                Text(
+                    modifier = Modifier,
+                    style = MaterialTheme.typography.body2,
+                    text = "This is a translation of the text. There is no translation as of yet."
+                )
+
+            }
+        }
     }
 }
 
@@ -217,5 +214,33 @@ fun alertDialog(
     }
 }
 
+@Composable
+fun PopUpMenu(modifier: Modifier) {
+    Row(
+        modifier = Modifier
+            .background(PrimaryOrange)
+            .clip(shape = RoundedCornerShape(10.dp))
+    ) {
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_baseline_share_24),
+                tint = Color.White,
+                contentDescription = "Share"
+            )
+        }
+        IconButton(onClick = { /*TODO*/ }) {
+            Icon(
+                painter = painterResource(id = R.drawable.ic_delete),
+                tint = Color.White,
+                contentDescription = "Delete"
+            )
+        }
+    }
+}
 
+@Preview
+@Composable
+fun PopUpPreview() {
+    PopUpMenu(Modifier.offset())
+}
 

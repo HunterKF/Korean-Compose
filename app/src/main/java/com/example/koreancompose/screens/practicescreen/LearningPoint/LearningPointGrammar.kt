@@ -57,7 +57,7 @@ fun LearningPointGrammar(
             modifier = Modifier
                 .padding(MaterialTheme.spacing.small)
         ) {
-            ExampleG(
+            ExampleGLearningPoint(
                 gramInDepth1,
                 inDepth1ExKor,
                 inDepth1ExEng
@@ -73,7 +73,7 @@ fun LearningPointGrammar(
             modifier = Modifier
                 .padding(MaterialTheme.spacing.small)
         ) {
-            ExampleG(
+            ExampleGLearningPoint(
                 gramInDepth2.toString(),
                 inDepth2ExKor,
                 inDepth2ExEng
@@ -86,7 +86,7 @@ fun LearningPointGrammar(
 
 
 @Composable
-fun ExampleG(
+fun ExampleGLearningPoint(
     grammarExplanation: String,
     learningKoreanPoint: String,
     learningEnglishPoint: String
