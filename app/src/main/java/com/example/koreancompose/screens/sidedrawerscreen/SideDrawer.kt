@@ -13,22 +13,27 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.koreancompose.R
 import com.example.koreancompose.Screen
+import com.example.koreancompose.ui.theme.PrimaryOrange
+import com.example.koreancompose.ui.theme.spacing
 import com.example.koreancompose.viewmodels.ViewModel
 import kotlinx.coroutines.launch
 
-enum class Items(val label: String, val icon: ImageVector) {
-    Practice(label = "Practice", Icons.Default.Edit),
-    Favorites(label = "Favorites", Icons.Default.Home),
-    Words(label = "Words", Icons.Default.Email),
-    Grammar(label = "Grammar", Icons.Default.Favorite)
+enum class Items(val label: String, val icon: Int) {
+    Practice(label = "Practice", R.drawable.edit),
+    Favorites(label = "Favorites", R.drawable.ic_favorite_filled),
+    Words(label = "Words", R.drawable.book),
+    Grammar(label = "Grammar", R.drawable.writing)
 }
+
 @Composable
 fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewModel: ViewModel) {
 
@@ -37,11 +42,12 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewM
         drawerState = scaffoldState.drawerState,
         gesturesEnabled = scaffoldState.drawerState.isOpen,
         drawerContent = {
-            Header(modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp))
-            Body(items = Items.values().toList(), ) {
-                when(it) {
+            Header(
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
+            Body(items = Items.values().toList()) {
+                when (it) {
                     Items.Grammar -> {
                         navController.navigate(Screen.GrammarListScreen.route)
                         viewModel.topBarText.value = "Grammar"
@@ -66,7 +72,7 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewM
             }
         },
 
-    ) {
+        ) {
         Column(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.Start,
@@ -87,26 +93,55 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewM
 @Composable
 fun Header(modifier: Modifier = Modifier) {
     Column(
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = modifier
+        modifier = modifier.padding(top = MaterialTheme.spacing.large)
     ) {
-        Image(modifier = Modifier.size(200.dp), painter = painterResource(R.drawable._12_512), contentDescription = null)
-        Spacer(modifier = Modifier.size(4.dp))
-//        Text(text = "My Account")
+        Image(
+            modifier = Modifier.size(150.dp),
+            painter = painterResource(R.drawable.logo),
+            contentDescription = null
+        )
+        Divider(
+            modifier = Modifier
+                .padding(MaterialTheme.spacing.medium)
+                .fillMaxWidth()
+                .height(0.5.dp),
+            color = Color.LightGray
+        )
     }
 }
 
 @Composable
-fun Body(items:List<Items>, onClickItem: (Items) -> Unit) {
-    Column(modifier = Modifier.padding(8.dp)) {
+fun Body(items: List<Items>, onClickItem: (Items) -> Unit) {
+    Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         items.forEach {
-            Row(modifier = Modifier.clickable {
-                onClickItem.invoke(it)
-            }) {
-                Icon(imageVector = it.icon, contentDescription = null )
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                    .padding(
+                        start = MaterialTheme.spacing.small,
+                        top = MaterialTheme.spacing.extraSmall,
+                        bottom = MaterialTheme.spacing.extraSmall
+                    )
+                    .clickable {
+                        onClickItem.invoke(it)
+                    }) {
+                Icon(
+                    modifier = Modifier
+                        .padding(end = MaterialTheme.spacing.extraSmall)
+                        .size(20.dp),
+                    painter = painterResource(id = it.icon),
+                    tint = PrimaryOrange,
+                    contentDescription = null
+                )
                 Spacer(modifier = Modifier.size(8.dp))
-                Text(text = it.label)
+                Text(
+                    style = MaterialTheme.typography.h1,
+                    fontWeight = FontWeight.Normal,
+                    color = Color.Gray,
+                    text = it.label
+                )
             }
             Spacer(modifier = Modifier.size(8.dp))
         }

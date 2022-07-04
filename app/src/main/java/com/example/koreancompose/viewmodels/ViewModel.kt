@@ -138,7 +138,13 @@ open class ViewModel : ViewModel() {
     val topBarText = mutableStateOf("Practice")
 
     //Textheight for the textField
-    var textFieldHeight = mutableStateOf(200)
+    var textFieldHeight = 200
+
+    var lazyColumnScrollPosition: Float = 0f
+
+    fun onChangeScrollPosition(position: Float) {
+        lazyColumnScrollPosition = position
+    }
 
 
 

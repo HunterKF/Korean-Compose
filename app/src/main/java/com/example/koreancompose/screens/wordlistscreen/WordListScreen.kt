@@ -29,6 +29,7 @@ import com.example.koreancompose.*
 import com.example.koreancompose.R
 import com.example.koreancompose.model.ModelJSONWord
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
+import com.example.koreancompose.ui.theme.PrimaryOrange
 import com.example.koreancompose.ui.theme.elevation
 import com.example.koreancompose.ui.theme.spacing
 
@@ -60,7 +61,7 @@ fun WordListScreen(navController: NavHostController, focusManager: FocusManager)
                 focusManager = focusManager
             )
         },
-        drawerBackgroundColor = colorResource(id = R.color.purple_200),
+        drawerBackgroundColor = PrimaryOrange,
         // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
         drawerContent = {
             SideDrawer(

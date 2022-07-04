@@ -23,6 +23,7 @@ import com.example.koreancompose.viewmodels.StoredItemsViewModel
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
@@ -82,37 +83,51 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
                         val shareIntent = Intent.createChooser(sendIntent, null)
 
                         val state = rememberDismissState(
-                            confirmStateChange = {
-                                when (it) {
+                            confirmStateChange = { dismissValue ->
+                                when (dismissValue) {
+                                    DismissValue.Default -> {
+                                        false
+                                    }
                                     DismissValue.DismissedToStart -> {
                                         allItems.remove(item)
                                         storedItemsViewModel.deleteOne(item.inputtedSentence)
                                         if (allItems.size == 0) {
                                             storedItemsViewModel.favoriteItemState.value = false
                                         }
+                                        true
+
                                     }
                                     DismissValue.DismissedToEnd -> {
                                         context.startActivity(shareIntent)
+                                        false
                                     }
                                 }
-
-                                true
                             }
                         )
 
                         SwipeToDismiss(
                             state = state,
                             directions = setOf(DismissDirection.EndToStart, DismissDirection.StartToEnd),
-                            dismissThresholds = { FractionalThreshold(0.2f)},
+                            dismissThresholds = { FractionalThreshold(0.4f)},
                             background = {
-                                val color = when (state.dismissDirection) {
-                                    DismissDirection.StartToEnd -> PrimaryOrange
-                                    DismissDirection.EndToStart -> Color.Red
-                                    null -> Color.Transparent
+                                val direction = state.dismissDirection ?: return@SwipeToDismiss
+                                val color = when (state.targetValue) {
+                                    DismissValue.DismissedToEnd-> Color.Green.copy(alpha = 0.4f)
+                                    DismissValue.DismissedToStart -> Color.Red.copy(alpha = 0.5f)
+                                    DismissValue.Default -> Color.LightGray.copy(alpha = 0.5f)
+                                }
+                                val icon = when (state.targetValue) {
+                                    DismissValue.Default -> painterResource(R.drawable.ic_circle_24)
+                                    DismissValue.DismissedToEnd -> painterResource(R.drawable.ic_baseline_share_24)
+                                    DismissValue.DismissedToStart -> painterResource(R.drawable.ic_delete)
                                 }
                                 val scale by animateFloatAsState(
                                     if (state.targetValue == DismissValue.Default) 0.85f else 1.2f
                                 )
+                                val alignment = when (direction) {
+                                    DismissDirection.EndToStart -> Alignment.CenterEnd
+                                    DismissDirection.StartToEnd -> Alignment.CenterStart
+                                }
 
                                 Box(
                                     modifier = Modifier
@@ -120,15 +135,15 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
                                         .padding(MaterialTheme.spacing.small)
                                         .clip(shape = RoundedCornerShape(10.dp))
                                         .background(color = color)
+                                        .padding(horizontal = MaterialTheme.spacing.large),
+                                    contentAlignment = alignment
                                 ) {
                                     Icon(
-                                        painter = painterResource(id = R.drawable.ic_delete),
-                                        contentDescription = "Delete",
+                                        painter = icon,
+                                        contentDescription = "",
                                         tint = Color.White,
                                         modifier = Modifier
-                                            .align(Alignment.CenterEnd)
                                             .scale(scale)
-                                            .padding(end = MaterialTheme.spacing.medium)
                                     )
                                 }
                             },
@@ -139,7 +154,7 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
                     }
 
                     item {
-                        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.extraSmall))
+                        Spacer(modifier = Modifier.padding(MaterialTheme.spacing.small))
                         Button(
                             modifier = Modifier
                                 .height(50.dp)

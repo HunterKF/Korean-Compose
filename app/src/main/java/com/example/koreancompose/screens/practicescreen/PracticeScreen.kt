@@ -20,11 +20,8 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Outline
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -32,7 +29,7 @@ import com.example.koreancompose.model.PracticeCard
 import com.example.koreancompose.repository.CardRepository
 import com.example.koreancompose.screens.practicescreen.LearningPoint
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
-import com.example.koreancompose.ui.theme.Shapes
+import com.example.koreancompose.ui.theme.PrimaryOrange
 import com.example.koreancompose.ui.theme.elevation
 import com.example.koreancompose.ui.theme.spacing
 import com.example.koreancompose.viewmodels.ViewModel
@@ -79,7 +76,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
     var previousOffset = 0
 
     //Detect keybaord
-    val isVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
+//    val isVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
 
     Scaffold(
         Modifier.background(MaterialTheme.colors.background),
@@ -92,7 +89,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                 focusManager = focusManager
             )
         },
-        drawerBackgroundColor = MaterialTheme.colors.primaryVariant,
+        drawerBackgroundColor = PrimaryOrange,
         // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
         drawerContent = {
             SideDrawer(
@@ -112,7 +109,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
             )
         ) {
 
-            if (lazyListState.isScrollInProgress && lazyListState.firstVisibleItemIndex != 0) {
+            if (lazyListState.isScrollInProgress && lazyListState.firstVisibleItemIndex >= 3) {
                 focusManager.clearFocus()
             }
             item {
@@ -134,12 +131,10 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                     LearningPoint(
                         learningPointWord = viewModel.wordFieldState.value,
                         learningPointGrammar = viewModel.grammarFieldState.value,
+                        focusManager = focusManager,
                         onClick = {
-                            if (viewModel.textFieldHeight.value == 100) {
-                                focusRequester.requestFocus()
-                                println("The if statement has fired! The keyboard is now $isVisible")
-                            }
-
+                            coroutineScope.launch { lazyListState.animateScrollToItem(0) }
+                            println("CAPTAIN, ONCLICK HAS BEEN FIRED! THERE SHE BLOWS!")
                         }
                     )
 
@@ -150,7 +145,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
             item {
                 TextField(
-                    viewModel.textFieldHeight.value,
+                    viewModel.textFieldHeight,
                     modifier = Modifier
                         .padding(vertical = MaterialTheme.spacing.medium)
                         .shadow(
@@ -162,10 +157,10 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                         .onFocusChanged { focusState ->
                             when {
                                 focusState.isFocused -> {
-                                    viewModel.textFieldHeight.value = 100
+                                    viewModel.textFieldHeight = 100
                                 }
                                 else -> {
-                                    viewModel.textFieldHeight.value = 200
+                                    viewModel.textFieldHeight = 200
                                 }
 
                             }
@@ -210,10 +205,10 @@ fun TextField(textFieldHeight: Int, modifier: Modifier) {
     TextField(
         modifier = modifier
             .height(textFieldHeight.dp),
-        colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White),
+        colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White, focusedIndicatorColor = Color.Transparent, unfocusedIndicatorColor = Color.Transparent),
         value = viewModel.textFieldState.value,
         label = {
-            Text(if (textFieldHeight == 200) stringResource(R.string.app_name) else "")
+            Text(if (textFieldHeight == 200) stringResource(R.string.textfield_type_here) else "")
         },
         onValueChange = { newValue ->
             viewModel.onTextFieldChange(newValue)
@@ -231,10 +226,10 @@ fun EnterButton(
 
     ) {
     Button(modifier = Modifier
-        .padding(vertical = if (lazyListState.firstVisibleItemIndex === 0 || lazyListState.firstVisibleItemIndex === 1) MaterialTheme.spacing.small else 0.dp)
+        .padding(vertical = if (lazyListState.firstVisibleItemIndex <= 2) MaterialTheme.spacing.small else 0.dp)
         .shadow(
             elevation = MaterialTheme.elevation.small,
-            shape = if (lazyListState.firstVisibleItemIndex === 0 || lazyListState.firstVisibleItemIndex === 1) RoundedCornerShape(
+            shape = if (lazyListState.firstVisibleItemIndex <= 2) RoundedCornerShape(
                 10.dp
             ) else RoundedCornerShape(
                 topStart = 0.dp,
@@ -254,18 +249,17 @@ fun EnterButton(
             when {
                 viewModel.sentence === "" && lazyListState.firstVisibleItemIndex == 0 -> {
                     focusRequester.requestFocus()
-
-                    coroutineScope.launch {
-                        lazyListState.animateScrollToItem(0)
-                    }
+                    println("THE FIRST ONE HAS FIRED, CAPTAIN")
                 }
                 viewModel.sentence === "" && lazyListState.firstVisibleItemIndex > 0 -> {
-                    focusRequester.requestFocus()
                     coroutineScope.launch { lazyListState.animateScrollToItem(0) }
+                    focusRequester.requestFocus()
+                    println("THE SECOND ONE HAS FIRED, CAPTAIN")
                 }
-                viewModel.sentence != "" && lazyListState.firstVisibleItemIndex > 0 -> {
-                    focusRequester.requestFocus()
+                viewModel.sentence != "" && lazyListState.firstVisibleItemIndex >= 2 -> {
                     coroutineScope.launch { lazyListState.animateScrollToItem(0) }
+                    focusRequester.requestFocus()
+                    println("THE THIRD ONE HAS FIRED, CAPTAIN")
                 }
                 else -> {
                     cardRepository.allCards.add(
@@ -320,7 +314,6 @@ fun EnterButton(
 
         }
     ) {
-        Text(text = if (lazyListState.firstVisibleItemIndex === 0 || lazyListState.firstVisibleItemIndex === 1) "Save" else "Back to top")
+        Text(text = if (lazyListState.firstVisibleItemIndex <= 2) "Save" else "Back to top")
     }
 }
-
