@@ -29,7 +29,7 @@ fun TopBar(
 ) {
     val textState = viewModel.topBarText.value
 
-    TopAppBar(backgroundColor = Color.White) {
+    TopAppBar(backgroundColor = MaterialTheme.colors.secondary) {
         Box(modifier = Modifier.fillMaxWidth()
         ) {
             IconButton(

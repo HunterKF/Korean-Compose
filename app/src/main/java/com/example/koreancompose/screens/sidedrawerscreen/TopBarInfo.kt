@@ -18,17 +18,18 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import com.example.koreancompose.viewmodels.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
 fun TopBarInfo(
-    navController: NavController
+    navController: NavHostController
 ) {
     val textState = viewModel.topBarText.value
 
-    TopAppBar(backgroundColor = Color.White) {
+    TopAppBar(backgroundColor = MaterialTheme.colors.secondary) {
         Box(modifier = Modifier.fillMaxWidth()
         ) {
             IconButton(

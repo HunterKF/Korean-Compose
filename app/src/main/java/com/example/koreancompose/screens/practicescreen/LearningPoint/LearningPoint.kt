@@ -1,6 +1,7 @@
 package com.example.koreancompose.screens.practicescreen
 
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyListState
@@ -24,6 +25,7 @@ import com.example.koreancompose.*
 import com.example.koreancompose.R
 import com.example.koreancompose.ui.theme.PrimaryOrange
 import com.example.koreancompose.ui.theme.spacing
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
@@ -31,7 +33,8 @@ fun LearningPoint(
     learningPointWord: String?,
     learningPointGrammar: String?,
     focusManager: FocusManager,
-    onClick: () -> Unit
+    onClick: () -> Unit,
+    lazyListState: LazyListState
 ) {
     var expandedWordState by remember { mutableStateOf(false) }
     var expandedGrammarState by remember { mutableStateOf(false) }
@@ -40,9 +43,12 @@ fun LearningPoint(
     val colorWord = if (expandedWordState) PrimaryOrange else Color.Gray
     val colorGrammar = if (expandedGrammarState) PrimaryOrange else Color.Gray
 
+    val coroutineScope = rememberCoroutineScope()
+
     Column {
         Row(
             modifier = Modifier
+                .background(MaterialTheme.colors.secondary)
                 .padding(MaterialTheme.spacing.small)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -58,6 +64,10 @@ fun LearningPoint(
                             expandedGrammarState = false
                         }
                         focusManager.clearFocus()
+                        if (viewModel.textFieldFocusCheck.value) {
+                            !viewModel.textFieldFocusCheck.value
+                        }
+
                         expandedWordState = !expandedWordState
                     },
 
@@ -123,7 +133,11 @@ fun LearningPoint(
                             expandedWordState = false
                         }
                         focusManager.clearFocus()
+//                        viewModel.textFieldHeight.value = 200
                         expandedGrammarState = !expandedGrammarState
+                        if (viewModel.textFieldFocusCheck.value) {
+                            !viewModel.textFieldFocusCheck.value
+                        }
                     },
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
@@ -148,9 +162,10 @@ fun LearningPoint(
     when {
         expandedGrammarState ->
             Column(modifier = Modifier
+                .background(MaterialTheme.colors.secondary)
                 .padding(horizontal = 16.dp)
                 .clickable {
-                    onClick
+                    coroutineScope.launch { lazyListState.animateScrollToItem(0) }
                     if (expandedWordState) {
                         expandedWordState = false
                     }
@@ -171,12 +186,14 @@ fun LearningPoint(
         expandedWordState ->
 
             Column(modifier = Modifier
+                .background(MaterialTheme.colors.secondary)
                 .padding(horizontal = 16.dp)
                 .clickable {
                     if (expandedGrammarState) {
                         expandedGrammarState = false
                     }
-                    onClick
+                    coroutineScope.launch { lazyListState.animateScrollToItem(0) }
+                    println("CAPTAIN, ONCLICK HAS BEEN FIRED! THERE SHE BLOWS!")
                     expandedWordState = !expandedWordState
                 }) {
                 LearningPointWord(

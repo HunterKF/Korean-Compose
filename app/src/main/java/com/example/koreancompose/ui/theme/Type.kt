@@ -54,8 +54,7 @@ val Typography = Typography(
     h4 = TextStyle(
         fontFamily = Roboto,
         fontWeight = FontWeight.Normal,
-        fontSize = 30.sp,
-        color = Color.Black
+        fontSize = 30.sp
     ),
     h5 = TextStyle(
         fontFamily = Roboto,

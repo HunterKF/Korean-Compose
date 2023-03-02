@@ -33,7 +33,7 @@ class TranslateViewModel {
             .build()
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                TODO("Not yet implemented")
+                println("Failed to translate.")
             }
 
             override fun onResponse(call: Call, response: Response) {

@@ -1,15 +1,12 @@
 package com.example.koreancompose.viewmodels
 
-import android.util.Log
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.example.koreancompose.TAG
 import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.model.ModelJSONWord
 
 open class ViewModel : ViewModel() {
 
-    private val wordModelJSONWord = ModelJSONWord()
 
 
     //TextField = mutableStateOf("")
@@ -91,7 +88,6 @@ open class ViewModel : ViewModel() {
     fun returnWord(item: ModelJSONWord): RandomWordData {
 
         var randomNumber = rand(item.dataWords.size)
-        Log.d(TAG, "The value of randomNumber in returnWord is $randomNumber")
 
         if (randomNumber === item.dataWords.size) {
             randomNumber -= 1
@@ -118,7 +114,6 @@ open class ViewModel : ViewModel() {
 
     fun returnGrammar(item: ModelJSONGrammar): GrammarData {
         var randomNumber = rand(item.dataGrammar.size)
-        Log.d(TAG, "The value of randomNumber in returnGrammar is $randomNumber")
 
         if (randomNumber === item.dataGrammar.size) {
             randomNumber -= 1
@@ -138,7 +133,7 @@ open class ViewModel : ViewModel() {
     val topBarText = mutableStateOf("Practice")
 
     //Textheight for the textField
-    var textFieldHeight = 200
+//    var textFieldHeight = remember {mutableStateOf(200)}
 
     var lazyColumnScrollPosition: Float = 0f
 
@@ -146,7 +141,7 @@ open class ViewModel : ViewModel() {
         lazyColumnScrollPosition = position
     }
 
-
+    val textFieldFocusCheck = mutableStateOf(false)
 
 }
 

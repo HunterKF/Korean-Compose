@@ -113,7 +113,7 @@ fun GrammarListLazyItem(
             .padding(vertical = MaterialTheme.spacing.small)
             .shadow(elevation = MaterialTheme.elevation.small, shape = RoundedCornerShape(10.dp))
             .clip(shape = RoundedCornerShape(10.dp))
-            .background(color = Color.White)
+            .background(color = MaterialTheme.colors.secondary)
             .fillMaxWidth()
             .clickable(onClick = {
                 isClicked.value = isClicked.value.not()

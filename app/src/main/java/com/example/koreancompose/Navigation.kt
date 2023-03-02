@@ -19,6 +19,7 @@ fun Navigation(navController: NavHostController, startDestination: String) {
 
     val focusManager = LocalFocusManager.current
 
+
     NavHost(navController = navController, startDestination = startDestination) {
         composable(route = Screen.WelcomeScreen.route) {
             WelcomeScreen(navController = navController)
@@ -108,8 +109,7 @@ fun Navigation(navController: NavHostController, startDestination: String) {
                 gramInDepth2 = entry.arguments?.getString("gramInDepth2").toString(),
                 inDepth2ExKor = entry.arguments!!.getString("inDepth2ExKor").toString(),
                 inDepth2ExEng = entry.arguments!!.getString("inDepth2ExEng").toString(),
-                navController = navController,
-                focusManager = focusManager
+                navController = navController
 
 
             )
@@ -130,7 +130,7 @@ fun Navigation(navController: NavHostController, startDestination: String) {
         composable(
             route = Screen.InstallKeyboardScreen.route
         ) {
-            InstallKeyboardScreen()
+            InstallKeyboardScreen(navController = navController)
         }
     }
 }

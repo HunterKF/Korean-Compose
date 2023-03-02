@@ -41,6 +41,7 @@ fun SideDrawer(scaffoldState: ScaffoldState, navController: NavController, viewM
     ModalDrawer(
         drawerState = scaffoldState.drawerState,
         gesturesEnabled = scaffoldState.drawerState.isOpen,
+        drawerBackgroundColor = MaterialTheme.colors.secondary,
         drawerContent = {
             Header(
                 modifier = Modifier
@@ -132,7 +133,7 @@ fun Body(items: List<Items>, onClickItem: (Items) -> Unit) {
                         .padding(end = MaterialTheme.spacing.extraSmall)
                         .size(20.dp),
                     painter = painterResource(id = it.icon),
-                    tint = PrimaryOrange,
+                    tint = MaterialTheme.colors.primaryVariant,
                     contentDescription = null
                 )
                 Spacer(modifier = Modifier.size(8.dp))

@@ -15,11 +15,14 @@ import com.example.koreancompose.viewmodels.TranslateViewModel
 
 @Composable
 fun InfoSentence(textFieldState: String) {
+
     var translateViewModel by remember { mutableStateOf(TranslateViewModel()) }
 
 //This is the function to use papago. Everything works, but don't turn it on unless you really have to.
-//    translateViewModel.translateText(textFieldState)
 
+    LaunchedEffect(key1 = textFieldState) {
+        translateViewModel.translateText(textFieldState)
+    }
     Column(modifier = Modifier.padding(MaterialTheme.spacing.medium)) {
         Text(
             style = MaterialTheme.typography.h3,

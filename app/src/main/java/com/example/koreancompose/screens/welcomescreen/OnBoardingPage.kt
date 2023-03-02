@@ -11,18 +11,18 @@ sealed class OnBoardingPage(
 ) {
 //    <a href='https://www.freepik.com/vectors/book-online'>Book online vector created by pch.vector - www.freepik.com</a>
     object First : OnBoardingPage(
-        image = R.drawable.rsz_study_icon_2,
+        image = R.drawable.onboarding_welcome,
         title = "Welcome",
-        description = "Korean Compose encourages you to use verb endings with a variety of different verbs. When writing, remember that you don't have to be perfect, practice is the most important."
+        description = "Korean Compose encourages you to use verb endings with a variety of different verbs."
     )
 //    <a href='https://www.freepik.com/vectors/illustration-icon'>Illustration icon vector created by rawpixel.com - www.freepik.com</a>
     object Second : OnBoardingPage(
-        image = R.drawable.rsz_25567,
+        image = R.drawable.onboarding_keyboard,
         title = "Need the keyboard?",
         description = "If you don't have the Korean keyboard yet, you can follow these simple steps get one!"
     )
     object Third : OnBoardingPage(
-        image = R.drawable.rsz_man_woman_hiking_illustration_74855_18410,
+        image = R.drawable.onboarding_start,
         title = "Ready to practice?",
         description = "You're all set and ready to go! Enjoy practicing your Korean skills! "
     )

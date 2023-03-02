@@ -41,6 +41,7 @@ fun LearningPointWord(
         ) {
 
             Text(
+                color = MaterialTheme.colors.onSecondary,
                 style = MaterialTheme.typography.h2,
                 text = word
             )

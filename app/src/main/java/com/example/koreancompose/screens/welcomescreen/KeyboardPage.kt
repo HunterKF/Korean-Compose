@@ -19,7 +19,7 @@ sealed class KeyboardPage(
     object CheckKeyboard : KeyboardPage (
         image = R.drawable.korean_keyboard,
         title = "Add the language!",
-        description = "You can add a keyboard simply. Go to Settings > General Management > Gboard settings > Languages. Click 'Add Keyboard' and choose the Korean keyboard. You can choose a keyboard you like, the most common one is 2-Bulsik.",
+        description = "Go to Settings > General Management > Gboard settings > Languages. Click 'Add Keyboard' and choose the Korean keyboard.",
         buttonText = "Add Keyboard"
     )
 }

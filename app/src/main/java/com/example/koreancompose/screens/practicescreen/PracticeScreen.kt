@@ -1,5 +1,6 @@
 package com.example.koreancompose
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.*
@@ -10,8 +11,11 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
@@ -22,7 +26,9 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.koreancompose.model.PracticeCard
@@ -39,29 +45,26 @@ import kotlinx.coroutines.launch
 
 val viewModel = ViewModel()
 
-val TAG = "randomNumber"
-
 //Card initializer
 val cardRepository = CardRepository()
 val getAllData = cardRepository.getAllData()
 
 
-@OptIn(ExperimentalFoundationApi::class)
+@SuppressLint("UnrememberedMutableState")
+@OptIn(ExperimentalFoundationApi::class, ExperimentalComposeUiApi::class)
 @Composable
-fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
+fun PracticeScreen(
+    navController: NavController,
+    focusManager: FocusManager
+) {
 
     val activity = (LocalContext.current as? Activity)
-    BackHandler() {
+    BackHandler {
         activity?.finish()
     }
     //Focus request for Button to force focus to text field
     val focusRequester = FocusRequester()
-//    val focusManager = LocalFocusManager.current
-    val scrollState = rememberScrollState()
-    //Remove column's clickable effects
-    val interactionSource = remember { MutableInteractionSource() }
-    //lazyColumn state
-    val listState = rememberLazyListState()
+
     //coroutineScope
     val coroutineScope = rememberCoroutineScope()
     //For the scaffold
@@ -75,7 +78,12 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
     var scrolledY = 0f
     var previousOffset = 0
 
-    //Detect keybaord
+    val keyboardController = LocalSoftwareKeyboardController.current
+
+    var textFieldHeight = mutableStateOf(200)
+
+
+    //Detect keyboard
 //    val isVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
 
     Scaffold(
@@ -131,10 +139,10 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                     LearningPoint(
                         learningPointWord = viewModel.wordFieldState.value,
                         learningPointGrammar = viewModel.grammarFieldState.value,
+                        lazyListState = lazyListState,
                         focusManager = focusManager,
                         onClick = {
                             coroutineScope.launch { lazyListState.animateScrollToItem(0) }
-                            println("CAPTAIN, ONCLICK HAS BEEN FIRED! THERE SHE BLOWS!")
                         }
                     )
 
@@ -145,7 +153,7 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
             item {
                 TextField(
-                    viewModel.textFieldHeight,
+                    textFieldHeight = textFieldHeight.value,
                     modifier = Modifier
                         .padding(vertical = MaterialTheme.spacing.medium)
                         .shadow(
@@ -157,17 +165,20 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
                         .onFocusChanged { focusState ->
                             when {
                                 focusState.isFocused -> {
-                                    viewModel.textFieldHeight = 100
+                                    textFieldHeight.value = 100
                                 }
                                 else -> {
-                                    viewModel.textFieldHeight = 200
+                                    textFieldHeight.value = 200
+//                                    keyboardController?.hide()
                                 }
 
                             }
                         }
                         .fillMaxSize()
                         .focusRequester(focusRequester)
-                )
+                ) { PracticeCard ->
+                    cardState = cardState + listOf(PracticeCard)
+                }
             }
             stickyHeader {
                 EnterButton(
@@ -201,18 +212,82 @@ fun PracticeScreen(navController: NavController, focusManager: FocusManager) {
 
 
 @Composable
-fun TextField(textFieldHeight: Int, modifier: Modifier) {
+fun TextField(
+    textFieldHeight: Int, modifier: Modifier,
+    onCardItemAdded: (String) -> Unit
+) {
+    viewModel.sentence = viewModel.textFieldState.value
+
     TextField(
         modifier = modifier
             .height(textFieldHeight.dp),
-        colors = TextFieldDefaults.textFieldColors(backgroundColor = Color.White, focusedIndicatorColor = Color.Transparent, unfocusedIndicatorColor = Color.Transparent),
+        colors = TextFieldDefaults.textFieldColors(
+            backgroundColor = MaterialTheme.colors.secondary,
+            focusedIndicatorColor = Color.Transparent,
+            unfocusedIndicatorColor = Color.Transparent
+        ),
         value = viewModel.textFieldState.value,
         label = {
             Text(if (textFieldHeight == 200) stringResource(R.string.textfield_type_here) else "")
         },
         onValueChange = { newValue ->
             viewModel.onTextFieldChange(newValue)
-        }
+        },
+
+        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                if (viewModel.sentence != "") {
+                    cardRepository.allCards.add(
+                        PracticeCard(
+                            viewModel.sentence,
+                            viewModel.wordFieldState.value,
+                            viewModel.wordDefFieldState.value,
+                            viewModel.wordExKor1.value,
+                            viewModel.wordExEng1.value,
+                            viewModel.wordExKor2.value,
+                            viewModel.wordExEng2.value,
+                            viewModel.grammarFieldState.value,
+                            viewModel.grammarInD1State.value,
+                            viewModel.grammarInD1ExKor.value,
+                            viewModel.grammarInD1ExEng.value,
+                            viewModel.grammarInD2State.value,
+                            viewModel.grammarInD2ExKor.value,
+                            viewModel.grammarInD2ExEng.value,
+                            isClicked = mutableStateOf(false)
+                        )
+                    )
+                    onCardItemAdded(viewModel.sentence)
+
+                    //Change word
+
+                    val randWord = viewModel.allWords.let { viewModel.returnWord(it) }
+                    //Word - Takes the data class from returnGrammar and then populates the states in the viewModel.
+                    viewModel.wordFieldState.value = randWord.word
+                    viewModel.wordDefFieldState.value = randWord.def
+                    viewModel.wordExKor1.value = randWord.wordExKor1
+                    viewModel.wordExEng1.value = randWord.wordExEng1
+                    viewModel.wordExKor2.value = randWord.wordExKor2
+                    viewModel.wordExEng2.value = randWord.wordExEng2
+
+
+                    //Change grammar
+
+                    val randGrammar = viewModel.allGrammar.let { viewModel.returnGrammar(it) }
+                    //Grammar - Takes the data class from returnGrammar and then populates the states in the viewModel.
+                    viewModel.grammarFieldState.value = randGrammar.grammar
+                    viewModel.grammarInD1State.value = randGrammar.gramInDepth1
+                    viewModel.grammarInD1ExKor.value = randGrammar.inDepth1ExKor
+                    viewModel.grammarInD1ExEng.value = randGrammar.inDepth1ExEng
+                    viewModel.grammarInD2State.value = randGrammar.gramInDepth2
+                    viewModel.grammarInD2ExKor.value = randGrammar.inDepth2ExKor
+                    viewModel.grammarInD2ExEng.value = randGrammar.inDepth2ExEng
+
+                    viewModel.textFieldState.value = ""
+                }
+
+            }
+        )
     )
 }
 
@@ -222,9 +297,9 @@ fun EnterButton(
     focusRequester: FocusRequester,
     coroutineScope: CoroutineScope,
     lazyListState: LazyListState,
-    onCardItemAdded: (String) -> Unit,
+    onCardItemAdded: (String) -> Unit
 
-    ) {
+) {
     Button(modifier = Modifier
         .padding(vertical = if (lazyListState.firstVisibleItemIndex <= 2) MaterialTheme.spacing.small else 0.dp)
         .shadow(
@@ -249,17 +324,14 @@ fun EnterButton(
             when {
                 viewModel.sentence === "" && lazyListState.firstVisibleItemIndex == 0 -> {
                     focusRequester.requestFocus()
-                    println("THE FIRST ONE HAS FIRED, CAPTAIN")
                 }
                 viewModel.sentence === "" && lazyListState.firstVisibleItemIndex > 0 -> {
                     coroutineScope.launch { lazyListState.animateScrollToItem(0) }
                     focusRequester.requestFocus()
-                    println("THE SECOND ONE HAS FIRED, CAPTAIN")
                 }
                 viewModel.sentence != "" && lazyListState.firstVisibleItemIndex >= 2 -> {
                     coroutineScope.launch { lazyListState.animateScrollToItem(0) }
                     focusRequester.requestFocus()
-                    println("THE THIRD ONE HAS FIRED, CAPTAIN")
                 }
                 else -> {
                     cardRepository.allCards.add(

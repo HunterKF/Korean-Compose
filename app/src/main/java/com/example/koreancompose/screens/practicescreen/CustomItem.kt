@@ -67,7 +67,7 @@ fun CustomItem(
         Card(
             modifier = Modifier
                 .fillMaxWidth(),
-            backgroundColor = Color.White,
+            backgroundColor = MaterialTheme.colors.secondary,
             shape = RoundedCornerShape(10.dp),
             onClick = onClick
         ) {

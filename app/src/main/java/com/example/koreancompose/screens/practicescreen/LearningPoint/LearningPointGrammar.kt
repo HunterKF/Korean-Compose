@@ -42,6 +42,7 @@ fun LearningPointGrammar(
         ) {
             Text(
                 style = MaterialTheme.typography.h2,
+                color = MaterialTheme.colors.onSecondary,
                 text = grammar
             )
         }

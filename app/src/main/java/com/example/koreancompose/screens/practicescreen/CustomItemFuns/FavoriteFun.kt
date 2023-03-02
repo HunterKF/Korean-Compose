@@ -32,8 +32,6 @@ fun FavoriteFun(
 ) {
     val context = LocalContext.current
 
-    var translateViewModel by remember { mutableStateOf(TranslateViewModel()) }
-
     val storedItem = StoredItem(
         0L, practiceCard.word,
         practiceCard.grammar,

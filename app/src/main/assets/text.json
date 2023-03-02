@@ -1,157 +1,684 @@
 {
-
   "words": [
-    {
-      "word": "가다",
-      "def": "go, travel",
-      "wordExKor1": "어디에 가고 싶습니까?",
-      "wordExEng1": "Where do you want to go?",
-      "wordExKor2": "오늘 너희 집에 가도 되니?",
-      "wordExEng2": "Can I come over to your house today? "
-    },
-    {
-      "word": "가르치다",
-      "def": "teach, instruct, train, educate",
-      "wordExKor1": "그녀는 우리에게 과학을 가르쳤다",
-      "wordExEng1": "She taught us science.",
-      "wordExKor2": "나는 중국 학생들에게 한국어를 가르친다",
-      "wordExEng2": "I'm teaching Korean to Chinese students. "
-    },
-    {
-      "word": "가지다",
-      "def": "have, hold, own, possess",
-      "wordExKor1": "그녀는 음악적 재능을 가지고 있다",
-      "wordExEng1": "She has[possesses] a talent for music.",
-      "wordExKor2": "지금 돈 가진 것 있어요?",
-      "wordExEng2": "Do you have any money with[on] you? "
-    },
-    {
-      "word": "거짓말하다",
-      "def": "lie, tell a lie",
-      "wordExKor1": "나는 절대로 너한테 거짓말한 적 없어",
-      "wordExEng1": "I've never lied to you.",
-      "wordExKor2": "거짓말인 거 다 알아.",
-      "wordExEng2": "I know you're lying[not telling the truth]. "
-    },
-    {
-      "word": "걱정하다",
-      "def": "To worry",
-      "wordExKor1": "걱정해 줘서 고마워요",
-      "wordExEng1": "Thanks for your concern.",
-      "wordExKor2": "저는 우리 가족을 걱정해요.",
-      "wordExEng2": "I worry about my family. "
-    },
-    {
-      "word": "걷다",
-      "def": "walk",
-      "wordExKor1": "걸어서 10분 정도 걸립니다.",
-      "wordExEng1": "It will take about ten minutes to walk.",
-      "wordExKor2": "걸어가자.",
-      "wordExEng2": "Let's walk there. "
-    },
-    {
-      "word": "결혼하다",
-      "def": "To marry",
-      "wordExKor1": "그는 첫사랑과 결혼했다",
-      "wordExEng1": "He married his first love.",
-      "wordExKor2": "저와 결혼해 주시겠습니까?",
-      "wordExEng2": "Will you marry me? "
-    },
-    {
-      "word": "고백하다",
-      "def": "confess, confiding",
-      "wordExKor1": "고백할 것이 있습니다",
-      "wordExEng1": "I have a confession to make.",
-      "wordExKor2": "나는 그녀에게 사랑을 고백했다",
-      "wordExEng2": "I confessed that I loved her. "
-    },
-    {
-      "word": "공부하다",
-      "def": "study",
-      "wordExKor1": "열심히 공부하다",
-      "wordExEng1": "study hard",
-      "wordExKor2": "그는 학교에서 공부를 잘한다",
-      "wordExEng2": "He does well in school. "
-    },
-    {
-      "word": "굽다",
-      "def": "bake, roast, grill",
-      "wordExKor1": "구운 감자",
-      "wordExEng1": "baked potatoes",
-      "wordExKor2": "고기를 구워요.",
-      "wordExEng2": "Grill the meat. "
-    },
-    {
-      "word": "기다리다",
-      "def": "wait, hold on, hang on",
-      "wordExKor1": "기다리지 말고 저녁 먹어요",
-      "wordExEng1": "Don't wait for me for dinner.",
-      "wordExKor2": "오래 기다렸어요?",
-      "wordExEng2": "Have you been waiting long? "
-    },
-    {
-      "word": "기억하다",
-      "def": "remember, recall",
-      "wordExKor1": "분명히 기억하다",
-      "wordExEng1": "remember clearly",
-      "wordExKor2": "어떻게 된 일인지 기억할 수 있겠어요?",
-      "wordExEng2": "Can you recollect how it happened? "
-    },
-    {
-      "word": "꿈꾸다",
-      "def": "To dream",
-      "wordExKor1": "그녀는 가수를 꿈꾸고 있다",
-      "wordExEng1": "She dreams of becoming a singer.",
-      "wordExKor2": "꿈꾸는 듯한 기분이었다",
-      "wordExEng2": "I felt as if I were in a dream. "
-    },
-    {
-      "word": "끓이다",
-      "def": "To boil",
-      "wordExKor1": "라면을 끓이다",
-      "wordExEng1": "cook ramen",
-      "wordExKor2": "오래 끓이지 마라",
-      "wordExEng2": "Don't boil it for (too) long. "
-    },
-    {
-      "word": "끝나다",
-      "def": "end, finish",
-      "wordExKor1": "내 말 아직 안 끝났어요",
-      "wordExEng1": "I'm not finished talking yet.",
-      "wordExKor2": "곧 끝나요",
-      "wordExEng2": "I'll be done in a minute. "
-    },
-    {
-      "word": "나가다",
-      "def": "go out, get out, leave",
-      "wordExKor1": "방에서 나가다",
-      "wordExEng1": "go out of the room",
-      "wordExKor2": "점심 먹으러 나가다",
-      "wordExEng2": "go out for lunch "
-    },
-    {
-      "word": "내다",
-      "def": "pay",
-      "wordExKor1": "표 값은 내가 낼게",
-      "wordExEng1": "I’ll pay for the tickets.",
-      "wordExKor2": "현금을 내다",
-      "wordExEng2": "to pay in cash "
-    },
-    {
-      "word": "닫다",
-      "def": "shut, close",
-      "wordExKor1": "창문을 꼭 닫다",
-      "wordExEng1": "close[shut] the window tight",
-      "wordExKor2": "은행은 몇 시에 문을 닫나요?",
-      "wordExEng2": "What time do the banks close? "
-    },
-    {
-      "word": "대답하다",
-      "def": "answer, reply",
-      "wordExKor1": "선생님은 학생의 질문에 대답했어요.",
-      "wordExEng1": "The teacher answered the student's question.",
-      "wordExKor2": "왜 문자에 대답하지 않았니?",
-      "wordExEng2": "Why didn't you answer the text?"
-    }
-  ]
+      {
+        "word": "가다",
+        "def": "go, travel",
+        "wordExKor1": "어디에 가고 싶습니까?",
+        "wordExEng1": "Where do you want to go?",
+        "wordExKor2": "오늘 너희 집에 가도 되니?",
+        "wordExEng2": "Can I come over to your house today?"
+      },
+      {
+        "word": "가르치다",
+        "def": "teach, instruct, train, educate",
+        "wordExKor1": "그녀는 우리에게 과학을 가르쳤다",
+        "wordExEng1": "She taught us science.",
+        "wordExKor2": "나는 중국 학생들에게 한국어를 가르친다",
+        "wordExEng2": "I'm teaching Korean to Chinese students."
+      },
+      {
+        "word": "가지다",
+        "def": "have, hold, own, possess",
+        "wordExKor1": "그녀는 음악적 재능을 가지고 있다",
+        "wordExEng1": "She has[possesses] a talent for music.",
+        "wordExKor2": "지금 돈 가진 것 있어요?",
+        "wordExEng2": "Do you have any money with[on] you?"
+      },
+      {
+        "word": "거짓말하다",
+        "def": "lie, tell a lie",
+        "wordExKor1": "나는 절대로 너한테 거짓말한 적 없어",
+        "wordExEng1": "I've never lied to you.",
+        "wordExKor2": "거짓말인 거 다 알아.",
+        "wordExEng2": "I know you're lying[not telling the truth]."
+      },
+      {
+        "word": "걱정하다",
+        "def": "To worry",
+        "wordExKor1": "걱정해 줘서 고마워요",
+        "wordExEng1": "Thanks for your concern.",
+        "wordExKor2": "저는 우리 가족을 걱정해요.",
+        "wordExEng2": "I worry about my family."
+      },
+      {
+        "word": "걷다",
+        "def": "walk",
+        "wordExKor1": "걸어서 10분 정도 걸립니다.",
+        "wordExEng1": "It will take about ten minutes to walk.",
+        "wordExKor2": "걸어가자.",
+        "wordExEng2": "Let's walk there."
+      },
+      {
+        "word": "결혼하다",
+        "def": "To marry",
+        "wordExKor1": "그는 첫사랑과 결혼했다",
+        "wordExEng1": "He married his first love.",
+        "wordExKor2": "저와 결혼해 주시겠습니까?",
+        "wordExEng2": "Will[Would] you marry me?"
+      },
+      {
+        "word": "고백하다",
+        "def": "confess, confiding",
+        "wordExKor1": "고백할 것이 있습니다",
+        "wordExEng1": "I have a confession to make.",
+        "wordExKor2": "나는 그녀에게 사랑을 고백했다",
+        "wordExEng2": "I confessed that I loved her."
+      },
+      {
+        "word": "공부하다",
+        "def": "study",
+        "wordExKor1": "열심히 공부하다",
+        "wordExEng1": "study hard",
+        "wordExKor2": "그는 학교에서 공부를 잘한다",
+        "wordExEng2": "He does well in school."
+      },
+      {
+        "word": "굽다",
+        "def": "bake, roast, grill",
+        "wordExKor1": "구운 감자",
+        "wordExEng1": "baked potatoes",
+        "wordExKor2": "고기를 구워요.",
+        "wordExEng2": "Grill the meat."
+      },
+      {
+        "word": "기다리다",
+        "def": "wait, hold on, hang on",
+        "wordExKor1": "기다리지 말고 저녁 먹어요",
+        "wordExEng1": "Don't wait for me for dinner.",
+        "wordExKor2": "오래 기다렸어요?",
+        "wordExEng2": "Have you been waiting long?"
+      },
+      {
+        "word": "기억하다",
+        "def": "remember, recall",
+        "wordExKor1": "분명히 기억하다",
+        "wordExEng1": "remember clearly",
+        "wordExKor2": "어떻게 된 일인지 기억할 수 있겠어요?",
+        "wordExEng2": "Can you recollect how it happened?"
+      },
+      {
+        "word": "꿈꾸다",
+        "def": "To dream",
+        "wordExKor1": "그녀는 가수를 꿈꾸고 있다",
+        "wordExEng1": "She dreams of becoming a singer.",
+        "wordExKor2": "꿈꾸는 듯한 기분이었다",
+        "wordExEng2": "I felt as if I were in a dream."
+      },
+      {
+        "word": "끓이다",
+        "def": "To boil",
+        "wordExKor1": "라면을 끓이다",
+        "wordExEng1": "cook ramen",
+        "wordExKor2": "오래 끓이지 마라",
+        "wordExEng2": "Don't boil it for (too) long."
+      },
+      {
+        "word": "끝나다",
+        "def": "end, finish",
+        "wordExKor1": "내 말 아직 안 끝났어요",
+        "wordExEng1": "I'm not finished talking yet.",
+        "wordExKor2": "곧 끝나요",
+        "wordExEng2": "I'll be done in a minute."
+      },
+      {
+        "word": "나가다",
+        "def": "go out, get out, leave",
+        "wordExKor1": "방에서 나가다",
+        "wordExEng1": "go out of the room",
+        "wordExKor2": "점심 먹으러 나가다",
+        "wordExEng2": "go out for lunch"
+      },
+      {
+        "word": "내다",
+        "def": "pay",
+        "wordExKor1": "표 값은 내가 낼게",
+        "wordExEng1": "I’ll pay for the tickets.",
+        "wordExKor2": "현금을 내다",
+        "wordExEng2": "to pay in cash"
+      },
+      {
+        "word": "닫다",
+        "def": "shut, close",
+        "wordExKor1": "창문을 꼭 닫다",
+        "wordExEng1": "close[shut] the window tight",
+        "wordExKor2": "은행은 몇 시에 문을 닫나요?",
+        "wordExEng2": "What time do the banks close?"
+      },
+      {
+        "word": "대답하다",
+        "def": "answer, reply",
+        "wordExKor1": "선생님은 학생의 질문에 대답했어요.",
+        "wordExEng1": "The teacher answered the student's question.",
+        "wordExKor2": "왜 문자에 대답하지 않았니?",
+        "wordExEng2": "Why didn't you answer the text?"
+      },
+      {
+        "word": "도와주다",
+        "def": "help, assist",
+        "wordExKor1": "숙제 좀 도와줄래?",
+        "wordExEng1": "Can you help me with my homework?",
+        "wordExKor2": "그는 파티 준비를 도와주러 왔다",
+        "wordExEng2": "He came to help prepare for the party."
+      },
+      {
+        "word": "도착하다",
+        "def": "arrive, reach",
+        "wordExKor1": "어젯밤에 늦게 도착했어요.",
+        "wordExEng1": "I arrived late last night.",
+        "wordExKor2": "버스가 언제쯤 도착할 거에요?",
+        "wordExEng2": "When will the bus arrive?"
+      },
+      {
+        "word": "듣다",
+        "def": "hear, listen to",
+        "wordExKor1": "라디오에서 그 소식을 들었다",
+        "wordExEng1": "I heard the news on the radio.",
+        "wordExKor2": "선생님 말씀 잘 들어라",
+        "wordExEng2": "Listen carefully to what your teacher tells you."
+      },
+      {
+        "word": "들어오다",
+        "def": "come in, get in, enter",
+        "wordExKor1": "우리 동아리에 들어올래요?",
+        "wordExEng1": "How about joining our club?",
+        "wordExKor2": "들어오세요",
+        "wordExEng2": "Please come in."
+      },
+      {
+        "word": "마시다",
+        "def": "drink",
+        "wordExKor1": "커피를 마시다",
+        "wordExEng1": "have a cup of coffee",
+        "wordExKor2": "오늘은 내가 낼 테니까 실컷 마셔요",
+        "wordExEng2": "It's on me today, so drink as much as you want."
+      },
+      {
+        "word": "만나다",
+        "def": "meet, join",
+        "wordExKor1": "3시에 만나자",
+        "wordExEng1": "I'll meet you at three",
+        "wordExKor2": "우리 언제 만날까요",
+        "wordExEng2": "When should we get together?"
+      },
+      {
+        "word": "만들다",
+        "def": "make, create, produce",
+        "wordExKor1": "케이크를 만들다",
+        "wordExEng1": "make[bake] a cake",
+        "wordExKor2": "나는 인터넷 동호회를 만들었다",
+        "wordExEng2": "I've made a club on the Internet."
+      },
+      {
+        "word": "말하다",
+        "def": "say, tell, speak, talk",
+        "wordExKor1": "다시 한 번 말해 줄래요?",
+        "wordExEng1": "Could you say that again?",
+        "wordExKor2": "아무한테도 말하지 마라",
+        "wordExEng2": "Don't tell anyone."
+      },
+      {
+        "word": "먹다",
+        "def": "eat, have, consume",
+        "wordExKor1": "저는 저녁에 비빔밥을 먹었습니다.",
+        "wordExEng1": "I ate bibimbap for dinner.",
+        "wordExKor2": "나중에 우리는 뭐 먹을까?",
+        "wordExEng2": "What should we eat later?"
+      },
+      {
+        "word": "모르다",
+        "def": "not know",
+        "wordExKor1": "몰라요.",
+        "wordExEng1": "I don't know",
+        "wordExKor2": "어떻게 해야 좋을지 모르겠다",
+        "wordExEng2": "I don't know what to do."
+      },
+      {
+        "word": "물어보다",
+        "def": "ask, inquire",
+        "wordExKor1": "너한테 좀 물어볼 말이 있어",
+        "wordExEng1": "I have some questions to ask you.",
+        "wordExKor2": "길을 물어보다",
+        "wordExEng2": "ask the way"
+      },
+      {
+        "word": "배우다",
+        "def": "learn",
+        "wordExKor1": "너는 뭐든 빨리 배우는구나!",
+        "wordExEng1": "You're such a fast learner no matter what the task!",
+        "wordExKor2": "운전을 배우다",
+        "wordExEng2": "learn how to drive (a car)"
+      },
+      {
+        "word": "벗다",
+        "def": "undress, take off clothes",
+        "wordExKor1": "옷을 벗다",
+        "wordExEng1": "take off one's clothes",
+        "wordExKor2": "신을 후딱 신다/벗다",
+        "wordExEng2": "to slip your shoes on/off"
+      },
+      {
+        "word": "보내다",
+        "def": "send",
+        "wordExKor1": "그는 내게 사과의 편지를 보냈다",
+        "wordExEng1": "He sent me a letter of apology.",
+        "wordExKor2": "이 소포를 한국에 보내려고 합니다 ",
+        "wordExEng2": "I would like to mail this package to Korea."
+      },
+      {
+        "word": "보다",
+        "def": "see, look at,",
+        "wordExKor1": "여기는 볼 것이 참 많다 ",
+        "wordExEng1": "There are so many things to see here.",
+        "wordExKor2": "어젯밤에 TV 봤어요?",
+        "wordExEng2": "Did you watch TV last night?"
+      },
+      {
+        "word": "볶다",
+        "def": "fry, stir-fry",
+        "wordExKor1": "어머니는 프라이팬에 기름을 두르고 쇠고기를 볶았다.",
+        "wordExEng1": "My mother oiled the frying pan and stir-fried the beef.",
+        "wordExKor2": "양파 볶는 냄새가 났다",
+        "wordExEng2": "I could smell onions frying."
+      },
+      {
+        "word": "빌리다",
+        "def": "borrow, lend",
+        "wordExKor1": "펜 좀 잠깐 빌릴 수 있을까요?",
+        "wordExEng1": "Can I borrow your pen for a moment?",
+        "wordExKor2": "나는 그에게서 돈을 빌렸다",
+        "wordExEng2": "I borrowed money from him."
+      },
+      {
+        "word": "사다",
+        "def": "buy, get",
+        "wordExKor1": "이것 얼마에 사셨어요?",
+        "wordExEng1": "How much did you pay for this[get this for]?",
+        "wordExKor2": "나는 티셔츠 한 장을 만 원에 샀다",
+        "wordExEng2": "I bought a T-shirt for 10 thousand won."
+      },
+      {
+        "word": "사용하다",
+        "def": "use",
+        "wordExKor1": "자주 사용하다",
+        "wordExEng1": "make frequent use (of)",
+        "wordExKor2": "이 문제를 푸는 데 두 가지 방법을 사용할 수 있다",
+        "wordExEng2": "Two methods can be employed when solving this problem."
+      },
+      {
+        "word": "살다",
+        "def": "live, reside",
+        "wordExKor1": "그는 서울에 산다",
+        "wordExEng1": "He lives[resides] in Seoul.",
+        "wordExKor2": "나는 어린 시절부터 지금까지 부산에 살았다. ",
+        "wordExEng2": "I lived in Busan from my childhood until now."
+      },
+      {
+        "word": "생각하다",
+        "def": "think",
+        "wordExKor1": "생각해 보고 곧 알려 드릴게요",
+        "wordExEng1": "I'll think about it and let you know soon.",
+        "wordExKor2": "좋다고 생각해요",
+        "wordExEng2": "I think it’s good"
+      },
+      {
+        "word": "섞다",
+        "def": " mix, blend",
+        "wordExKor1": "빨간색과 파란색을 섞어 보라색을 만들어라",
+        "wordExEng1": "Blend red and blue to make purple.",
+        "wordExKor2": "버터와 설탕을 섞고 나서 우유를 넣으시오",
+        "wordExEng2": "Mix butter and sugar together, and then add milk."
+      },
+      {
+        "word": "소개하다",
+        "def": "introduce",
+        "wordExKor1": "후배를 소개하다.",
+        "wordExEng1": "introduce one's juniors",
+        "wordExKor2": "나는 애인을 부모님에게 처음 소개하는 자리여서 몹시 떨렸다.",
+        "wordExEng2": "I was very nervous because it was my first time introducing my significant other to my parents."
+      },
+      {
+        "word": "쉬다",
+        "def": "rest, relax",
+        "wordExKor1": "쉬는 시간은 10분입니다",
+        "wordExEng1": "The break will last 10 minutes.",
+        "wordExKor2": "잠깐 쉴까요? ",
+        "wordExEng2": "Shall we take a break for a while?"
+      },
+      {
+        "word": "시작하다",
+        "def": "start, begin",
+        "wordExKor1": "처음부터 다시 시작하다",
+        "wordExEng1": "start over",
+        "wordExKor2": "그녀는 지난 달부터 조깅을 시작했다 ",
+        "wordExEng2": "She has taken up jogging since last month."
+      },
+      {
+        "word": "신다",
+        "def": "wear (footwear)",
+        "wordExKor1": "구두를 갈아 신다 ",
+        "wordExEng1": "change one's shoes",
+        "wordExKor2": "이 구두를 신어 보세요",
+        "wordExEng2": "Try these shoes on."
+      },
+      {
+        "word": "싫어하다",
+        "def": "To hate, dislike",
+        "wordExKor1": "왜 그렇게 그 사람을 싫어해요?",
+        "wordExEng1": "Why do you hate[dislike] him so much?",
+        "wordExKor2": "나는 사진 찍는 것을 굉장히 싫어한다",
+        "wordExEng2": "I really don't like having my picture taken."
+      },
+      {
+        "word": "싸우다",
+        "def": "fight, argue",
+        "wordExKor1": "용감히 싸우다",
+        "wordExEng1": "fight bravely[valiantly]",
+        "wordExKor2": "두 남자가 길거리에서 싸우고 있었다",
+        "wordExEng2": "Two guys were fighting on the street."
+      },
+      {
+        "word": "쓰다",
+        "def": "write",
+        "wordExKor1": "편지를 쓰다",
+        "wordExEng1": "write a letter",
+        "wordExKor2": "아이는 새로 산 공책의 앞에 자기 이름을 썼다.",
+        "wordExEng2": "The child wrote his name in front of his new notebook."
+      },
+      {
+        "word": "쓰다",
+        "def": "use, work with",
+        "wordExKor1": "컴퓨터를 쓰다.",
+        "wordExEng1": "use a computer",
+        "wordExKor2": "나는 요리를 할 때 신선한 재료만을 쓴다",
+        "wordExEng2": "I only use fresh ingredients when I cook"
+      },
+      {
+        "word": "씻다",
+        "def": "To wash",
+        "wordExKor1": "컵 좀 씻어 주시겠어요?",
+        "wordExEng1": "Will you wash out the cups?\n",
+        "wordExKor2": "그는 찬물로 얼굴을 씻었다",
+        "wordExEng2": "He washed his face with cold water."
+      },
+      {
+        "word": "앉다",
+        "def": "To sit",
+        "wordExKor1": "앉아서 기다리세요",
+        "wordExEng1": "Please have a seat while you wait.",
+        "wordExKor2": "우리는 뒷좌석에 나란히 앉았다",
+        "wordExEng2": "We sat side by side in the back seat."
+      },
+      {
+        "word": "알다",
+        "def": "To know",
+        "wordExKor1": "그 일은 친구에게 들어서 알고 있다",
+        "wordExEng1": "I had heard[learned] of it from my friend.",
+        "wordExKor2": "그가 떠난다는 것을 진작 알았으면 좋았을 텐데",
+        "wordExEng2": "I wish I'd known about his leaving beforehand."
+      },
+      {
+        "word": "약속하다",
+        "def": "To promise",
+        "wordExKor1": "그럼 우리 내일 공원에서 오전 열 시에 만나기로 약속하는 거다",
+        "wordExEng1": "Then we'll meet at the park at 10 a.m. tomorrow",
+        "wordExKor2": "아버지는 아들에게 이번 주말에 대공원으로 놀러 갈 것을 약속했다",
+        "wordExEng2": "The father promised his son to go to the Grand Park this weekend"
+      },
+      {
+        "word": "없다",
+        "def": "not have, not exist",
+        "wordExKor1": "거기에는 아무도 없었다",
+        "wordExEng1": "There was no one there.",
+        "wordExKor2": "할 일이 없다",
+        "wordExEng2": "I have nothing to do."
+      },
+      {
+        "word": "연습하다",
+        "def": "To practice",
+        "wordExKor1": "레슬링 선수들은 일주일에 6일을 연습한다",
+        "wordExEng1": "The wrestlers train six days a week.",
+        "wordExKor2": "위층에 사는 소녀는 하루 종일 피아노 연습을 한다",
+        "wordExEng2": "The girl upstairs practices playing the piano all day long."
+      },
+      {
+        "word": "열다",
+        "def": "To open",
+        "wordExKor1": "문을 열다",
+        "wordExEng1": "open the door",
+        "wordExKor2": "이 병 뚜껑 좀 열어 주실래요?",
+        "wordExEng2": "Would you open this bottle please?"
+      },
+      {
+        "word": "오다",
+        "def": "To come",
+        "wordExKor1": "버스가 온다",
+        "wordExEng1": "The bus is coming.",
+        "wordExKor2": "여기에 한 번 와 본 적이 있다",
+        "wordExEng2": "I have been here once."
+      },
+      {
+        "word": "요리하다",
+        "def": "To cook",
+        "wordExKor1": "나는 요리를 못한다 ",
+        "wordExEng1": "I am no[not] good at cooking.",
+        "wordExKor2": "어머니는 아이들의 간식으로 떡볶이를 요리해 주셨다.",
+        "wordExEng2": "The mother cooked tteokbokki for the children's snacks."
+      },
+      {
+        "word": "운동하다",
+        "def": "exercise, workout",
+        "wordExKor1": "가벼운 운동을 하다",
+        "wordExEng1": "do light exercise",
+        "wordExKor2": "매일 아침 운동하다",
+        "wordExEng2": "to exercise every morning"
+      },
+      {
+        "word": "운전하다",
+        "def": "drive",
+        "wordExKor1": "운전할 줄 아세요?",
+        "wordExEng1": "Do you know how to drive?",
+        "wordExKor2": "운전을 잘하다[못하다]",
+        "wordExEng2": "be a good[bad] driver"
+      },
+      {
+        "word": "울다",
+        "def": "To cry",
+        "wordExKor1": "이제 그만 울어요 ",
+        "wordExEng1": "Stop crying now.",
+        "wordExKor2": "나는 영화를 보는 내내 울었다",
+        "wordExEng2": "I cried throughout the movie."
+      },
+      {
+        "word": "웃다",
+        "def": "laugh, smile",
+        "wordExKor1": "그녀는 잘 웃는다",
+        "wordExEng1": "She laughs[smiles] a lot.",
+        "wordExKor2": "그녀는 내가 도착하자 환하게 웃어 주었다",
+        "wordExEng2": "She gave me a big smile when I arrived."
+      },
+      {
+        "word": "이기다",
+        "def": "To win, defeat",
+        "wordExKor1": "7 대 5로 경기를 이기다",
+        "wordExEng1": "win the game seven to five",
+        "wordExKor2": "누가 이기나 한번 해 보자",
+        "wordExEng2": "Let's see who wins."
+      },
+      {
+        "word": "이야기하다",
+        "def": "talk, chat",
+        "wordExKor1": "제 이야기만 했네요",
+        "wordExEng1": "I've only talked about myself.",
+        "wordExKor2": "우리 딴 이야기하는 것이 어때요?",
+        "wordExEng2": "Could we talk about something else?"
+      },
+      {
+        "word": "일어나다",
+        "def": "get up, wake up",
+        "wordExKor1": "나는 침대에 잠깐 누웠다가 일어났다",
+        "wordExEng1": "I lied down on bed for a while and then sat up.",
+        "wordExKor2": "벌써 일어났어요? ",
+        "wordExEng2": "Are you out of bed already?"
+      },
+      {
+        "word": "일하다",
+        "def": "work",
+        "wordExKor1": "나는 큰 법률회사에서 일하고 있다 ",
+        "wordExEng1": "I work for a big law firm.",
+        "wordExKor2": "이 회사에서 일하고 싶습니다",
+        "wordExEng2": "I would like to work for this company."
+      },
+      {
+        "word": "읽다",
+        "def": "read",
+        "wordExKor1": "내가 빌려 준 책은 다 읽었어? \n",
+        "wordExEng1": "Have you finished the book I lent you?",
+        "wordExKor2": "이 아이는 한글을 읽을 줄 안다",
+        "wordExEng2": "This kid can read Korean."
+      },
+      {
+        "word": "입다",
+        "def": "To wear",
+        "wordExKor1": "그녀는 교복을 입고 있었다",
+        "wordExEng1": "She was dressed in her school uniform.",
+        "wordExKor2": "옷이 맞는지 한번 입어 보세요",
+        "wordExEng2": "Try[Put] it on to see if it fits (you)."
+      },
+      {
+        "word": "있다",
+        "def": "have, exist",
+        "wordExKor1": "이 방에는 에어컨이 있다",
+        "wordExEng1": "This room has air conditioning.",
+        "wordExKor2": "정말로 귀신이 있다고 생각하세요?",
+        "wordExEng2": "Do you really think ghosts exist?"
+      },
+      {
+        "word": "자다",
+        "def": "To sleep",
+        "wordExKor1": "아직 안 자니?",
+        "wordExEng1": "Are you still up[awake]?",
+        "wordExKor2": "나는 보통 일요일 아침에는 늦잠을 잔다",
+        "wordExEng2": "I usually sleep in[late] on Sunday mornings."
+      },
+      {
+        "word": "전화하다",
+        "def": "call, telephone",
+        "wordExKor1": "지수는 어머니와 통화하려고 집으로 전화했다.",
+        "wordExEng1": "Jisoo called home to talk to her mother.",
+        "wordExKor2": "잘못된 번호로 전화하다",
+        "wordExEng2": " to call the wrong number"
+      },
+      {
+        "word": "좋아하다",
+        "def": "like, love",
+        "wordExKor1": "나는 흰색을 좋아해서 흰 옷을 즐겨 입는다.",
+        "wordExEng1": "I like white, so I like to wear white clothes.",
+        "wordExKor2": "엄마는 요리하는 것을 좋아하지만 잘하지는 못하신다.",
+        "wordExEng2": "My mom likes to cook, but she is not good at it."
+      },
+      {
+        "word": "죄송하다",
+        "def": "be sorry",
+        "wordExKor1": "시끄럽게 해서 죄송합니다. ",
+        "wordExEng1": "Sorry about the noise.",
+        "wordExKor2": "늦어서 죄송합니다. 차가 너무 막혀서요",
+        "wordExEng2": "I'm sorry (that) I'm late. The traffic was really terrible."
+      },
+      {
+        "word": "주다",
+        "def": "give",
+        "wordExKor1": "언니가 동생에게 연필을 주었다. ",
+        "wordExEng1": "My sister gave a pencil to my brother.",
+        "wordExKor2": "그는 주위를 둘러보더니 책 한 권을 집어 그녀에게 주었다. ",
+        "wordExEng2": "He looked around and picked up a book and gave it to her."
+      },
+      {
+        "word": "주문하다",
+        "def": "order",
+        "wordExKor1": "고기를 주문하다. ",
+        "wordExEng1": "order meat",
+        "wordExKor2": "우리는 중국집에 전화를 걸어서 자장면 두 그릇을 주문했다. ",
+        "wordExEng2": "We called the Chinese restaurant and ordered two bowls of jajangmyeon."
+      },
+      {
+        "word": "죽다",
+        "def": "To die",
+        "wordExKor1": "화분의 꽃이 죽었네.",
+        "wordExEng1": "The flower in the pot is dead.",
+        "wordExKor2": "집에서 키우던 강아지가 병으로 죽었어",
+        "wordExEng2": "My dog died of an illness"
+      },
+      {
+        "word": "준비하다",
+        "def": "To prepare",
+        "wordExKor1": "공항 갈 준비를 하느라 바쁘다",
+        "wordExEng1": "I'm busy preparing to leave for the airport.",
+        "wordExKor2": "나는 손님들이 올 시간에 맞춰서 점심을 준비했다.",
+        "wordExEng2": "I prepared lunch in time for the guests."
+      },
+      {
+        "word": "찾다",
+        "def": "To find,To look for",
+        "wordExKor1": "어떤 사람이 내 신분증을 찾아 주었다 ",
+        "wordExEng1": "Someone found my ID card.",
+        "wordExKor2": "경찰이 실종된 아이를 찾고 있다",
+        "wordExEng2": "The police are looking for the missing child."
+      },
+      {
+        "word": "청소하다",
+        "def": "clean",
+        "wordExKor1": "집이 이렇게 넓으면 청소하기 힘들겠다.",
+        "wordExEng1": "It must be hard to clean if the house is this big.",
+        "wordExKor2": "아이들은 교실 안을 먼지를 털고 닦아 내며 청소하였다. ",
+        "wordExEng2": "The children dusted and cleaned the classroom."
+      },
+      {
+        "word": "축하하다",
+        "def": "congratulate",
+        "wordExKor1": "진심으로 축하하다 ",
+        "wordExEng1": "congratulate from the bottom of one's heart",
+        "wordExKor2": "축하해 줘서 고마워요",
+        "wordExEng2": "Thank you for congratulating me."
+      },
+      {
+        "word": "출발하다",
+        "def": "depart, leave",
+        "wordExKor1": "런던으로 출발하다",
+        "wordExEng1": "depart for London",
+        "wordExKor2": "비행기는 1시에 출발한다 ",
+        "wordExEng2": "The plane leaves[takes off; departs] at one o'clock."
+      },
+      {
+        "word": "춤추다",
+        "def": "dance",
+        "wordExKor1": "음악에 맞추어 춤추다 ",
+        "wordExEng1": "dance to music",
+        "wordExKor2": "합격 소식을 듣고 좋아서 춤추었다",
+        "wordExEng2": "He danced for joy at the notice that he had passed."
+      },
+      {
+        "word": "타다",
+        "def": "ride, get on",
+        "wordExKor1": "막차를 타려면 서둘러야 합니다",
+        "wordExEng1": "You must hurry if you want to catch the last bus.",
+        "wordExKor2": "자전거 타는 법을 배우다",
+        "wordExEng2": "learn to ride a bicycle"
+      },
+      {
+        "word": "팔다",
+        "def": "sell",
+        "wordExKor1": "하나에 5백 원에 팔다",
+        "wordExEng1": "sell sth at 500 won a piece",
+        "wordExKor2": "이거 파는 건가요?",
+        "wordExEng2": "Is this for sale?"
+      },
+      {
+        "word": "필요하다",
+        "def": "need",
+        "wordExKor1": "성공에는 노력이 필요하다.",
+        "wordExEng1": "Success requires effort.",
+        "wordExKor2": "나는 돈이 급하게 필요해서 부모님께 연락을 드렸다.",
+        "wordExEng2": "I contacted my parents because I needed money urgently."
+      }
+    ]
 }

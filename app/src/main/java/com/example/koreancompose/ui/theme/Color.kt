@@ -10,5 +10,8 @@ val PrimaryOrange = Color(0xFFF6765B)
 val PrimaryLightOrange = Color(0xFFFFAA8B)
 val PrimaryDarkOrange = Color(0xFFC74832)
 val SurfaceColorWhite = Color(0xFFF8F8F8)
+val SurfaceColorDarkVariant = Color(0xFF252525)
+val SurfaceColorDark2 = Color(0xFFF8F8F8)
+val SurfaceColorDark = Color(0xFF131313)
 
 

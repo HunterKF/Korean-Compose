@@ -1,22 +1,22 @@
 {
   "grammar": [
     {
-      "grammar": "~서",
+      "grammar": "-서",
       "gramInDepth1": "A connective ending used to indicate that the preceding event and the following one happened sequentially.",
       "inDepth1ExKor": "지수는 친구에게 화분을 하나 얻어서 키우기 시작했다.",
       "inDepth1ExEng": "Jisoo got a flowerpot from her friend and started growing it.",
       "gramInDepth2": "A connective ending used for a reason or cause.",
       "inDepth2ExKor": "지수는 시간이 없어서 식사도 못 했다. ",
-      "inDepth2ExEng": "Jisoo couldn't even eat because she didn't have time. "
+      "inDepth2ExEng": "Jisoo couldn't even eat because she didn't have time."
     },
     {
-      "grammar": "(으)니까",
+      "grammar": "-(으)니까",
       "gramInDepth1": "A connective ending used to emphasize that the preceding statement is the cause, reason, or premise for the following statement.",
       "inDepth1ExKor": "학교에 가야 되니까 지금 못 만나요",
       "inDepth1ExEng": "I need to go to school, so I won’t be able to meet",
       "gramInDepth2": "null",
       "inDepth2ExKor": "옆방이 아주 시끄러우니까 저는 잠을 못 잤어요",
-      "inDepth2ExEng": "The room next to us is very loud, so I couldn’t sleep "
+      "inDepth2ExEng": "The room next to us is very loud, so I couldn’t sleep"
     },
     {
       "grammar": "-러",
@@ -25,115 +25,502 @@
       "inDepth1ExEng": "Suddenly, my friends came to my house to hang out.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "어머니는 과일을 사러 잠깐 시장에 가셨다",
-      "inDepth2ExEng": "My mother went to the market to buy some fruit "
+      "inDepth2ExEng": "My mother went to the market to buy some fruit"
     },
     {
-      "grammar": "(으)려고 하다",
+      "grammar": "-(으)려고 하다",
       "gramInDepth1": "An expression used to indicate that one has the intention or wish to do the act mentioned in the preceding statement.",
       "inDepth1ExKor": "내일부터는 일찍 일어나려고 한다.",
       "inDepth1ExEng": "I try to get up early from tomorrow.",
       "gramInDepth2": "An expression used to indicate that the incident mentioned in the preceding statement is likely to happen or begin soon.",
       "inDepth2ExKor": "비가 오려고 하는지 구름이 잔뜩 끼었다.",
-      "inDepth2ExEng": "It was cloudy as if it was about to rain. "
+      "inDepth2ExEng": "It was cloudy as if it was about to rain."
     },
     {
-      "grammar": "(으)면서",
+      "grammar": "-(으)면서",
       "gramInDepth1": "A connective ending used when more than two actions or states happen at the same time.",
       "inDepth1ExKor": "저는 밥을 먹으면서 공부했어요",
       "inDepth1ExEng": "I ate (rice) while studying",
       "gramInDepth2": "null",
       "inDepth2ExKor": "저는 영화를 보면서 콜라를 마셨어요",
-      "inDepth2ExEng": "I drank cola while watching a movie "
+      "inDepth2ExEng": "I drank cola while watching a movie"
     },
     {
-      "grammar": "(으)면",
+      "grammar": "-(으)면",
       "gramInDepth1": "To indicate that one action occurs “when or if” another action (that hasn’t happened yet) occurs",
       "inDepth1ExKor": "집에 일찍 도착하면 빨래를 할 거예요",
       "inDepth1ExEng": "If I arrive home early, I will do laundry",
       "gramInDepth2": "null",
       "inDepth2ExKor": "내일 비바람이 오면 경기가 취소될 거예요",
-      "inDepth2ExEng": "If it storms tomorrow, the match(game) will be cancelled "
+      "inDepth2ExEng": "If it storms tomorrow, the match(game) will be cancelled"
     },
     {
-      "grammar": "(이)지요?",
+      "grammar": "-(이)지요?",
       "gramInDepth1": "A sentence-final ending used when the speaker confirms and says something that the listener thought he or she already knew.",
       "inDepth1ExKor": "오늘 본 영화는 좀 지루했죠.",
       "inDepth1ExEng": "The movie I watched today was a bit boring.",
       "gramInDepth2": "A sentence-final ending used to ask something that the speaker already knows to cross-check the information.",
       "inDepth2ExKor": "오늘 날씨가 참 좋죠?",
-      "inDepth2ExEng": "Lovely day today, isn't it? "
+      "inDepth2ExEng": "Lovely day today, isn't it?"
     },
     {
-      "grammar": "V+(으)ㄹ까요?",
+      "grammar": "-(으)ㄹ까요?",
       "gramInDepth1": "A sentence-final ending used to indicate a question or assumption about something.",
       "inDepth1ExKor": "저 사람이 지수 동생일까?",
       "inDepth1ExEng": "Is that Jisoo's sister?",
       "gramInDepth2": "A sentence-final ending used to ask for the listener's opinion.",
       "inDepth2ExKor": "우리 같이 저녁 먹으러 갈까?",
-      "inDepth2ExEng": "Shall we go to dinner together? "
+      "inDepth2ExEng": "Shall we go to dinner together?"
     },
     {
-      "grammar": "V+(을)래요",
+      "grammar": "-(을)래요",
       "gramInDepth1": "A sentence-final ending used to indicate the speaker's intention to do something in the future, or to ask for the listener's thoughts about that.",
       "inDepth1ExKor": "오늘은 피곤해서 일찍 잘래.",
       "inDepth1ExEng": "I'm tired today, so I'm going to bed early.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "내일 산에 갈 때 몇 시에 출발할래요?",
-      "inDepth2ExEng": "What time do you want to leave when you go to the mountain tomorrow? "
+      "inDepth2ExEng": "What time do you want to leave when you go to the mountain tomorrow?"
     },
     {
-      "grammar": "V+(으)ㅂ시다",
+      "grammar": "-(으)ㅂ시다",
       "gramInDepth1": "(formal) A sentence-final ending used to express an intention of doing a certain action together.",
       "inDepth1ExKor": "늦었으니 빨리 갑시다.",
       "inDepth1ExEng": "It's late, so let's go quickly.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "그 규정을 내일부터 시행합시다",
-      "inDepth2ExEng": "Let’s enforce that rule starting tomorrow "
+      "inDepth2ExEng": "Let’s enforce that rule starting tomorrow"
     },
     {
-      "grammar": "V+(으)ㄹ 게요",
+      "grammar": "-(으)ㄹ 게요",
       "gramInDepth1": "An expression used when the speaker promises or notifies the listener that he orshe will do something.",
       "inDepth1ExKor": "지금 밥을 먹을게요",
       "inDepth1ExEng": "I will eat now",
       "gramInDepth2": "null",
       "inDepth2ExKor": "지금 주문할게요",
-      "inDepth2ExEng": "I will order now "
+      "inDepth2ExEng": "I will order now"
     },
     {
-      "grammar": "~도 돼요",
+      "grammar": "-도 돼요",
       "gramInDepth1": "An expression used to indicate that a certain act is allowed or accepted.",
       "inDepth1ExKor": "박물관 안에서 사진을 찍어도 될지 물어 보자.",
       "inDepth1ExEng": "Let's ask if we can take a picture inside the museum.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "화장실에 가도 돼요?",
-      "inDepth2ExEng": "May I go to the bathroom? "
+      "inDepth2ExEng": "May I go to the bathroom?"
     },
     {
-      "grammar": "V+기로 하다",
+      "grammar": "-기로 하다",
       "gramInDepth1": "An expression used to decide or promise the performance of the act mentioned in the preceding statement.",
       "inDepth1ExKor": "제가 친구를 공원에서 만나기로 했어요",
       "inDepth1ExEng": "I decided to meet my friend in the park",
       "gramInDepth2": "null",
       "inDepth2ExKor": "내일 친구랑 음악회에 같이 가기로 했어요",
-      "inDepth2ExEng": "I decided to go to the concert with my friend tomorrow "
+      "inDepth2ExEng": "I decided to go to the concert with my friend tomorrow"
     },
     {
-      "grammar": "(은)는 적이 있다",
+      "grammar": "-(은)는 적이 있다",
       "gramInDepth1": "An expression used to indicate that the act or state mentioned in the preceding statement existed at some point in time.",
       "inDepth1ExKor": "그 사람을 만난 적이 있어요",
       "inDepth1ExEng": "I’ve met him once.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "일본에 가 본 적이 있습니까?",
-      "inDepth2ExEng": "Have you ever been to Japan? "
+      "inDepth2ExEng": "Have you ever been to Japan?"
     },
     {
-      "grammar": "(은)는 적이 없다",
+      "grammar": "-(은)는 적이 없다",
       "gramInDepth1": "An expression used to indicate that the act or state mentioned in the preceding statement never existed.",
       "inDepth1ExKor": "나는 스페인에 가 본 적이 없다.",
       "inDepth1ExEng": "I’ve never been to Spain.",
       "gramInDepth2": "null",
       "inDepth2ExKor": "나는 그런 생각을 해 본 적이 없다.",
       "inDepth2ExEng": "The thought never entered my head."
+    },
+    {
+      "grammar": "-는데",
+      "gramInDepth1": "A connective ending used to talk in advance about a situation to follow.",
+      "inDepth1ExKor": "식사 시간이 되었는데 괜찮다면 같이 밥 먹을래?",
+      "inDepth1ExEng": "It's meal time, so would you like to eat with me if you don't mind?",
+      "gramInDepth2": "(informal addressee-lowering) A sentence-final ending used to admire something while anticipating the listener's response.",
+      "inDepth2ExKor": "그 옷이 너한테 아주 잘 어울리는데.",
+      "inDepth2ExEng": "That dress looks very good on you."
+    },
+    {
+      "grammar": "-ㄹ까 보다",
+      "gramInDepth1": "An expression used to indicate that the speaker has an intention to do the act mentioned in the preceding statement.",
+      "inDepth1ExKor": "몸도 좋지 않으니 오늘은 아무 데도 안 나가고 집에서 좀 쉴까 봐요.",
+      "inDepth1ExEng": "I'm not feeling well either, so I think I'll go out and rest at home today.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "아이는 소풍 가는 날에 비가 올까 봐 벌써부터 걱정을 한다.",
+      "inDepth2ExEng": "The child is already worried about rain on the picnic day."
+    },
+    {
+      "grammar": "-(으)ㄹ 때",
+      "gramInDepth1": "An expression used to indicate the duration, period, or occasion of a certain act or situation.",
+      "inDepth1ExKor": "해외로 여행을 갈 때 여권은 반드시 챙겨야 한다.",
+      "inDepth1ExEng": "When you travel abroad, you must bring your passport.",
+      "gramInDepth2": "An expression used to indicate that the speaker is worried or afraid that the situation mentioned in the preceding statement may happen.",
+      "inDepth2ExKor": "나는 운동할 때 꼭 음악을 듣는다.",
+      "inDepth2ExEng": "I always listen to music when I exercise."
+    },
+    {
+      "grammar": "-기 전에",
+      "gramInDepth1": "An expression used to state that a certain act occurs earlier than the act in the preceding statement.",
+      "inDepth1ExKor": "밥 먹기 전에 손부터 씻어라.",
+      "inDepth1ExEng": "Wash your hands before you eat.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "저녁 먹기 전에 잠깐 가서 좀 씻고 올게요",
+      "inDepth2ExEng": "I’ll just go and freshen up before supper."
+    },
+    {
+      "grammar": "그러면, 그럼",
+      "gramInDepth1": "A conjunctive adverb used when the following statement is conditional upon the preceding one.",
+      "inDepth1ExKor": "어머니께 말하는 게 어때? 그러면 해결책이 생길 거야. ",
+      "inDepth1ExEng": "Why don't you tell your mother? Then there will be a solution.",
+      "gramInDepth2": "A conjunction used when accepting the preceding statement or building on it to make a new claim.",
+      "inDepth2ExKor": "준비가 끝났나요? 그러면 이제 출발하겠습니다.",
+      "inDepth2ExEng": "Are you ready? Let's go now."
+    },
+    {
+      "grammar": "-ㄹ 위해서",
+      "gramInDepth1": "An expression used to indicate that something is for the benefit of someone or for a goal or purpose.",
+      "inDepth1ExKor": "저는 회사를 위해 열심히 일할 거예요",
+      "inDepth1ExEng": "I will work hard for the company",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "군인은 나라를 위해서 일하는 사람입니다.",
+      "inDepth2ExEng": "Soliders are people who work for their country. "
+    },
+    {
+      "grammar": "-밖에",
+      "gramInDepth1": "A postpositional particle that means \"except for that\" or \"other than that.\"",
+      "inDepth1ExKor": "우리가 먹을 것은 밥밖에 없어요",
+      "inDepth1ExEng": "We have nothing but rice to eat",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "그거를 사고 싶지만 만 원밖에 없어서 못 사요",
+      "inDepth2ExEng": " I want to buy that, but I only have 10,000 won, so I can’t buy it"
+    },
+    {
+      "grammar": "-ㄴ 다음",
+      "gramInDepth1": "An expression used to indicate that the time being described takes places after the completion of a certain work or process mentioned in the preceding statement.",
+      "inDepth1ExKor": "승규는 대학을 졸업한 다음에 군대에 갔다. ",
+      "inDepth1ExEng": "Seung-gyu went to the army after graduating from college.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "외국어를 공부할 때는 발음을 잘 들은 다음에 따라 하는 것이 중요하다.",
+      "inDepth2ExEng": "When studying a foreign language, it is important to listen to the pronunciation carefully and follow it."
+    },
+    {
+      "grammar": "-이도",
+      "gramInDepth1": "A connective ending used when assuming or recognizing the truth of the preceding statement, but implying that it is not related to or does not influence the following statement.",
+      "inDepth1ExKor": "그랑 일대일로 면담하려고 해 봐도 그는 말을 안 할 거예요",
+      "inDepth1ExEng": "Regardless of if you try to talk with him (face to face) he won’t say anything",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "달콤한 치킨을 안 좋아해도 이것을 한번 먹어 봐야 돼요",
+      "inDepth2ExEng": " Regardless of if you don’t like sweet chicken, you have to try this"
+    },
+    {
+      "grammar": "-지만",
+      "gramInDepth1": "A connective ending used to recognize the truth of the preceding statement and add facts that are the opposite of it or different.",
+      "inDepth1ExKor": "승규는 머리는 좋지만 다소 산만하다. ",
+      "inDepth1ExEng": "Seung-gyu is smart but somewhat distracted.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "서울은 가 봤지만 제주도는 못 가 봤어요.",
+      "inDepth2ExEng": "I've been to Seoul, but I haven't been to Jeju Island."
+    },
+    {
+      "grammar": "-자마자",
+      "gramInDepth1": "A connective ending used to indicate that the following event or situation occurs right after the preceding event or situation.",
+      "inDepth1ExKor": "나는 너무 피곤해서 침대에 눕자마자 잠이 들었다. ",
+      "inDepth1ExEng": "I was so tired that I fell asleep as soon as I lay on the bed.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "민준이는 게임을 좋아해서 집에 오자마자 항상 컴퓨터부터 켠다. ",
+      "inDepth2ExEng": "Minjun likes to play games, so he always turns on the computer as soon as he gets home."
+    },
+    {
+      "grammar": "-잖아요",
+      "gramInDepth1": "An expression used to check with or correct the listener on something about a certain situation.",
+      "inDepth1ExKor": "목요일에는 영어 회화 수업이 있잖아요. ",
+      "inDepth1ExEng": "We have an English conversation class on Thursday.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "맞잖아요!",
+      "inDepth2ExEng": "I told you it was correct! "
+    },
+    {
+      "grammar": "-ㄴ 후에",
+      "gramInDepth1": "An expression used to indicate that one does a certain act mentioned in the preceding statement and a while later, does another thing.",
+      "inDepth1ExKor": "승규는 보통 식사를 마친 후에 커피를 마신다. ",
+      "inDepth1ExEng": "Seung-gyu usually drinks coffee after finishing his meal.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "밥을 먹은 후에 이 약을 좀 먹어 보세요.",
+      "inDepth2ExEng": "Please take some of this medicine after you eat."
+    },
+    {
+      "grammar": "-(으)ㄹ 줄 알다",
+      "gramInDepth1": "An expression used to indicate that one does know a certain fact or state.",
+      "inDepth1ExKor": "내가 기다릴 줄 알았니? 몰랐니? ",
+      "inDepth1ExEng": "Did you think I'd wait? Didn't you know?",
+      "gramInDepth2": "An expression used to indicate that one knows how to do a certain thing.",
+      "inDepth2ExKor": "승규는 일본어를 할 줄 안다. ",
+      "inDepth2ExEng": "Seung-gyu knows how to speak Japanese."
+    },
+    {
+      "grammar": "-(으)ㄹ 줄 모르다",
+      "gramInDepth1": "An expression used to indicate that one does not know a certain fact or state.",
+      "inDepth1ExKor": "여기에서 선생님을 만날 줄 몰랐어요.",
+      "inDepth1ExEng": "I didn't expect to see you here.",
+      "gramInDepth2": "An expression used to indicate that one does not know how to do a certain thing.",
+      "inDepth2ExKor": "우리 아이는 아직 글을 쓸 줄 몰라요. ",
+      "inDepth2ExEng": "My child can't write yet."
+    },
+    {
+      "grammar": "-(으)ㄹ 수 있다",
+      "gramInDepth1": "An expression used to indicate that one cannot do something.",
+      "inDepth1ExKor": "저도 그것을 할 수 있어요 ",
+      "inDepth1ExEng": "I can do that too",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "살이 많이 빠져서 지금 정장을 편히 입을 수 있어요",
+      "inDepth2ExEng": "I can solve this math question without any issue"
+    },
+    {
+      "grammar": "-(으)ㄹ 수 없다",
+      "gramInDepth1": "An expression used to indicate that one cannot do something.",
+      "inDepth1ExKor": "제가 너무 아파서 많이 먹을 수 없어요 ",
+      "inDepth1ExEng": " I can’t eat much because I am very sick",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "저는 그 사실을 믿을 수 없어요 ",
+      "inDepth2ExEng": "I can wear a suit comfortably now because I lost a lot of weight"
+    },
+    {
+      "grammar": "-ㄴ 다음에",
+      "gramInDepth1": "An expression used to indicate that the time being described takes places after the completion of a certain work or process mentioned in the preceding statement.",
+      "inDepth1ExKor": "승규는 대학을 졸업한 다음에 군대에 갔다. ",
+      "inDepth1ExEng": "Seung-gyu went to the army after graduating from college.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "전자 제품을 살 때에는 가격과 성능을 꼼꼼히 비교해 본 다음에 사야 한다. ",
+      "inDepth2ExEng": "When buying electronics, you should carefully compare prices and performance before buying them."
+    },
+    {
+      "grammar": "-이 보다",
+      "gramInDepth1": "An expression used to indicate that one does the act mentioned in the preceding statement, as a test.",
+      "inDepth1ExKor": "지수는 파마머리를 시도해 보고 싶어 미용실에 갔다.",
+      "inDepth1ExEng": "Ji-Soo went to the hair salon because she wanted to try perm hair.",
+      "gramInDepth2": "An expression used to indicate that one experienced the act mentioned in the preceding statement earlier.",
+      "inDepth2ExKor": "나는 언어학 전공이지만 물리에도 관심이 많아 물리 공부도 많이 해 봤다.",
+      "inDepth2ExEng": "I majored in linguistics, but I am also interested in physics, so I have studied physics a lot."
+    },
+    {
+      "grammar": "-거든요",
+      "gramInDepth1": "(informal addressee-raising) An expression used to indicate the speaker's reasoning or the basis for the preceding content.",
+      "inDepth1ExKor": "오늘은 지각하면 안 돼요. 오늘 수업에서 제가 발표를 하거든요.",
+      "inDepth1ExEng": "You can't be late today. I'm going to give a presentation in today's class.",
+      "gramInDepth2": "(informal addressee-raising) An expression used to express the premise of the following content, indicating that the story continues later.",
+      "inDepth2ExKor": "제가 자료를 좀 찾아 봤거든요. 그런데 찾기가 쉽지 않더라고요.",
+      "inDepth2ExEng": "I looked up some data. But it's not easy to find."
+    },
+    {
+      "grammar": "-(으)ㄹ 뻔했다",
+      "gramInDepth1": "An expression used to express that the incident mentioned in the preceding statement almost occurred but ultimately did not occur.",
+      "inDepth1ExKor": "급하게 뛰어오다가 하마터면 넘어질 뻔했다.",
+      "inDepth1ExEng": "I almost fell while running in a hurry.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "조금만 더 늦었더라면 기차를 놓칠 뻔했다.",
+      "inDepth2ExEng": "If I had been a little late, I would have missed the train."
+    },
+    {
+      "grammar": "-(으)ㄹ 수밖에 없다 ",
+      "gramInDepth1": "An expression used to indicate that there is no other method or possibility other than that.",
+      "inDepth1ExKor": "공부를 안 하면 시험에 떨어질 수밖에 없다.",
+      "inDepth1ExEng": "If you don't study, you'll have to fail the exam.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "열쇠가 없어서 어머니가 오실 때까지 밖에서 기다릴 수밖에 없었다.",
+      "inDepth2ExEng": "There was no key, so I had to wait outside until my mother came."
+    },
+    {
+      "grammar": "-(으)ㄹ걸(요)",
+      "gramInDepth1": "(informal addressee-raising) An expression used to indicate that the content of the preceding statement is the speaker's opinion or guess.",
+      "inDepth1ExKor": "지수는 아직 학교에 다닐걸요.",
+      "inDepth1ExEng": "Jisoo probably still goes to school.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "잠시 후면 그 사람들도 이쪽으로 올걸요. ",
+      "inDepth2ExEng": "They'll be here in a minute."
+    },
+    {
+      "grammar": "-(으)ㄹ 텐데",
+      "gramInDepth1": "An expression used to indicate the speaker's strong guess about the preceding statement and add the relevant content.",
+      "inDepth1ExKor": "집에 어머니가 계실 텐데 왜 전화를 안 받지? ",
+      "inDepth1ExEng": "Why isn't my mother answering the phone when she's home?",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "지금까지 아무것도 못 먹어서 배가 많이 고플 텐데 많이 먹어. ",
+      "inDepth2ExEng": "You must be hungry because you haven't eaten anything so far, so eat a lot."
+    },
+    {
+      "grammar": "-(으)며",
+      "gramInDepth1": "A connective ending used to list more than two actions, states, or facts.",
+      "inDepth1ExKor": "우리는 함께 여행도 다니고 전화와 편지도 주고받으며 조금씩 가까워졌다.",
+      "inDepth1ExEng": "We traveled together, exchanged phone calls and letters, and got closer little by little.",
+      "gramInDepth2": "A connective ending used when more than two actions or states happen at the same time.",
+      "inDepth2ExKor": "지수는 친구들에게 웃으며 인사했다.",
+      "inDepth2ExEng": "Ji-Soo greeted her friends with a smile."
+    },
+    {
+      "grammar": "-거나",
+      "gramInDepth1": "A connective ending used when one of either the preceding statement or the following statement can be chosen.",
+      "inDepth1ExKor": "민준은 주말에 보통 친구를 만나거나 영화를 본다.",
+      "inDepth1ExEng": "Minjun usually meets a friend or watches a movie on weekends.",
+      "gramInDepth2": "A connective ending used when even if one out of many things happens, it does not have any relation to the following statement.",
+      "inDepth2ExKor": "막내는 비가 오거나 눈이 오거나 늘 밖에 나가 논다.",
+      "inDepth2ExEng": "Whether it's raining or snowing, the youngest always goes out to play."
+    },
+    {
+      "grammar": "-다면서",
+      "gramInDepth1": "(informal addressee-lowering) A sentence-final ending used when the speaker confirms and asks questions about a fact that he or she heard.",
+      "inDepth1ExKor": "자네 아들이 전교에서 제일 똑똑하다면서? ",
+      "inDepth1ExEng": "I heard your son is the smartest in the whole school",
+      "gramInDepth2": "An expression used to ask if the current situation is different from what the listener or another person said before.",
+      "inDepth2ExKor": "맛없다면서 뭘 그렇게 많이 먹니?",
+      "inDepth2ExEng": "You said it wasn't good, but why are you eating so much?"
+    },
+    {
+      "grammar": "-ㄹ지 ",
+      "gramInDepth1": "A connective ending used when having a doubt about a certain assumption and relating that to the fact or judgment of the following statement.",
+      "inDepth1ExKor": "졸업 후에 무슨 일을 해야 할지 모르겠다. ",
+      "inDepth1ExEng": "I don't know what to do after graduation.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "가뭄이 계속 되는데 언제 비가 올지 걱정이다.",
+      "inDepth2ExEng": "The drought is continuing and I'm worried about when it will rain."
+    },
+    {
+      "grammar": "-ㄴ 대로",
+      "gramInDepth1": "An expression used to indicate that something is the same as the present act or state mentioned in the preceding statement.",
+      "inDepth1ExKor": "여러분, 제가 발음하는 대로 잘 따라 해 보세요. ",
+      "inDepth1ExEng": "Everyone, follow my pronunciation.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "미술 작품은 네가 보고 느끼는 대로 감상하는 것이 중요해.",
+      "inDepth2ExEng": "It is important to appreciate art works as you see and feel them."
+    },
+    {
+      "grammar": "-ㄹ수록",
+      "gramInDepth1": "A connective ending used to imply that as the extent of the preceding statement becomes larger, that of the following statement also changes accordingly.",
+      "inDepth1ExKor": "보석은 크면 클수록 값이 비싸다. ",
+      "inDepth1ExEng": "The bigger the jewel, the more expensive it is.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "친하고 가까운 사이일수록 서로 예의를 잘 지켜야 한다.",
+      "inDepth2ExEng": "The closer you are to each other, the more polite you should be."
+    },
+    {
+      "grammar": "-겠-",
+      "gramInDepth1": "An ending of a word referring to a future event or assumption.",
+      "inDepth1ExKor": "군대 간 아들이 많이 씩씩해졌겠다.",
+      "inDepth1ExEng": "Your son must have gotten a lot stronger in the army.",
+      "gramInDepth2": "An ending of a word referring to a possibility or ability.",
+      "inDepth2ExKor": "이 정도로 공부했으면 시험에 합격하겠지?",
+      "inDepth2ExEng": "If I studied this much, I would pass the test, right?"
+    },
+    {
+      "grammar": "-고 나다",
+      "gramInDepth1": "An expression used to indicate that the act denoted in the preceding statement has finished.",
+      "inDepth1ExKor": "봄이라 그런지 밥만 먹고 나면 잠이 쏟아졌다.",
+      "inDepth1ExEng": "Maybe because it was spring, I fell asleep after eating.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "숙제는 다 하고 나서 놀아라.",
+      "inDepth2ExEng": "Play after you finish your homework."
+    },
+    {
+      "grammar": "-고 보다",
+      "gramInDepth1": "An expression used to state that the speaker did the act mentioned in the preceding statement, then realized the fact in the following statement.",
+      "inDepth1ExKor": "차가 막혀 도착하고 보니 벌써 약속 시간이 지난 후였다.",
+      "inDepth1ExEng": "When I arrived due to traffic jam, it was already past the appointment time.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "영어는 알고 보면 별것 아닌데 왠지 어렵게 느껴진다.",
+      "inDepth2ExEng": "English is not a big deal, but somehow it feels difficult."
+    },
+    {
+      "grammar": "-고 있다",
+      "gramInDepth1": "An expression used to state that the act mentioned in the preceding statement is continued.",
+      "inDepth1ExKor": "사진 속에서 우리 가족은 환하게 웃고 있었다.",
+      "inDepth1ExEng": "My family was smiling brightly in the picture.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "벌써 아침 아홉 시가 넘었는데 승규는 아직도 자고 있다. ",
+      "inDepth2ExEng": "It's already past nine in the morning, and Seung-gyu is still sleeping."
+    },
+    {
+      "grammar": "-는 데다가",
+      "gramInDepth1": "An expression used to indicate that a certain act or state has been added to its preceding act or state, making it worse or better.",
+      "inDepth1ExKor": "우리 엄마가 직접 만들어 주시는 간식은 맛있는 데다가 영양도 풍부하다.",
+      "inDepth1ExEng": "My mom's own snacks are delicious and nutritious.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "아버지는 담배를 피우시는 데다가 술도 자주 드셔서 건강이 나빠지셨다.",
+      "inDepth2ExEng": "My father was in bad health because he smoked and drank a lot."
+    },
+    {
+      "grammar": "-는 동안",
+      "gramInDepth1": "An expression used to indicate the time, for which the act or state mentioned in the preceding statement lasts.",
+      "inDepth1ExKor": "내가 책을 읽는 동안 엄마는 뜨개질을 하셨다.",
+      "inDepth1ExEng": "My mom knitted while I was reading a book.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "우리는 서울에 머무르는 동안 여러 관광지를 돌아보았다.",
+      "inDepth2ExEng": "We looked around various tourist attractions during our stay in Seoul."
+    },
+    {
+      "grammar": "-는 바람에 ",
+      "gramInDepth1": "An expression used to indicate that an act or state mentioned in the preceding statement is the cause or reason for the following statement.",
+      "inDepth1ExKor": "길이 너무 막히는 바람에 늦었어요. ",
+      "inDepth1ExEng": "I was late because of the traffic jam.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "비가 오는 바람에 소풍을 못 가게 되었다. ",
+      "inDepth2ExEng": "The rain prevented me from going on a picnic."
+    },
+    {
+      "grammar": "-는 편이다",
+      "gramInDepth1": "An expression used to indicate that something has a certain tendency or is classified as such, instead of being sure of it.",
+      "inDepth1ExKor": "유민이는 외국인 친구와 자주 영어로 이야기해서 그런지 영어를 잘하는 편이에요.",
+      "inDepth1ExEng": "Yumin speaks English well because she often speaks English with foreign friends.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "승규는 책을 읽는 것을 좋아해서 주말마다 거의 도서관에 가는 편이다. ",
+      "inDepth2ExEng": "Seunggyu likes to read books, so he goes to the library almost every weekend."
+    },
+    {
+      "grammar": "-다가",
+      "gramInDepth1": "A connective ending used when an action or state, etc., is stopped and changed to another action or state.",
+      "inDepth1ExKor": "우리는 밥을 먹다가 차를 마셨다. ",
+      "inDepth1ExEng": "We ate and then we drank tea.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "유민이가 여행을 갔다가 돌아왔다.",
+      "inDepth2ExEng": "Yumin went on a trip and came back."
+    },
+    {
+      "grammar": "-ㅆ던",
+      "gramInDepth1": "An expression used to recall a past incident or state, and indicate that activity related to the incident or state has been suspended, and remains incomplete.",
+      "inDepth1ExKor": "내가 졸업하였던 고등학교가 바로 여기야. ",
+      "inDepth1ExEng": "This is the high school I graduated from.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "네가 먹었던 음식은 유통 기한이 지난 건데? ",
+      "inDepth2ExEng": "The food you ate is past its expiration date"
+    },
+    {
+      "grammar": "-던데요",
+      "gramInDepth1": "(informal addressee-raising) An expression used to tell a certain past incident with wonder, expecting a response from the listener.",
+      "inDepth1ExKor": "그곳에는 맛있는 음식들이 많던데요. ",
+      "inDepth1ExEng": "There are many delicious foods there.",
+      "gramInDepth2": "An expression used to convey the speaker's past personal experience, expecting a response from the listener.",
+      "inDepth2ExKor": "우유는 약이랑 같이 먹으면 안 좋다고 하던데요.",
+      "inDepth2ExEng": "I heard that milk is not good with medicine."
+    },
+    {
+      "grammar": "-도록",
+      "gramInDepth1": "A connective ending used when the preceding statement is the purpose, result, method, amount, etc., of something mentioned in the following statement.",
+      "inDepth1ExKor": "길이 미끄러우니까 넘어지지 않도록 조심하세요. ",
+      "inDepth1ExEng": "The road is slippery, so be careful not to fall.",
+      "gramInDepth2": "null",
+      "inDepth2ExKor": "나는 코미디 영화를 보고 허리가 아프도록 웃었다. ",
+      "inDepth2ExEng": "I laughed my back out at the comedy movie."
+    },
+    {
+      "grammar": "-더니",
+      "gramInDepth1": "A connective ending used when a certain fact or situation happened after a fact or situation in the past.",
+      "inDepth1ExKor": "밥을 많이 먹었더니 배가 부르다. ",
+      "inDepth1ExEng": "I'm full because I ate a lot.",
+      "gramInDepth2": "A connective ending used when there is a new fact different from what one realized from an experience in the past.",
+      "inDepth2ExKor": "아침에는 눈이 오더니 지금은 하늘이 맑네.",
+      "inDepth2ExEng": "It snowed in the morning and now the sky is clear."
     }
   ]
 }

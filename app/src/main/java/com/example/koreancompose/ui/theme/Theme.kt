@@ -1,5 +1,6 @@
 package com.example.koreancompose.ui.theme
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
@@ -8,19 +9,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.graphics.Color
 
+@SuppressLint("ConflictingOnColor")
 private val DarkColorPalette = darkColors(
-    primary = PrimaryDarkOrange,
-    primaryVariant = Color.Red,
-    background = SurfaceColorWhite,
-    secondary = Color.Red
+    primary = PrimaryOrange,
+    primaryVariant = PrimaryOrange,
+    background = SurfaceColorDark,
+    surface = SurfaceColorDark2,
+    secondary = SurfaceColorDarkVariant,
+    onSecondary = Color.White
+
 )
 
 private val LightColorPalette = lightColors(
     primary = PrimaryOrange,
-    primaryVariant = Color.Red,
+    primaryVariant = PrimaryOrange,
     background = SurfaceColorWhite,
     surface = SurfaceColorWhite,
-    secondary = Color.Red
+    secondary = Color.White,
+    onSecondary = Color.Black
 
 
     /* Other default colors to override

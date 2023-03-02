@@ -14,12 +14,10 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.koreancompose.screens.infoscreen.InfoSentence
-import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 import com.example.koreancompose.ui.theme.elevation
 import com.example.koreancompose.ui.theme.spacing
 
@@ -40,7 +38,7 @@ fun InfoScreen(
     gramInDepth2: String?,
     inDepth2ExKor: String,
     inDepth2ExEng: String,
-    focusManager: FocusManager,
+
     navController: NavHostController
 ) {
 
@@ -53,7 +51,7 @@ fun InfoScreen(
         scaffoldState = scaffoldState,
         topBar = {
             TopBarInfo(
-                navController = navController
+                navController = navController,
             )
         },
 
@@ -72,7 +70,7 @@ fun InfoScreen(
                         shape = RoundedCornerShape(10.dp)
                     )
                     .clip(shape = RoundedCornerShape(10.dp))
-                    .background(Color.White)
+                    .background(MaterialTheme.colors.secondary)
             ) {
                 InfoSentence(textFieldState)
             }
@@ -94,7 +92,7 @@ fun InfoScreen(
                         shape = RoundedCornerShape(10.dp)
                     )
                     .clip(shape = RoundedCornerShape(10.dp))
-                    .background(Color.White)
+                    .background(MaterialTheme.colors.secondary)
             ) {
                 InfoWord(word, def, wordExKor1, wordExEng1, wordExKor2, wordExEng2)
             }
@@ -114,7 +112,7 @@ fun InfoScreen(
                         shape = RoundedCornerShape(10.dp)
                     )
                     .clip(shape = RoundedCornerShape(10.dp))
-                    .background(Color.White)
+                    .background(MaterialTheme.colors.secondary)
             ) {
                 InfoGrammar(
                     grammar,

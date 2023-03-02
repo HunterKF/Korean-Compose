@@ -20,10 +20,8 @@ import androidx.navigation.NavController
 import com.example.koreancompose.Screen
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.viewmodels.StoredItemsViewModel
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.SnackbarDefaults.backgroundColor
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
@@ -56,7 +54,7 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
     when (storedItemsViewModel.favoriteItemState.value) {
         true -> {
             Column(
-                modifier = Modifier.fillMaxSize(),
+                modifier = Modifier.fillMaxSize().background(MaterialTheme.colors.surface),
             ) {
                 LazyColumn(
                     modifier = Modifier
@@ -204,7 +202,7 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
     }
 
 
-    alertDialog(
+    AlertDialog(
         openDialog = openDialog,
         context = context,
         storedItemsViewModel = storedItemsViewModel
@@ -275,7 +273,7 @@ fun SampleItems(item: StoredItem) {
 
 
 @Composable
-fun alertDialog(
+fun AlertDialog(
     openDialog: MutableState<Boolean>,
     context: Context,
     storedItemsViewModel: StoredItemsViewModel
@@ -308,7 +306,7 @@ fun alertDialog(
                 TextButton(
                     onClick = {
                         openDialog.value = false
-//                        Toast.makeText(context, "Dismiss Button Click", Toast.LENGTH_SHORT).show()
+    //                        Toast.makeText(context, "Dismiss Button Click", Toast.LENGTH_SHORT).show()
                     }) {
                     Text(text = "Dismiss", color = Color.DarkGray)
                 }
