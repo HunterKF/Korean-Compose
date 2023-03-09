@@ -2,7 +2,6 @@
   <library name="Gradle: com.google.accompanist:accompanist-pager:0.24.2-alpha@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/fe325db3158f1fb15ec44b6cefa19824/transformed/accompanist-pager-0.24.2-alpha/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fe325db3158f1fb15ec44b6cefa19824/transformed/accompanist-pager-0.24.2-alpha/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/fe325db3158f1fb15ec44b6cefa19824/transformed/accompanist-pager-0.24.2-alpha/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

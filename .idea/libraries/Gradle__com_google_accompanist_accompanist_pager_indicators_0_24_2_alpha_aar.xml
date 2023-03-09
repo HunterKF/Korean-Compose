@@ -2,7 +2,6 @@
   <library name="Gradle: com.google.accompanist:accompanist-pager-indicators:0.24.2-alpha@aar">
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/a4d3611c0274beb2cf63677732acd366/transformed/accompanist-pager-indicators-0.24.2-alpha/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a4d3611c0274beb2cf63677732acd366/transformed/accompanist-pager-indicators-0.24.2-alpha/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a4d3611c0274beb2cf63677732acd366/transformed/accompanist-pager-indicators-0.24.2-alpha/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
