@@ -1,4 +1,4 @@
-# Korean-Compose 
+# Korean Compose 
 
 ## Table of contents
 * [General info](#general-info)
