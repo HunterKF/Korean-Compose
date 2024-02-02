@@ -15,7 +15,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
-import com.example.koreancompose.R
+import com.jagerapps.koreancompose.R
+
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.viewmodels.StoredItemsViewModel
 import com.example.koreancompose.model.PracticeCard

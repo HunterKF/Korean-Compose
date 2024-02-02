@@ -52,7 +52,7 @@ fun InstallKeyboardScreen(navController: NavHostController) {
 
             ) {
             Column(
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize().padding(it)
             ) {
                 VerticalPager(
                     modifier = Modifier.weight(10f),
@@ -87,7 +87,6 @@ fun InstallKeyboardScreen(navController: NavHostController) {
 
 }
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun InstallItem(item: KeyboardPage, pagerState: PagerState) {
 

@@ -28,6 +28,7 @@ import com.example.koreancompose.screens.practicescreen.CustomItemFuns.ShareFun
 import com.example.koreancompose.ui.theme.Typography
 import com.example.koreancompose.ui.theme.elevation
 import com.example.koreancompose.ui.theme.spacing
+import com.jagerapps.koreancompose.R
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable

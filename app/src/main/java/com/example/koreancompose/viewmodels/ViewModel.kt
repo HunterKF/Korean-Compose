@@ -89,7 +89,7 @@ open class ViewModel : ViewModel() {
 
         var randomNumber = rand(item.dataWords.size)
 
-        if (randomNumber === item.dataWords.size) {
+        if (randomNumber == item.dataWords.size) {
             randomNumber -= 1
         }
         val grammar = item.dataWords[randomNumber].word
@@ -115,7 +115,7 @@ open class ViewModel : ViewModel() {
     fun returnGrammar(item: ModelJSONGrammar): GrammarData {
         var randomNumber = rand(item.dataGrammar.size)
 
-        if (randomNumber === item.dataGrammar.size) {
+        if (randomNumber == item.dataGrammar.size) {
             randomNumber -= 1
         }
         val grammar = item.dataGrammar[randomNumber].grammar

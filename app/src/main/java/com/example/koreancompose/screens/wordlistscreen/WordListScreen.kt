@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.koreancompose.*
-import com.example.koreancompose.R
 import com.example.koreancompose.model.ModelJSONWord
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 import com.example.koreancompose.ui.theme.PrimaryOrange
@@ -76,6 +75,7 @@ fun WordListScreen(navController: NavHostController, focusManager: FocusManager)
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(it)
                 .padding(horizontal = MaterialTheme.spacing.medium),
             state = listState
         ) {

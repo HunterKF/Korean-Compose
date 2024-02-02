@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.koreancompose.*
-import com.example.koreancompose.R
 import com.example.koreancompose.model.ModelJSONGrammar
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
 import com.example.koreancompose.ui.theme.PrimaryOrange
@@ -64,7 +63,6 @@ fun GrammarListScreen(navController: NavController, focusManager: FocusManager) 
             )
         },
         drawerBackgroundColor = PrimaryOrange,
-        // scrimColor = Color.Red,  // Color for the fade background when you open/close the drawer
         drawerContent = {
             SideDrawer(
                 scaffoldState = scaffoldState,
@@ -72,11 +70,12 @@ fun GrammarListScreen(navController: NavController, focusManager: FocusManager) 
                 viewModel = com.example.koreancompose.viewModel
             )
         },
-    ) {
+    ) { paddingValues ->
 
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(paddingValues)
                 .padding(horizontal = MaterialTheme.spacing.medium),
             state = listState
         ) {

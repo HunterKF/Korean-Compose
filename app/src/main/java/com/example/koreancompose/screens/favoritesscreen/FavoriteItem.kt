@@ -27,10 +27,10 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import com.example.koreancompose.R
 import com.example.koreancompose.ui.theme.PrimaryOrange
 import com.example.koreancompose.ui.theme.elevation
 import com.example.koreancompose.ui.theme.spacing
+import com.jagerapps.koreancompose.R
 
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -120,7 +120,8 @@ fun SwipeTest(allItems: MutableList<StoredItem>, navController: NavController) {
                                     DismissValue.DismissedToStart -> painterResource(R.drawable.ic_delete)
                                 }
                                 val scale by animateFloatAsState(
-                                    if (state.targetValue == DismissValue.Default) 0.85f else 1.2f
+                                    if (state.targetValue == DismissValue.Default) 0.85f else 1.2f,
+                                    label = ""
                                 )
                                 val alignment = when (direction) {
                                     DismissDirection.EndToStart -> Alignment.CenterEnd

@@ -22,7 +22,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.koreancompose.*
-import com.example.koreancompose.R
+import com.jagerapps.koreancompose.R
+
 import com.example.koreancompose.ui.theme.PrimaryOrange
 import com.example.koreancompose.ui.theme.spacing
 import kotlinx.coroutines.launch

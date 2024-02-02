@@ -20,11 +20,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.koreancompose.R
 import com.example.koreancompose.Screen
 import com.example.koreancompose.ui.theme.PrimaryOrange
 import com.example.koreancompose.ui.theme.spacing
 import com.example.koreancompose.viewmodels.ViewModel
+import com.jagerapps.koreancompose.R
 import kotlinx.coroutines.launch
 
 enum class Items(val label: String, val icon: Int) {

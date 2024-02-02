@@ -10,7 +10,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.example.koreancompose.R
+import com.jagerapps.koreancompose.R
 
 // Set of Material typography styles to start with
 val Roboto = FontFamily(

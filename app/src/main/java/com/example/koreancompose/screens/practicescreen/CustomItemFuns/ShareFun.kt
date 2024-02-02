@@ -15,7 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
-import com.example.koreancompose.R
+import com.jagerapps.koreancompose.R
+
 import com.example.koreancompose.ui.theme.PrimaryOrange
 
 @Composable

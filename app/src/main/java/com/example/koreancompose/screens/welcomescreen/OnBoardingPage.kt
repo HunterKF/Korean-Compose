@@ -1,7 +1,7 @@
 package com.example.koreancompose.screens.welcomescreen
 
 import androidx.annotation.DrawableRes
-import com.example.koreancompose.R
+import com.jagerapps.koreancompose.R
 
 sealed class OnBoardingPage(
     @DrawableRes

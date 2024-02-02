@@ -39,6 +39,7 @@ import com.example.koreancompose.ui.theme.PrimaryOrange
 import com.example.koreancompose.ui.theme.elevation
 import com.example.koreancompose.ui.theme.spacing
 import com.example.koreancompose.viewmodels.ViewModel
+import com.jagerapps.koreancompose.R
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -106,13 +107,13 @@ fun PracticeScreen(
                 viewModel = viewModel
             )
         },
-    ) {
+    ) { paddingValues ->
 
         var cardState by remember { mutableStateOf(viewModel.itemList) }
         var expandedState by remember { mutableStateOf<PracticeCard?>(null) }
         LazyColumn(
             state = lazyListState,
-            modifier = Modifier.padding(
+            modifier = Modifier.padding(paddingValues).padding(
                 horizontal = MaterialTheme.spacing.medium
             )
         ) {

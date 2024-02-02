@@ -30,7 +30,6 @@ class StoredItemsRepository(private val storedItemDao: StoredItemsDao) {
         }
     }
 
-
     fun searchStoredItem(sentence: String) {
         coroutineScope.launch(Dispatchers.Main) {
             searchResults.value = asyncFind(sentence).await()

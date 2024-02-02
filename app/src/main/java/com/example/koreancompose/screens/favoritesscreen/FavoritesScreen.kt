@@ -3,15 +3,17 @@ package com.example.koreancompose.screens.favoritesscreen
 import android.annotation.SuppressLint
 import android.app.Application
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.navigation.NavController
 import com.example.koreancompose.*
-import com.example.koreancompose.R
 import com.example.koreancompose.database.StoredItem
 import com.example.koreancompose.viewmodels.StoredItemsViewModel
 import com.example.koreancompose.screens.sidedrawerscreen.SideDrawer
@@ -50,8 +52,11 @@ fun FavoritesScreen(
                 viewModel = com.example.koreancompose.viewModel
             )
         },
-    ) {
-        SwipeTest(allItems as MutableList<StoredItem>, navController = navController)
+    ) { paddingValues ->
+        Column(modifier = Modifier.padding(paddingValues)) {
+
+            SwipeTest(allItems as MutableList<StoredItem>, navController = navController)
+        }
     }
     BackHandler {
         navController.navigate(Screen.PracticeScreen.route)
