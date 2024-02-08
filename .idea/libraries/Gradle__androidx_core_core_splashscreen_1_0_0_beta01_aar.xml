@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.core:core-splashscreen:1.0.0-beta01@aar" external-system-id="GRADLE">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dc8a94b7470863fd3d96422e0c4b43b0/transformed/core-splashscreen-1.0.0-beta01/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dc8a94b7470863fd3d96422e0c4b43b0/transformed/core-splashscreen-1.0.0-beta01/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dc8a94b7470863fd3d96422e0c4b43b0/transformed/core-splashscreen-1.0.0-beta01/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1bf6ee538e1bb7a3ba93fa770ae9e58c/transformed/core-splashscreen-1.0.0-beta01/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/1bf6ee538e1bb7a3ba93fa770ae9e58c/transformed/core-splashscreen-1.0.0-beta01/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/1bf6ee538e1bb7a3ba93fa770ae9e58c/transformed/core-splashscreen-1.0.0-beta01/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

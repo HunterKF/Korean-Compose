@@ -3,8 +3,8 @@
   <component name="FacetManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="7.1.2" />
-        <option name="LAST_KNOWN_AGP_VERSION" value="7.1.2" />
+        <option name="LAST_SUCCESSFUL_SYNC_AGP_VERSION" value="8.2.2" />
+        <option name="LAST_KNOWN_AGP_VERSION" value="8.2.2" />
       </configuration>
     </facet>
     <facet type="kotlin-language" name="Kotlin">
@@ -50,6 +50,14 @@
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
     </facet>
+  </component>
+  <component name="ModuleClassLoaderOverlays">
+    <paths>
+      <option value="/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/overlay5402108400929363193" />
+      <option value="/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/overlay1026268669916006541" />
+      <option value="/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/overlay1586559067568290161" />
+      <option value="/var/folders/jr/xb3qjr7x2hn12jqk7cq_q4kh0000gn/T/overlay14058960188063854527" />
+    </paths>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <exclude-output />
